@@ -67,17 +67,30 @@ class UserModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-}
 
-// hashPassword method definition
-function hashPassword(array $data)
-{
-    if (!isset($data['data']['password'])) {
+    protected function beforeInsert(array $data)
+    {
+        $data = $this->hashPassword($data);
+
         return $data;
     }
 
-    $data['data']['password_hash'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
-    unset($data['data']['password']);
+    protected function beforeUpdate(array $data)
+    {
+        $data = $this->hashPassword($data);
 
-    return $data;
+        return $data;
+    }
+    // hashPassword method definition
+    protected function hashPassword(array $data)
+    {
+        if (!isset($data['data']['password'])) {
+            return $data;
+        }
+
+        $data['data']['password_hash'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+        unset($data['data']['password']);
+
+        return $data;
+    }
 }
