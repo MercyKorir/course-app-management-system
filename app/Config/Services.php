@@ -3,6 +3,7 @@
 namespace Config;
 
 use CodeIgniter\Config\BaseService;
+use App\Models\CourseModel;
 
 /**
  * Services Configuration file.
@@ -29,4 +30,13 @@ class Services extends BaseService
      *     return new \CodeIgniter\Example();
      * }
      */
+
+    // public static function courseModel($getShared = true)
+    // {
+    //     if ($getShared) {
+    //         return static::getSharedInstance('courseModel');
+    //     }
+
+    //     return new CourseModel();
+    // }
 }
