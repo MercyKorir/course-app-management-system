@@ -12,7 +12,7 @@ class CourseModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['title', 'long_description', 'short_description'];
+    protected $allowedFields    = ['title', 'long_description', 'short_description', 'course_image'];
 
     // Dates
     protected $useTimestamps = true;

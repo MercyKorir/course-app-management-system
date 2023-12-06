@@ -91,16 +91,31 @@ class Course extends ResourceController
                 'title' => 'required|min_length[3]|max_length[255]',
                 'long_description' => 'required|min_length[3]',
                 'short_description' => 'required|min_length[3]',
+                'course_image' => 'uploaded[course_image]|max_size[course_image,1024]|is_image[course_image]|mime_in[course_image,image/jpg,image/jpeg,image/gif,image/png]'
             ];
-            $data = [
-                'title' => $this->request->getPost('title'),
-                'long_description' => $this->request->getPost('long_description'),
-                'short_description' => $this->request->getPost('short_description'),
-            ];
+
 
             if (!$this->validate($rules)) {
                 return $this->fail($this->validator->getErrors());
             }
+            $file = $this->request->getFile('course_image');
+
+            if (!$file->isValid()) {
+                return $this->fail($file->getErrorString() . '(' . $file->getError() . ')');
+            }
+            try {
+                $file->move('../assets/uploads');
+            } catch (\Exception $e) {
+                log_message('error', 'An error ocurred while uploading course image: ' . $e->getMessage());
+                return $this->failServerError('An error occurred while uploading course image' . $e->getMessage());
+            }
+
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'long_description' => $this->request->getPost('long_description'),
+                'short_description' => $this->request->getPost('short_description'),
+                'course_image' => $file->getName(),
+            ];
 
             $course_id = $this->courseModel->insert($data);
             $data['course_id'] = $course_id;
@@ -136,7 +151,7 @@ class Course extends ResourceController
      */
     public function update($id = null)
     {
-        helper(['form']);
+        helper(['form', 'array']);
         try {
 
             $existing_course = $this->courseModel->find($id);
@@ -150,10 +165,36 @@ class Course extends ResourceController
                 'short_description' => 'required|min_length[3]',
             ];
 
-            $requestData = $this->request->getRawInput();
+            $fileName = dot_array_search('course_image', $_FILES);
+            if ($fileName != '') {
+                $rules['course_image'] = 'uploaded[course_image]|max_size[course_image,1024]|is_image[course_image]|mime_in[course_image,image/jpg,image/jpeg,image/gif,image/png]';
+            }
+
+            // $requestData = $this->request->getRawInput();
 
             if (!$this->validate($rules)) {
                 return $this->fail($this->validator->getErrors());
+            }
+
+            $requestData = [
+                'title' => $this->request->getPost('title'),
+                'long_description' => $this->request->getPost('long_description'),
+                'short_description' => $this->request->getPost('short_description'),
+            ];
+
+            if ($fileName != '') {
+                $file = $this->request->getFile('course_image');
+
+                if (!$file->isValid()) {
+                    return $this->fail($file->getErrorString() . '(' . $file->getError() . ')');
+                }
+                try {
+                    $file->move('../assets/uploads');
+                } catch (\Exception $e) {
+                    log_message('error', 'An error ocurred while uploading course image: ' . $e->getMessage());
+                    return $this->failServerError('An error occurred while uploading course image' . $e->getMessage());
+                }
+                $requestData['course_image'] = $file->getName();
             }
 
 

@@ -19,6 +19,7 @@ class Courses extends Migration
             'title' => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
+                'null'              => true,
             ],
             // add image field here later
             'long_description' => [
@@ -27,6 +28,11 @@ class Courses extends Migration
             ],
             'short_description' => [
                 'type'              => 'TEXT',
+                'null'              => true,
+            ],
+            'course_image' => [
+                'type'              => 'VARCHAR',
+                'constraint'        => 255,
                 'null'              => true,
             ],
             'created_at' => [

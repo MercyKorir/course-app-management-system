@@ -6,6 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->resource('course');
+$routes->post('/course/update/(:segment)', 'Course::update/$1');
 
 $routes->resource('user');
 $routes->post('/user/login', 'User::login');
