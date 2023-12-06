@@ -11,7 +11,12 @@ class Oauth
 
     function __construct()
     {
-        $this->init();
+        try {
+            $this->init();
+        } catch (\Exception $e) {
+            log_message('error', $e->getMessage());
+            die($e->getMessage());
+        }
     }
 
     public function init()

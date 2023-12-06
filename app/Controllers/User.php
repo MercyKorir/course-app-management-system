@@ -60,10 +60,10 @@ class User extends BaseController
         } else {
             $model = new UserModel();
             $data = [
-                'firstname' => $this->request->getVar('firstname'),
-                'lastname' => $this->request->getVar('lastname'),
-                'email' => $this->request->getVar('email'),
-                'password' => $this->request->getVar('password'),
+                'firstname' => $this->request->getPost('firstname'),
+                'lastname' => $this->request->getPost('lastname'),
+                'email' => $this->request->getPost('email'),
+                'password' => $this->request->getPost('password'),
             ];
             $user_id = $model->insert($data);
             $data['id'] = $user_id;
