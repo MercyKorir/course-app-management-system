@@ -11,6 +11,7 @@
     },
     "require": {
         "php": "^7.4 || ^8.0",
+        "bshaffer/oauth2-server-php": "1.10",
         "codeigniter4/framework": "^4.0"
     },
     "require-dev": {
