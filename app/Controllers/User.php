@@ -71,4 +71,54 @@ class User extends BaseController
             return $this->respondCreated($data);
         }
     }
+
+    // public function logout handle session on client side
+    public function logout()
+    {
+        //     $oauth = new Oauth();
+        //     $request = new Request();
+
+        //     // print_r($request->createFromGlobals());
+
+
+        //     // Check if access token exists
+        //     if (!$oauth->server->verifyResourceRequest($request->createFromGlobals())) {
+        //         return $this->failUnauthorized('Invalid access token');
+        //     }
+
+        //     // print_r($oauth->server->getAccessTokenData($request->createFromGlobals()));
+
+        //     // Check if access token is present in the request
+        //     print_r($this->request->getHeader('Authorization'));
+        //     if (!$this->request->getHeader('Authorization')) {
+        //         return $this->failUnauthorized('Missing access token');
+        //     }
+
+        //     // Revoke the access token
+
+        //     $token = $oauth->server->getAccessTokenData($request->createFromGlobals());
+
+        //     print_r($token);
+
+        //     $response = $oauth->server->handleRevokeRequest($request->createFromGlobals());
+
+        //     $code = $response->getStatusCode();
+        //     $body = $response->getResponseBody();
+
+        //     // check if the access token is revoked
+        //     if ($code != 200) {
+        //         return $this->fail('The access token could not be revoked');
+        //     }
+
+        //     // $data = [
+        //     //     'status' => $code,
+        //     //     'error' => null,
+        //     //     'message' => [
+        //     //         'success' => 'User logged out successfully'
+        //     //     ],
+        //     //     'data' => json_decode($body)
+        //     // ];
+
+        //     return $this->respond(json_decode($body), $code);
+    }
 }
