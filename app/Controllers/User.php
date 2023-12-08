@@ -32,6 +32,21 @@ class User extends BaseController
         return $this->respond(json_decode($body), $code);
     }
 
+    /**
+     * Handle OPTIONS request
+     * 
+     * @return mixed
+     */
+    public function options()
+    {
+        $this->response
+            ->setHeader('Access-Control-Allow-Origin', '*')
+            ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PATCH, PUT, DELETE')
+            ->setHeader('Access-Control-Allow-Headers', 'X-API-KEY, Origin,X-Requested-With, Content-Type, Accept, Access-Control-Requested-Method, Authorization');
+
+        return $this->response->setStatusCode(200); // Respond with 200 OK for OPTIONS request
+    }
+
     public function show($id = null)
     {
         $model = new UserModel();
