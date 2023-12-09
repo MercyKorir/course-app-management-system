@@ -87,53 +87,43 @@ class User extends BaseController
         }
     }
 
-    // public function logout handle session on client side
     public function logout()
     {
-        //     $oauth = new Oauth();
-        //     $request = new Request();
+        helper(['form']);
 
-        //     // print_r($request->createFromGlobals());
+        if ($this->request->getMethod() != 'post') {
+            return $this->fail('Only post request is allowed');
+        }
 
+        $rules = [
+            'token' => 'required',
+            'token_type_hint' => 'required',
+        ];
 
-        //     // Check if access token exists
-        //     if (!$oauth->server->verifyResourceRequest($request->createFromGlobals())) {
-        //         return $this->failUnauthorized('Invalid access token');
-        //     }
+        if (!$this->validate($rules)) {
+            return $this->fail($this->validator->getErrors());
+        }
 
-        //     // print_r($oauth->server->getAccessTokenData($request->createFromGlobals()));
+        try {
+            $oauth = new Oauth();
+            $token = $this->request->getPost('token');
+            $token_type_hint = $this->request->getPost('token_type_hint');
 
-        //     // Check if access token is present in the request
-        //     print_r($this->request->getHeader('Authorization'));
-        //     if (!$this->request->getHeader('Authorization')) {
-        //         return $this->failUnauthorized('Missing access token');
-        //     }
+            if ($token_type_hint == 'access_token') {
+                $revoked = $oauth->server->getStorage('access_token')->unsetAccessToken($token);
+            } else if ($token_type_hint == 'refresh_token') {
+                $revoked = $oauth->server->getStorage('refresh_token')->unsetRefreshToken($token);
+            } else {
+                return $this->fail('Invalid token type hint');
+            }
 
-        //     // Revoke the access token
-
-        //     $token = $oauth->server->getAccessTokenData($request->createFromGlobals());
-
-        //     print_r($token);
-
-        //     $response = $oauth->server->handleRevokeRequest($request->createFromGlobals());
-
-        //     $code = $response->getStatusCode();
-        //     $body = $response->getResponseBody();
-
-        //     // check if the access token is revoked
-        //     if ($code != 200) {
-        //         return $this->fail('The access token could not be revoked');
-        //     }
-
-        //     // $data = [
-        //     //     'status' => $code,
-        //     //     'error' => null,
-        //     //     'message' => [
-        //     //         'success' => 'User logged out successfully'
-        //     //     ],
-        //     //     'data' => json_decode($body)
-        //     // ];
-
-        //     return $this->respond(json_decode($body), $code);
+            if ($revoked) {
+                return $this->respondDeleted(['message' => 'Token revoked']);
+            } else {
+                return $this->fail('Token not found');
+            }
+        } catch (\Exception $e) {
+            return $this->fail($e->getMessage());
+        }
     }
 }

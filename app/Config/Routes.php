@@ -15,5 +15,6 @@ $routes->options('user/login', 'User::options');
 $routes->options('user/register', 'User::options');
 $routes->post('/user/login', 'User::login');
 $routes->post('/user/register', 'User::register');
-// $routes->post('/user/logout', 'User::logout');
+$routes->post('/user/logout', 'User::logout');
 $routes->get('/', 'Home::index');
+
