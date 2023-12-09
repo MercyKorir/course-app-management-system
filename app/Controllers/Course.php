@@ -41,6 +41,21 @@ class Course extends ResourceController
     }
 
     /**
+     * Handle OPTIONS request
+     * 
+     * @return mixed
+     */
+    public function options()
+    {
+        $this->response
+            ->setHeader('Access-Control-Allow-Origin', '*')
+            ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PATCH, PUT, DELETE')
+            ->setHeader('Access-Control-Allow-Headers', 'X-API-KEY, Origin,X-Requested-With, Content-Type, Accept, Access-Control-Requested-Method, Authorization');
+
+        return $this->response->setStatusCode(200); // Respond with 200 OK for OPTIONS request
+    }
+
+    /**
      * Return the properties of a resource object
      *
      * @return mixed
