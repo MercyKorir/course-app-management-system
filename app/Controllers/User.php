@@ -51,6 +51,7 @@ class User extends BaseController
     {
         $model = new UserModel();
         $data = $model->find($id);
+        unset($data['password']);
         return $this->respond($data);
     }
 
@@ -119,6 +120,52 @@ class User extends BaseController
 
             if ($revoked) {
                 return $this->respondDeleted(['message' => 'Token revoked']);
+            } else {
+                return $this->fail('Token not found');
+            }
+        } catch (\Exception $e) {
+            return $this->fail($e->getMessage());
+        }
+    }
+
+    public function verify()
+    {
+        helper(['form']);
+
+        if ($this->request->getMethod() != 'post') {
+            return $this->fail('Only post request is allowed');
+        }
+
+        $rules = [
+            'token' => 'required',
+            'token_type_hint' => 'required',
+        ];
+
+        if (!$this->validate($rules)) {
+            return $this->fail($this->validator->getErrors());
+        }
+
+        try {
+            $oauth = new Oauth();
+            $model = new UserModel();
+            $token = $this->request->getPost('token');
+            $token_type_hint = $this->request->getPost('token_type_hint');
+
+            if ($token_type_hint == 'access_token') {
+                $valid = $oauth->server->getStorage('access_token')->getAccessToken($token);
+                if ($valid) {
+                    $user_id = $valid['user_id'];
+                    $user = $model->find($user_id);
+                    unset($user['password']);
+                }
+            } else if ($token_type_hint == 'refresh_token') {
+                $valid = $oauth->server->getStorage('refresh_token')->getRefreshToken($token);
+            } else {
+                return $this->fail('Invalid token type hint');
+            }
+
+            if ($valid) {
+                return $this->respond(['user' => $user, 'message' => 'Token is valid']);
             } else {
                 return $this->fail('Token not found');
             }
