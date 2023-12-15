@@ -13,6 +13,7 @@ class Course extends ResourceController
     {
         $this->courseModel = new CourseModel();
     }
+
     /**
      * Return an array of resource objects, themselves in array format
      *
@@ -23,7 +24,15 @@ class Course extends ResourceController
         try {
             $courses = $this->courseModel->findAll();
             if (!$courses) {
-                return $this->failNotFound('No course found');
+                $response = [
+                    'status' => 404,
+                    'error' => 404,
+                    'message' => [
+                        'error' => 'No courses found'
+                    ],
+                    'data' => $courses
+                ];
+                return $this->respond($response);
             }
             $response = [
                 'status' => 200,

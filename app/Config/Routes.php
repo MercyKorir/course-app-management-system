@@ -7,6 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->resource('course');
 $routes->options('course', 'Course::options');
+$routes->options('course/(:segment)', 'Course::options');
 $routes->post('/course/update/(:segment)', 'Course::update/$1');
 
 
