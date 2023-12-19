@@ -10,6 +10,8 @@ $routes->options('course', 'Course::options');
 $routes->options('course/(:segment)', 'Course::options');
 $routes->post('/course/update/(:segment)', 'Course::update/$1');
 
+$routes->get('/courses', 'Course::getCourses');
+
 
 $routes->resource('user', ['controller' => 'User']);
 $routes->options('user', 'User::options');

@@ -269,4 +269,39 @@ class Course extends ResourceController
             return $this->failServerError('An error occurred while deleting course' . $e->getMessage());
         }
     }
+
+    /**
+     * Return an array of course objects, themselves in array format
+     * 
+     * @return mixed
+     */
+    public function getCourses()
+    {
+        try {
+            $courses = $this->courseModel->findAll();
+            if (!$courses) {
+                $response = [
+                    'status' => 404,
+                    'error' => 404,
+                    'message' => [
+                        'error' => 'No courses found'
+                    ],
+                    'data' => $courses
+                ];
+                return $this->respond($response);
+            }
+            $response = [
+                'status' => 200,
+                'error' => null,
+                'message' => [
+                    'success' => 'Courses retrieved successfully'
+                ],
+                'data' => $courses
+            ];
+            return $this->respond($response);
+        } catch (\Exception $e) {
+            log_message('error', 'An error ocurred while retrieving courses: ' . $e->getMessage());
+            return $this->failServerError('An error occurred while retrieving courses' . $e->getMessage());
+        }
+    }
 }
