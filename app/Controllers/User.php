@@ -165,7 +165,15 @@ class User extends BaseController
             }
 
             if ($valid) {
-                return $this->respond(['user' => $user, 'message' => 'Token is valid']);
+                $response = [
+                    'status'  => 200,
+                    'error'   => null,
+                    'message' => [
+                        'success'  => 'User is Authorized. Token is valid.',
+                    ],
+                    'data' => $user,
+                ];
+                return $this->respond($response);
             } else {
                 $response = [
                     'status'  => 401,
