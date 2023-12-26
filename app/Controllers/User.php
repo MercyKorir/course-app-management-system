@@ -167,7 +167,14 @@ class User extends BaseController
             if ($valid) {
                 return $this->respond(['user' => $user, 'message' => 'Token is valid']);
             } else {
-                return $this->respond(['message' => 'Token not found'], 401);
+                $response = [
+                    'status'  => 401,
+                    'error'   => 401,
+                    'message' => [
+                        'error'  => 'User is Unauthorized. Token not found.',
+                    ],
+                ];
+                return $this->respond($response);
             }
         } catch (\Exception $e) {
             return $this->fail($e->getMessage());
