@@ -1,0 +1,256 @@
+.cms-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 40px;
+}
+
+.header-course-no .title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.header-course-no .course-no {
+  /* border: 1px solid #8f8a8a; */
+  font-size: 18px;
+  margin-top: 5px;
+  border-radius: 8px;
+  padding: 0.3rem 0.8rem;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5;
+}
+
+.add-course-btn {
+  background-color: #1e231e;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.manage-course-btn {
+  background-color: white;
+  color: #1e231e;
+  border: 1px solid #1e231e;
+  border-radius: 25px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.manage-course-btn:hover {
+  background-color: #1e231e;
+  color: white;
+
+  transform: translateY(-1px);
+}
+
+.add-course-btn:hover {
+  background-color: #353835;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.refresh-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.refresh-container p {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #7a7676;
+  transition: all 0.3s ease-in-out;
+}
+
+.refresh-container p:hover {
+  color: #1e231e;
+}
+
+.sort-filter-search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sort-filter-search .sort-btn {
+  background-color: #f2f2f2;
+  color: #1e231e;
+  border: 1px solid #1e231e;
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.sort-filter-search .sort-btn:hover {
+  background-color: #333533;
+  color: #e5e5e5;
+}
+
+.sort-filter-search .sort-type {
+  background-color: #f2f2f2;
+  color: #1e231e;
+  border: 1px solid #1e231e;
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  /* padding: 10px 20px; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+
+  /* cursor: pointer; */
+}
+
+.sort-filter-search .sort-type:focus {
+  outline: none;
+  border-color: #999999;
+}
+
+.sort-filter-search .sort-type option {
+  padding: 5px 0;
+}
+
+.sort-filter-search .filter-btn {
+  background-color: #f2f2f2;
+  color: #1e231e;
+  border: 1px solid #1e231e;
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.sort-filter-search .filter-btn:hover {
+  background-color: #333533;
+  color: #e5e5e5;
+}
+
+.search-input {
+  background-color: #f2f2f2;
+  color: #6d6e6d;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+table {
+  font-family: Arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #1e231e;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #c3c3c3;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.3s ease-in-out;
+}
+
+input[type="checkbox"]:checked {
+  background: #00b9f1;
+}
+
+input[type="checkbox"]:focus {
+  outline: none;
+}
+
+input[type="checkbox"]:after {
+  content: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 3px;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(2);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+input[type="checkbox"]:checked:after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.deleteIconContainer {
+  color: #ff00009b;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.deleteIconContainer:hover {
+  color: #ff0000;
+}
+
+.courseImg {
+  width: 50px;
+  height: 50px;
+}

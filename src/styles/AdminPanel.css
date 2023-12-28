@@ -1,0 +1,56 @@
+.admin-panel {
+  font-family: Arial, sans-serif;
+  width: 80%;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.admin-panel h2 {
+  margin-bottom: 20px;
+}
+
+.admin-panel button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.admin-panel .course-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.admin-panel .course-item {
+  width: 45%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.admin-panel label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.admin-panel input,
+.admin-panel textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.admin-panel textarea {
+  resize: vertical;
+  height: 100px;
+}

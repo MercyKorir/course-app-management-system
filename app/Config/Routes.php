@@ -23,5 +23,9 @@ $routes->post('/user/logout', 'User::logout');
 $routes->options('user/logout', 'User::options');
 $routes->post('/user/verify', 'User::verify');
 $routes->options('user/verify', 'User::options');
+$routes->get('/client', 'User::client');
+$routes->options('client', 'User::options');
+
 
 $routes->get('/', 'Home::index');
+$routes->get('/course-page', 'Courses::index');

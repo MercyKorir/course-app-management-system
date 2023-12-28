@@ -33,6 +33,38 @@ class User extends BaseController
     }
 
     /**
+     * Get client-secret
+     * 
+     * @return mixed
+     */
+    public function client()
+    {
+        try {
+            $client = getenv('REACT_APP_EXCLUDE_TEST_CLIENT');
+            $secret = getenv('REACT_APP_EXCLUDE_TEST_SECRET');
+
+            $data = [
+                'client_id' => $client,
+                'client_secret' => $secret,
+            ];
+
+            $response = [
+                'status' => 200,
+                'error' => null,
+                'message' => [
+                    'success' => 'Client secret retrieved',
+                ],
+                'data' => $data,
+            ];
+
+            return $this->respond($response);
+        } catch (\Exception $e) {
+            log_message('error', 'An error ocurred while retrieving client information' . $e->getMessage());
+            return $this->fail('An error occurred while retrieving client information' . $e->getMessage());
+        }
+    }
+
+    /**
      * Handle OPTIONS request
      * 
      * @return mixed

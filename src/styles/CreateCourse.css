@@ -1,0 +1,198 @@
+.add-course-form-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 650px;
+  max-height: 650px;
+  width: 1000px;
+  background-color: #e8e5e5;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding-top: 30px;
+  padding-bottom: 50px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  transition: all 0.3s ease-in-out;
+}
+
+.add-course-header {
+  width: 93%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  padding-top: 130px;
+}
+
+.add-course-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.add-course-header .btn-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.add-course-header .btn-container .cancel-btn {
+  padding: 10px 15px;
+  color: #007bff;
+  background-color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.add-course-header .btn-container .save-btn {
+  padding: 10px 15px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-course-form {
+  display: flex;
+  flex-direction: column;
+  min-height: fit-content;
+  width: 600px;
+  padding: 20px;
+  padding-top: 0px;
+  padding-right: 40px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.add-course-form .title-container {
+  border-bottom: 1px solid #949393;
+  width: 106.7%;
+  margin-bottom: 30px;
+  margin-left: -20px;
+  padding-left: 20px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.add-course-form .title-container h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.add-course-form label {
+  margin-bottom: 5px;
+}
+
+.add-course-form input,
+.add-course-form textarea {
+  margin-top: 8px;
+  margin-bottom: 35px;
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.add-course-form .text-editor-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 35px;
+}
+
+.add-course-form .react-quill {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.add-course-form .custom-image-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-course-form .custom-image-container .file-btn {
+  margin-top: 8px;
+  margin-bottom: 30px;
+  padding: 8px;
+  width: 150px;
+  height: 150px;
+  font-size: 16px;
+  background-color: rgba(0, 30, 255, 0.1);
+  color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.add-course-form .custom-image-container .file-btn:hover {
+  background-color: rgba(0, 30, 255, 0.2);
+  color: #0056b3;
+}
+
+.add-course-form .custom-image-container .upload-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.add-course-form .custom-image-container .upload-link p span {
+  text-decoration: underline;
+  color: #007bff;
+  transition: all 0.3s ease-in-out;
+}
+
+.add-course-form .custom-image-container .upload-link p span:hover {
+  cursor: pointer;
+  color: #0056b3;
+}
+
+.add-course-form .submit-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.add-course-form button {
+  padding: 10px 15px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-course-form button:hover {
+  background-color: #0056b3;
+}
+
+.add-course-form button:not(:last-child) {
+  margin-right: 10px;
+}
+
+.quill-container {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

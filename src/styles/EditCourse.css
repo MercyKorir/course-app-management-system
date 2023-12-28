@@ -1,0 +1,27 @@
+.edit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  color: black;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(63, 61, 61);
+}
+
+.wrapper-class {
+
+  border: 1px solid #ccc;
+}
+.editor-class {
+  background-color: lightgray;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+.toolbar-class {
+  border: 1px solid #ccc;
+}

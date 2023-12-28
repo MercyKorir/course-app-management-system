@@ -1,4 +1,6 @@
 /frontend
+/node_modules
+/package-lock.json
 
 #-------------------------
 # Operating Specific Junk Files
