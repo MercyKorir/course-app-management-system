@@ -310,4 +310,21 @@ class Course extends ResourceController
             return $this->failServerError('An error occurred while retrieving courses' . $e->getMessage());
         }
     }
+
+    /**
+     * Serve the image of a course
+     * 
+     * @return mixed
+     */
+    public function showImage($image_name)
+    {
+        $image_path = '../assets/uploads/' . $image_name;
+        $image_info = getimagesize($image_path);
+
+        $mime = $image_info['mime'];
+
+        header('Content-type: ' . $mime);
+
+        readfile($image_path);
+    }
 }
