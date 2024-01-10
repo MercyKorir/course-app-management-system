@@ -254,6 +254,12 @@ class Course extends ResourceController
             return $this->failNotFound('Course with ID ' . $id . ' not found');
         }
 
+        $image_path = '../assets/uploads/' . $existing_course['course_image'];
+
+        if (file_exists($image_path)) {
+            unlink($image_path);
+        }
+
         try {
             $this->courseModel->delete($id);
             $response = [
