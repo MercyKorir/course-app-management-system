@@ -1,0 +1,76 @@
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+  transition: all ease-in-out 0.3s;
+}
+
+.sidebarCollapsed {
+  width: 50px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+  transition: all ease-in-out 0.3s;
+}
+
+.dashboardCollapseBtn {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  padding-top: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: solid 1px #ddd;
+  transition: all ease-in-out 0.3s;
+}
+
+.navLinks {
+  /* padding-left: 15px;
+    padding-right: 15px; */
+  padding-top: 10px;
+  transition: all ease-in-out 0.5s;
+}
+
+.navLinks .navItem {
+  margin-bottom: 0px;
+  transition: all ease-in-out 0.3s;
+}
+
+.navLinks .navItem span {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #1a1a1a;
+  font-weight: bold;
+  padding: 13px 10px;
+  border-radius: 2px;
+  background-color: none;
+}
+
+.navLinks .navItem span:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.activeLink,
+.activeLink span {
+  color: #f9f9f9 !important;
+  background-color: #9d5bff;
+}
+
+.navLinks span.activeLink:hover {
+  background-color: #9d5bff;
+}
+.navLinks span.activeLink:hover span {
+  background-color: #9d5bff;
+}

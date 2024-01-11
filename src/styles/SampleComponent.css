@@ -1,6 +1,24 @@
 .cms-container {
+  display: flex !important;
+  height: 100%;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+}
+
+/* .contentContainer {
   width: 100%;
   margin: 0 auto;
+} */
+
+.content {
+  flex-grow: 1;
+  background-color: #f2f2f2;
+  height: 100vh;
+  /* Add your content styles here */
 }
 
 .header-row {

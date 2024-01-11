@@ -4,10 +4,17 @@ import { useNavigate } from "react-router-dom";
 import CachedIcon from "@mui/icons-material/Cached";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import MenuIcon from "@mui/icons-material/Menu";
+import SettingsIcon from "@mui/icons-material/Settings";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import HomeIcon from "@mui/icons-material/Home";
+import LogoutIcon from "@mui/icons-material/Logout";
 import "../styles/SampleComponent.css";
 import CreateCourse from "./CreateCourse.jsx";
 import styles from "../styles/Common.module.css";
 import ToastNotification from "./ToastNotification.jsx";
+import sidebarStyles from "../styles/SideBar.module.css";
 
 const SampleComponent = () => {
   const [courses, setCourse] = useState([]);
@@ -27,6 +34,8 @@ const SampleComponent = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastOperation, setToastOperation] = useState("");
+  const [activeTab, setActiveTab] = useState("home");
+  const [isSideBarCollapsed, setIsSideBarCollapsed] = useState(false);
 
   useEffect(() => {
     // Check if user is logged in using access_token cookie, if not redirect to login page
@@ -88,6 +97,10 @@ const SampleComponent = () => {
 
     verifyUser();
   }, [navigate]);
+
+  const toggleSideBar = () => {
+    setIsSideBarCollapsed(!isSideBarCollapsed);
+  };
 
   const fetchCourses = useCallback(async () => {
     const cookies = document.cookie
@@ -327,193 +340,268 @@ const SampleComponent = () => {
     </div>
   ) : authorized ? (
     <div className="cms-container">
-      <div className="header-row">
-        <div className="header-course-no">
-          <div className="title">Course</div>
-          <div className="course-no">{courses.length} Courses</div>
+      <aside
+        className={`${
+          isSideBarCollapsed
+            ? sidebarStyles.sidebarCollapsed
+            : sidebarStyles.sidebar
+        }`}
+      >
+        <div
+          className={sidebarStyles.dashboardCollapseBtn}
+          onClick={toggleSideBar}
+        >
+          <MenuIcon />
+          {!isSideBarCollapsed && <span>Dashboard</span>}
         </div>
-        <div className="btn-container">
-          {showDone ? (
-            <button
-              type="button"
-              className="manage-course-btn"
-              onClick={handleDoneShowManage}
+        <div className={sidebarStyles.navLinks}>
+          <div className={sidebarStyles.navItem}>
+            <span
+              onClick={() => setActiveTab("home")}
+              className={activeTab === "home" ? sidebarStyles.activeLink : ""}
             >
-              Done
-            </button>
-          ) : (
-            courses.length > 0 && (
-              <button
-                type="button"
-                className="manage-course-btn"
-                onClick={handleShowManage}
-              >
-                Manage Course
-              </button>
-            )
-          )}
+              <HomeIcon />
+              {!isSideBarCollapsed && <span>Home</span>}
+            </span>
+          </div>
+          <div className={sidebarStyles.navItem}>
+            <span
+              onClick={() => setActiveTab("upload")}
+              className={activeTab === "upload" ? sidebarStyles.activeLink : ""}
+            >
+              <CloudUploadIcon />
+              {!isSideBarCollapsed && <span>Upload</span>}
+            </span>
+          </div>
+          <div className={sidebarStyles.navItem}>
+            <span
+              onClick={() => setActiveTab("settings")}
+              className={
+                activeTab === "settings" ? sidebarStyles.activeLink : ""
+              }
+            >
+              <SettingsIcon />
+              {!isSideBarCollapsed && <span> Settings</span>}
+            </span>
+          </div>
+          <div className={sidebarStyles.navItem}>
+            <span
+              onClick={() => setActiveTab("users")}
+              className={activeTab === "users" ? sidebarStyles.activeLink : ""}
+            >
+              <PeopleAltIcon />
+              {!isSideBarCollapsed && <span>Users</span>}
+            </span>
+          </div>
+          <div className={sidebarStyles.navItem}>
+            <span className={sidebarStyles.logoutBtn} onClick={handleLogout}>
+              <LogoutIcon />
+              {!isSideBarCollapsed && <span>Logout</span>}
+            </span>
+          </div>
+        </div>
+      </aside>
+      <div className="content">
+        {activeTab === "home" && (
+          <>
+            <div className="header-row">
+              <div className="header-course-no">
+                <div className="title">Course</div>
+                <div className="course-no">{courses.length} Courses</div>
+              </div>
+              <div className="btn-container">
+                {showDone ? (
+                  <button
+                    type="button"
+                    className="manage-course-btn"
+                    onClick={handleDoneShowManage}
+                  >
+                    Done
+                  </button>
+                ) : (
+                  courses.length > 0 && (
+                    <button
+                      type="button"
+                      className="manage-course-btn"
+                      onClick={handleShowManage}
+                    >
+                      Manage Course
+                    </button>
+                  )
+                )}
 
-          <button
-            type="button"
-            className="add-course-btn"
-            style={{ marginLeft: "10px" }}
-            onClick={handleShowAddCourse}
-          >
-            + Add Course
-          </button>
-          <button
-            type="button"
-            className="add-course-btn"
-            style={{ marginLeft: "10px" }}
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        </div>
-      </div>
-      <div className="title-row">
-        <div className="refresh-container">
-          <h3>Course List</h3>
-          <p
-            onClick={handleRefreshList}
-            style={{
-              cursor: "pointer",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <span>
-              <CachedIcon />
-            </span>{" "}
-            refresh list
-          </p>
-          {selectedCourses.length > 0 && (
-            <div className="deleteIconContainer">
-              <DeleteIcon onClick={handleDeleteSelectedCourses} />
+                <button
+                  type="button"
+                  className="add-course-btn"
+                  style={{ marginLeft: "10px" }}
+                  onClick={handleShowAddCourse}
+                >
+                  + Add Course
+                </button>
+                <button
+                  type="button"
+                  className="add-course-btn"
+                  style={{ marginLeft: "10px" }}
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </div>
             </div>
-          )}
-        </div>
-        <div className="sort-filter-search">
-          {/* <button className="sort-btn">Sort</button> */}
-          <select
-            name="sort-category"
-            id="sortCategory"
-            value={sortType}
-            onChange={(e) => handleSort(e.target.value)}
-            className="sort-type"
-          >
-            <option value="default">Sort</option>
-            <option value="recent">
-              Recent {sortOrder === "asc" ? "↑" : "↓"}
-            </option>
-            <option value="title">
-              Title {sortOrder === "asc" ? "↑" : "↓"}
-            </option>
-          </select>
-          <button className="filter-btn">Filter</button>
-          <input
-            type="text"
-            id="search"
-            name="search"
-            placeholder="Search"
-            className="search-input"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onMouseEnter={
-              handleSearch
-            } /* Change to on pressing of enter in keyboard */
-          />
-        </div>
-      </div>
-      <div className="course-content">
-        <table>
-          <thead>
-            <tr>
-              <th>
+            <div className="title-row">
+              <div className="refresh-container">
+                <h3>Course List</h3>
+                <p
+                  onClick={handleRefreshList}
+                  style={{
+                    cursor: "pointer",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <span>
+                    <CachedIcon />
+                  </span>{" "}
+                  refresh list
+                </p>
+                {selectedCourses.length > 0 && (
+                  <div className="deleteIconContainer">
+                    <DeleteIcon onClick={handleDeleteSelectedCourses} />
+                  </div>
+                )}
+              </div>
+              <div className="sort-filter-search">
+                {/* <button className="sort-btn">Sort</button> */}
+                <select
+                  name="sort-category"
+                  id="sortCategory"
+                  value={sortType}
+                  onChange={(e) => handleSort(e.target.value)}
+                  className="sort-type"
+                >
+                  <option value="default">Sort</option>
+                  <option value="recent">
+                    Recent {sortOrder === "asc" ? "↑" : "↓"}
+                  </option>
+                  <option value="title">
+                    Title {sortOrder === "asc" ? "↑" : "↓"}
+                  </option>
+                </select>
+                <button className="filter-btn">Filter</button>
                 <input
-                  type="checkbox"
-                  id="selectAll"
-                  name="selectAll"
-                  onChange={handleSelectAll}
+                  type="text"
+                  id="search"
+                  name="search"
+                  placeholder="Search"
+                  className="search-input"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onMouseEnter={
+                    handleSearch
+                  } /* Change to on pressing of enter in keyboard */
                 />
-              </th>
-              <th>No.</th>
-              <th>Title</th>
-              <th>Image</th>
-              <th>Long Description</th>
-              <th>Short Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {isRefreshing ? (
-              <tr>
-                <td colSpan={6} style={{ textAlign: "center" }}>
-                  <div className={styles.ldsDualRing}></div>
-                  <h3>Refreshing</h3>
-                </td>
-              </tr>
-            ) : courses.length === 0 ? (
-              <tr>
-                <td colSpan={6} style={{ textAlign: "center" }}>
-                  <h4 style={{ color: "GrayText" }}>{showEmptyMessage}</h4>
-                </td>
-              </tr>
-            ) : (
-              sortCourses(handleSearch()).map((course, index) => (
-                <tr key={course.course_id}>
-                  <td>
-                    <input
-                      type="checkbox"
-                      id={`courseNo${course.course_id}`}
-                      checked={selectedCourses.includes(course.course_id)}
-                      onChange={() => handleSelectCourse(course.course_id)}
-                    />
-                  </td>
-                  <td>{index + 1}</td>
-                  <td>
-                    {course.title}{" "}
-                    {showManage && (
-                      <div>
-                        <EditIcon
-                          style={{
-                            width: "20px",
-                            height: "20px",
-                            marginRight: "10px",
-                            color: "GrayText",
-                            cursor: "pointer",
-                            transition: "all 0.2s ease-in-out",
-                          }}
-                        />
-                        {/* <DeleteIcon
+              </div>
+            </div>
+            <div className="course-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th>
+                      <input
+                        type="checkbox"
+                        id="selectAll"
+                        name="selectAll"
+                        onChange={handleSelectAll}
+                      />
+                    </th>
+                    <th>No.</th>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Long Description</th>
+                    <th>Short Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {isRefreshing ? (
+                    <tr>
+                      <td colSpan={6} style={{ textAlign: "center" }}>
+                        <div className={styles.ldsDualRing}></div>
+                        <h3>Refreshing</h3>
+                      </td>
+                    </tr>
+                  ) : courses.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} style={{ textAlign: "center" }}>
+                        <h4 style={{ color: "GrayText" }}>
+                          {showEmptyMessage}
+                        </h4>
+                      </td>
+                    </tr>
+                  ) : (
+                    sortCourses(handleSearch()).map((course, index) => (
+                      <tr key={course.course_id}>
+                        <td>
+                          <input
+                            type="checkbox"
+                            id={`courseNo${course.course_id}`}
+                            checked={selectedCourses.includes(course.course_id)}
+                            onChange={() =>
+                              handleSelectCourse(course.course_id)
+                            }
+                          />
+                        </td>
+                        <td>{index + 1}</td>
+                        <td>
+                          {course.title}{" "}
+                          {showManage && (
+                            <div>
+                              <EditIcon
+                                style={{
+                                  width: "20px",
+                                  height: "20px",
+                                  marginRight: "10px",
+                                  color: "GrayText",
+                                  cursor: "pointer",
+                                  transition: "all 0.2s ease-in-out",
+                                }}
+                              />
+                              {/* <DeleteIcon
                           style={{
                             width: "20px",
                             height: "20px",
                             color: "#ff00009b",
                           }}
                         /> */}
-                      </div>
-                    )}
-                  </td>
-                  <td>
-                    {/* Update the path to the folder uploads in backend */}
-                    <img
-                      src={`assets/uploads/${encodeURIComponent(
-                        course.course_image
-                      )}`}
-                      alt={course.title}
-                      className={styles.courseImg}
-                    ></img>
-                  </td>
-                  <td>{course.long_description}</td>
-                  <td>{course.short_description}</td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+                            </div>
+                          )}
+                        </td>
+                        <td>
+                          {/* Update the path to the folder uploads in backend */}
+                          <img
+                            src={`assets/uploads/${encodeURIComponent(
+                              course.course_image
+                            )}`}
+                            alt={course.title}
+                            className={styles.courseImg}
+                          ></img>
+                        </td>
+                        <td>{course.long_description}</td>
+                        <td>{course.short_description}</td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {showForm && <CreateCourse onClose={handleFormClose} />}
+          </>
+        )}
+        {activeTab === "upload" && <h1>Upload</h1>}
+        {activeTab === "settings" && <h1>Settings</h1>}
+        {activeTab === "users" && <h1>Users</h1>}
       </div>
-      {showForm && <CreateCourse onClose={handleFormClose} />}
+
       {showToast && (
         <ToastNotification message={toastMessage} operation={toastOperation} />
       )}
