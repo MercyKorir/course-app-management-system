@@ -7,6 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import "../styles/SampleComponent.css";
 import CreateCourse from "./CreateCourse.jsx";
 import styles from "../styles/Common.module.css";
+import ToastNotification from "./ToastNotification.jsx";
 
 const SampleComponent = () => {
   const [courses, setCourse] = useState([]);
@@ -23,6 +24,8 @@ const SampleComponent = () => {
   const [showManage, setShowManage] = useState(false);
   const [showDone, setShowDone] = useState(false);
   const [showEmptyMessage, setShowEmptyMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
     // Check if user is logged in using access_token cookie, if not redirect to login page
@@ -201,8 +204,13 @@ const SampleComponent = () => {
       } else if (selectedCourses.length === 1) {
         handleDeleteCourse(selectedCourses[0]);
       }
+      setToastMessage("Course(s) deleted successfully!");
+      setShowToast(true);
       setSelectedCourses([]);
-      alert("Courses deleted successfully.");
+      setTimeout(() => {
+        setShowToast(false);
+        setToastMessage("");
+      }, 5000);
     } catch (err) {
       alert("Error deleting courses. Please try again.");
       console.error("Error deleting courses: ", err);
@@ -496,6 +504,7 @@ const SampleComponent = () => {
         </table>
       </div>
       {showForm && <CreateCourse onClose={handleFormClose} />}
+      {showToast && <ToastNotification message={toastMessage} />}
     </div>
   ) : (
     <div>
