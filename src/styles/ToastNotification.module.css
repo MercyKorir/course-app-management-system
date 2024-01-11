@@ -1,0 +1,100 @@
+.notification {
+  position: fixed;
+  bottom: 30px;
+  align-items: center;
+  border-radius: 6px;
+  background-color: #292b2d;
+  color: #ffffff;
+  max-width: 400px;
+  width: 100%;
+  transform: translateY(30px);
+  opacity: 0;
+  visibility: hidden;
+  animation: fade-in 3s linear;
+  border-radius: 12px;
+  margin-left: 10px;
+}
+
+.notificationBody {
+  display: flex;
+  flex-direction: row;
+  padding: 12px;
+}
+
+.notificationDescription {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 1rem;
+  flex-grow: 2;
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #9ce6a8;
+  margin-right: 8px;
+  padding: 6px;
+}
+
+.checkIcon {
+  height: 26px;
+  width: 26px;
+  margin-right: 4px;
+  color: #292b2d;
+}
+
+.notificationBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: none;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  padding: 0;
+  margin-left: 20px;
+  flex-grow: 1;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.notificationBtn:hover {
+  text-decoration: underline;
+}
+
+.notificationProgress {
+  position: absolute;
+  bottom: 4px;
+  left: 8px;
+  height: 3px;
+  width: calc(100% - 16px);
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(to right, #292b2d, #9ce6a8);
+  border-radius: inherit;
+  animation: progress 2.5s 0.3s linear;
+}
+
+@keyframes fade-in {
+  5% {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  95% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes progress {
+  to {
+    transform: scaleX(1);
+  }
+}

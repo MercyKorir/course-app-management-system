@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import "../styles/CreateCourse.css";
+import ToastNotification from "./ToastNotification.jsx";
 
 const CreateCourse = ({ onClose }) => {
   const fileInputRef = useRef(null);
@@ -11,6 +12,7 @@ const CreateCourse = ({ onClose }) => {
     course_image: null,
   });
   const [previewImage, setPreviewImage] = useState(null);
+  const [showToast, setShowToast] = useState(false);
 
   const handleFileButtonClick = () => {
     fileInputRef.current.click();
@@ -69,8 +71,7 @@ const CreateCourse = ({ onClose }) => {
       );
 
       if (response.status === 201) {
-        const { title } = response.data.data;
-        alert(`Course ${title} added successfully.`);
+        setShowToast(true);
         setCourseData({
           title: "",
           long_description: "",
@@ -78,6 +79,9 @@ const CreateCourse = ({ onClose }) => {
           course_image: null,
         });
         setPreviewImage(null);
+        setTimeout(() => {
+          setShowToast(false);
+        }, 5000);
       } else {
         alert("Course addition failed.");
       }
@@ -180,6 +184,9 @@ const CreateCourse = ({ onClose }) => {
           </div>
         </form>
       </div>
+      {showToast && (
+        <ToastNotification message="Course created successfully!" />
+      )}
     </div>
   );
 };
