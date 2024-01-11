@@ -501,7 +501,10 @@ const SampleComponent = () => {
     <div>
       <h1>Unauthorized</h1>
       {errorMessage && <p>{errorMessage}</p>}
-      Go <span onClick={handleGoHome}>Home</span>
+      Go{" "}
+      <span className="goHomeBtn" onClick={handleGoHome}>
+        Home
+      </span>
     </div>
   );
 };
