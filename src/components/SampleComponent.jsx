@@ -26,6 +26,7 @@ const SampleComponent = () => {
   const [showEmptyMessage, setShowEmptyMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [toastOperation, setToastOperation] = useState("");
 
   useEffect(() => {
     // Check if user is logged in using access_token cookie, if not redirect to login page
@@ -204,15 +205,24 @@ const SampleComponent = () => {
       } else if (selectedCourses.length === 1) {
         handleDeleteCourse(selectedCourses[0]);
       }
+      setToastOperation("success");
       setToastMessage("Course(s) deleted successfully!");
       setShowToast(true);
       setSelectedCourses([]);
       setTimeout(() => {
         setShowToast(false);
         setToastMessage("");
+        setToastOperation("");
       }, 5000);
     } catch (err) {
-      alert("Error deleting courses. Please try again.");
+      setToastOperation("error");
+      setToastMessage("Error deleting course(s)!");
+      setShowToast(true);
+      setTimeout(() => {
+        setShowToast(false);
+        setToastMessage("");
+        setToastOperation("");
+      }, 5000);
       console.error("Error deleting courses: ", err);
     }
   };
@@ -504,7 +514,9 @@ const SampleComponent = () => {
         </table>
       </div>
       {showForm && <CreateCourse onClose={handleFormClose} />}
-      {showToast && <ToastNotification message={toastMessage} />}
+      {showToast && (
+        <ToastNotification message={toastMessage} operation={toastOperation} />
+      )}
     </div>
   ) : (
     <div>

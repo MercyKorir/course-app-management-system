@@ -13,6 +13,8 @@ const CreateCourse = ({ onClose }) => {
   });
   const [previewImage, setPreviewImage] = useState(null);
   const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastOperation, setToastOperation] = useState("");
 
   const handleFileButtonClick = () => {
     fileInputRef.current.click();
@@ -71,6 +73,8 @@ const CreateCourse = ({ onClose }) => {
       );
 
       if (response.status === 201) {
+        setToastOperation("success");
+        setToastMessage("Course created successfully!");
         setShowToast(true);
         setCourseData({
           title: "",
@@ -81,12 +85,28 @@ const CreateCourse = ({ onClose }) => {
         setPreviewImage(null);
         setTimeout(() => {
           setShowToast(false);
+          setToastMessage("");
+          setToastOperation("");
         }, 5000);
       } else {
-        alert("Course addition failed.");
+        setToastOperation("error");
+        setToastMessage("Course addition failed!");
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+          setToastMessage("");
+          setToastOperation("");
+        }, 5000);
       }
     } catch (err) {
-      alert("Error Creating Course");
+      setToastOperation("error");
+      setToastMessage("Error Creating Course!");
+      setShowToast(true);
+      setTimeout(() => {
+        setShowToast(false);
+        setToastMessage("");
+        setToastOperation("");
+      }, 5000);
       console.log("Error Creating Course", err);
     }
   };
@@ -185,7 +205,7 @@ const CreateCourse = ({ onClose }) => {
         </form>
       </div>
       {showToast && (
-        <ToastNotification message="Course created successfully!" />
+        <ToastNotification message={toastMessage} operation={toastOperation} />
       )}
     </div>
   );

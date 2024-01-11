@@ -29,7 +29,7 @@
   flex-grow: 2;
 }
 
-.iconWrapper {
+.iconWrapperSuccess {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,6 +37,18 @@
   height: 28px;
   border-radius: 50%;
   background-color: #9ce6a8;
+  margin-right: 8px;
+  padding: 6px;
+}
+
+.iconWrapperError {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #ff6666;
   margin-right: 8px;
   padding: 6px;
 }
@@ -67,7 +79,7 @@
   text-decoration: underline;
 }
 
-.notificationProgress {
+.notificationProgressSuccess {
   position: absolute;
   bottom: 4px;
   left: 8px;
@@ -76,6 +88,19 @@
   transform: scaleX(0);
   transform-origin: left;
   background: linear-gradient(to right, #292b2d, #9ce6a8);
+  border-radius: inherit;
+  animation: progress 2.5s 0.3s linear;
+}
+
+.notificationProgressError {
+  position: absolute;
+  bottom: 4px;
+  left: 8px;
+  height: 3px;
+  width: calc(100% - 16px);
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(to right, #292b2d, #ff6666);
   border-radius: inherit;
   animation: progress 2.5s 0.3s linear;
 }
