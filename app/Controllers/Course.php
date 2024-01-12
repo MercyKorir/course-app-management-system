@@ -115,7 +115,7 @@ class Course extends ResourceController
                 'title' => 'required|min_length[3]|max_length[255]',
                 'long_description' => 'required|min_length[3]',
                 'short_description' => 'required|min_length[3]',
-                'course_image' => 'uploaded[course_image]|max_size[course_image,1024]|is_image[course_image]|mime_in[course_image,image/jpg,image/jpeg,image/gif,image/png]'
+                'course_image' => 'uploaded[course_image]|max_size[course_image,5000]|is_image[course_image]|mime_in[course_image,image/jpg,image/jpeg,image/gif,image/png]'
             ];
 
 

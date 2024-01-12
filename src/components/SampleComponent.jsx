@@ -162,6 +162,7 @@ const SampleComponent = () => {
 
   const handleFormClose = (e) => {
     e.preventDefault();
+    handleRefreshList();
     setShowForm(false);
   };
 
