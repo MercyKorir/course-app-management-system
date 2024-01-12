@@ -36,6 +36,7 @@ const SampleComponent = () => {
   const [toastOperation, setToastOperation] = useState("");
   const [activeTab, setActiveTab] = useState("home");
   const [isSideBarCollapsed, setIsSideBarCollapsed] = useState(false);
+  const [imgExpanded, setImgExpanded] = useState(false);
 
   useEffect(() => {
     // Check if user is logged in using access_token cookie, if not redirect to login page
@@ -583,8 +584,22 @@ const SampleComponent = () => {
                               course.course_image
                             )}`}
                             alt={course.title}
+                            onClick={() => setImgExpanded(true)}
                             className="courseImg"
                           ></img>
+                          {imgExpanded && (
+                            <div
+                              className="preview"
+                              onClick={() => setImgExpanded(false)}
+                            >
+                              <img
+                                src={`http://localhost:8080/image/${encodeURIComponent(
+                                  course.course_image
+                                )}`}
+                                alt={course.title}
+                              />
+                            </div>
+                          )}
                         </td>
                         <td>{course.long_description}</td>
                         <td>{course.short_description}</td>
