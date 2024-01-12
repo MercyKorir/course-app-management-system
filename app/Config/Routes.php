@@ -9,6 +9,8 @@ $routes->resource('course');
 $routes->options('course', 'Course::options');
 $routes->options('course/(:segment)', 'Course::options');
 $routes->post('/course/update/(:segment)', 'Course::update/$1');
+$routes->get('/image/(:any)', 'Course::showImage/$1');
+$routes->options('image/(:any)', 'Course::options');
 
 $routes->get('/courses', 'Course::getCourses');
 

@@ -579,11 +579,11 @@ const SampleComponent = () => {
                         <td>
                           {/* Update the path to the folder uploads in backend */}
                           <img
-                            src={`assets/uploads/${encodeURIComponent(
+                            src={`http://localhost:8080/image/${encodeURIComponent(
                               course.course_image
                             )}`}
                             alt={course.title}
-                            className={styles.courseImg}
+                            className="courseImg"
                           ></img>
                         </td>
                         <td>{course.long_description}</td>
