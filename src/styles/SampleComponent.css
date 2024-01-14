@@ -199,6 +199,7 @@ table {
   font-family: Arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  /* table-layout: fixed; */
 }
 
 th,
