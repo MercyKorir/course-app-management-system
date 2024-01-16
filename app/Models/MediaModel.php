@@ -6,16 +6,16 @@ use CodeIgniter\Model;
 
 class MediaModel extends Model
 {
-    protected $table            = 'medias';
-    protected $primaryKey       = 'id';
+    protected $table            = 'media';
+    protected $primaryKey       = 'media_id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['media_name', 'media_type', 'media_path'];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
