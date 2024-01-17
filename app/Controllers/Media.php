@@ -139,7 +139,7 @@ class Media extends ResourceController
             $data = [
                 'media_name' => $mediaName,
                 'media_type' => $file->getClientMimeType(),
-                'media_path' => '../assets/uploads/media' . $newFileName
+                'media_path' => '../assets/uploads/media/' . $newFileName
             ];
 
             try {
@@ -194,6 +194,44 @@ class Media extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        $existingMedia = $this->mediaModel->find($id);
+
+        if (!$existingMedia) {
+            $response = [
+                'status' => 404,
+                'error' => 404,
+                'message' => [
+                    'error' => 'Media with id ' . $id . ' not found.'
+                ],
+                'data' => null
+            ];
+            return $this->respond($response);
+        }
+
+        $mediaPath = $existingMedia['media_path'];
+
+        print_r($mediaPath);
+        print_r(gettype($mediaPath));
+
+        if (file_exists($mediaPath)) {
+            unlink($mediaPath);
+        }
+
+        try {
+            $this->mediaModel->delete($id);
+
+            $response = [
+                'status' => 200,
+                'error' => null,
+                'message' => [
+                    'success' => 'Media deleted successfully.'
+                ],
+                'data' => null
+            ];
+            return $this->respondDeleted($response);
+        } catch (\Exception $e) {
+            log_message('error', 'An error occurred while deleting media: ' . $e->getMessage());
+            return $this->failServerError('An error occurred while deleting media.' . $e->getMessage());
+        }
     }
 }
