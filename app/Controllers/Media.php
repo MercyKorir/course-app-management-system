@@ -94,15 +94,76 @@ class Media extends ResourceController
     public function create()
     {
         helper(['form', 'url']);
+
         try {
             $rules = [
-                'media_name' => 'required|min_length[3]|max_length[255]',
-                'media_type' => 'required|min_length[3]|max_length[255]',
-                'media_path' => 'required|min_length[3]|max_length[255]'
+                'media_name' => 'required|min_length[3]|max_length[255]|alpha_numeric',
+                'media_file' => 'uploaded[media_file]|mime_in[media_file,image/jpg,image/jpeg,image/gif,image/png,video/mp4,video/mpeg]|max_size[media_file,20480]',
             ];
+
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 400,
+                    'error' => $this->validator->getErrors(),
+                    'message' => [
+                        'error' => 'Validation of media failed.'
+                    ],
+                    'data' => null
+                ];
+                return $this->respond($response);
+            }
+
+            $file = $this->request->getFile('media_file');
+
+            if (!$file->isValid()) {
+                $response = [
+                    'status' => 400,
+                    'error' => $file->getErrorString() . '(' . $file->getError() . ')',
+                    'message' => [
+                        'error' => 'Media file is not valid.'
+                    ],
+                    'data' => null
+                ];
+                return $this->respond($response);
+            }
+
+            $mediaName = $this->request->getPost('media_name');
+
+            // Check if media name already exists and add timestamp to it if it does
+            if ($this->mediaModel->where('media_name', $mediaName)->first()) {
+                $mediaName = $mediaName . '_' . time();
+            }
+
+            $newFileName = $mediaName . '.' . $file->getExtension();
+
+            $data = [
+                'media_name' => $mediaName,
+                'media_type' => $file->getClientMimeType(),
+                'media_path' => '../assets/uploads/media' . $newFileName
+            ];
+
+            try {
+                $file->move('../assets/uploads/media', $newFileName);
+            } catch (\Exception $e) {
+                log_message('error', 'An error occurred while saving media to path: ' . $e->getMessage());
+                return $this->failServerError('An error occurred while saving media to path.' . $e->getMessage());
+            }
+
+            $media_id = $this->mediaModel->insert($data);
+            $data['media_id'] = $media_id;
+
+            $response = [
+                'status' => 201,
+                'error' => null,
+                'message' => [
+                    'success' => 'Media uploaded successfully.'
+                ],
+                'data' => $data
+            ];
+            return $this->respondCreated($response);
         } catch (\Exception $e) {
-            log_message('error', 'An error occurred while creating media: ' . $e->getMessage());
-            return $this->failServerError('An error occurred while creating media.' . $e->getMessage());
+            log_message('error', 'An error occurred while uploading media: ' . $e->getMessage());
+            return $this->failServerError('An error occurred while uploading media.' . $e->getMessage());
         }
     }
 

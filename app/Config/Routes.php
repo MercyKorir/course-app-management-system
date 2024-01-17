@@ -28,6 +28,8 @@ $routes->options('user/verify', 'User::options');
 $routes->get('/client', 'User::client');
 $routes->options('client', 'User::options');
 
+$routes->resource('media');
+
 
 $routes->get('/', 'Home::index');
 $routes->get('/course-page', 'Courses::index');
