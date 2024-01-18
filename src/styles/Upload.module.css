@@ -1,0 +1,297 @@
+.uploadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  gap: 50px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.uploadContainer .searchBar {
+  width: 850px;
+  height: 60px;
+  border-radius: 35px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.25);
+}
+
+.uploadContainer .searchBar p {
+  font-size: 20px;
+  line-height: 23px;
+  color: rgba(0, 0, 0, 0.2);
+  margin-left: 30px;
+}
+
+.uploadContainer .searchBar span {
+  margin-right: 30px;
+}
+
+.uploadContainer .searchBar span .searchIcon {
+  width: 30px;
+  height: 30px;
+  color: rgba(0, 0, 0, 0.5);
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.uploadContainer .searchBar span .searchIcon:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.uploadContainer .dragDrop {
+  width: 1015px;
+  height: 180px;
+  border-radius: 6px;
+  padding: 15px 15px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.uploadContainer .dragDrop .dragDropInner {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(157, 91, 255, 0.1);
+  border: 1px dashed rgba(0, 0, 0, 0.5);
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.uploadContainer .dragDrop .dragDropInner:hover {
+  background-color: rgba(157, 91, 255, 0.2);
+}
+
+.uploadContainer .dragDrop .dragDropInner span .uploadIcon {
+  width: 50px;
+  height: 50px;
+  color: rgba(0, 0, 0, 0.25);
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.uploadContainer .dragDrop .dragDropInner .dragDropText {
+  margin: 0;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.uploadContainer .dragDrop .dragDropInner .dragDropText span {
+  color: #9d5bff;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: text-decoration 0.2s ease-in-out;
+}
+
+.uploadContainer .dragDrop .dragDropInner .dragDropText span:hover {
+  text-decoration: none;
+}
+
+.uploadContainer .dragDrop .dragDropInner .fileSize {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.uploadContainer .mediaTableContainer {
+  width: 1180px;
+  max-width: 1180px;
+  background-color: transparent;
+  height: 375px; /* Adjust for other screen sizes */
+}
+
+.uploadContainer .mediaTableContainer .mediaTable {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #ffffff;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.uploadContainer .mediaTableContainer .mediaTable thead {
+  background-color: rgba(157, 91, 255, 0.3);
+  width: 100%;
+}
+
+.uploadContainer .mediaTableContainer .mediaTable thead tr {
+  height: 60px;
+}
+
+.uploadContainer .mediaTableContainer .mediaTable thead tr .headerNames {
+  font-size: 20px;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.uploadContainer .mediaTableContainer .mediaTable th:first-child {
+  border-radius: 10px 0px 0px 0px;
+  display: table-cell;
+}
+
+.uploadContainer .mediaTableContainer .mediaTable th:last-child {
+  border-radius: 0px 10px 0px 0px;
+  display: table-cell;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.uploadContainer .mediaTableContainer .mediaTable tbody tr {
+  font-size: 18px;
+  font-weight: normal;
+  transition: all 0.3s ease-in-out;
+}
+
+.uploadContainer .mediaTableContainer .mediaTable tbody tr:hover {
+  transform: translateY(-0.5px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Shiny  effect on hover of rows styles */
+
+/* .uploadContainer .mediaTableContainer .mediaTable tbody tr td {
+    position: relative;
+  }
+  
+  .uploadContainer .mediaTableContainer .mediaTable tbody tr:hover td {
+    background: linear-gradient(#f6f6f6, #fff);
+  }
+  
+  .uploadContainer .mediaTableContainer .mediaTable tbody tr:hover td::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: -1;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
+  } */
+
+/* EO Shiny  effect on hover of rows styles */
+
+.uploadContainer .mediaTableContainer .mediaTable tbody tr .imageFileName {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  gap: 10px;
+}
+
+.uploadContainer .mediaTableContainer .mediaTable tbody tr .imageFileName img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.uploadContainer .mediaTableContainer .mediaTable tbody tr .imageFileName span {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.uploadContainer .mediaTableContainer .mediaTable tbody tr .fileType {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.uploadContainer .mediaTableContainer .mediaTable tbody tr .fileLocation {
+  display: flex;
+  align-items: center;
+  color: rgba(157, 91, 255, 0.5);
+  /* font-weight: 600; */
+}
+
+.uploadContainer .mediaTableContainer .mediaTable tbody tr .fileLocation span {
+  /* font-weight: 600; */
+  display: inline-flex;
+  align-items: center;
+}
+
+.uploadContainer
+  .mediaTableContainer
+  .mediaTable
+  tbody
+  tr
+  .fileLocation
+  .rightArrowIcon {
+  /* font-weight: 600; */
+  margin: 0 5px;
+}
+
+.uploadContainer
+  .mediaTableContainer
+  .mediaTable
+  tbody
+  tr
+  .fileLocation
+  .rightArrowIcon,
+.ellipseText,
+.lastText {
+  /* font-weight: 600; */
+  line-height: 1;
+}
+
+.uploadContainer .mediaTableContainer .mediaTable tbody tr .fileCreatedSize {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ddd;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.2s ease-in-out;
+}
+
+input[type="checkbox"].selectAll {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+input[type="checkbox"]:checked {
+  background: linear-gradient(to bottom right, #a772ff, #cf8dff);
+}
+
+input[type="checkbox"]:focus {
+  outline: none;
+}
+
+input[type="checkbox"]:checked::after {
+  content: none;
+  position: absolute;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, #d6bfff, #e2cfff);
+  box-shadow: inset 5px -5px 8px #b39dff, inset -5px 5px 8px #f3eaff;
+  transition: all 0.2s ease-in-out;
+}
