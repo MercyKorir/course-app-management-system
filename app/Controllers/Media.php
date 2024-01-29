@@ -234,4 +234,21 @@ class Media extends ResourceController
             return $this->failServerError('An error occurred while deleting media.' . $e->getMessage());
         }
     }
+
+    /**
+     * Serve media file
+     * 
+     * @return mixed
+     */
+    public function showFile($file_name)
+    {
+        $file_path = '../assets/uploads/media/' . $file_name;
+        $file_info = getimagesize($file_path);
+
+        $mime = $file_info['mime'];
+
+        header('Content-Type: ' . $mime);
+
+        readfile($file_path);
+    }
 }
