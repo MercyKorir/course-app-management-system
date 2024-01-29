@@ -15,6 +15,7 @@ import CreateCourse from "./CreateCourse.jsx";
 import styles from "../styles/Common.module.css";
 import ToastNotification from "./ToastNotification.jsx";
 import sidebarStyles from "../styles/SideBar.module.css";
+import Upload from "./Upload.jsx";
 
 const SampleComponent = () => {
   const [courses, setCourse] = useState([]);
@@ -613,7 +614,7 @@ const SampleComponent = () => {
             {showForm && <CreateCourse onClose={handleFormClose} />}
           </>
         )}
-        {activeTab === "upload" && <h1>Upload</h1>}
+        {activeTab === "upload" && <Upload />}
         {activeTab === "settings" && <h1>Settings</h1>}
         {activeTab === "users" && <h1>Users</h1>}
       </div>

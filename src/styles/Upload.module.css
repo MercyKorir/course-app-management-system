@@ -56,6 +56,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* position: relative; */
 }
 
 .uploadContainer .dragDrop .dragDropInner {
@@ -66,15 +67,31 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(157, 91, 255, 0.1);
+  background-color: rgba(157, 91, 255, 0.2);
   border: 1px dashed rgba(0, 0, 0, 0.5);
   gap: 10px;
-  cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
 }
 
-.uploadContainer .dragDrop .dragDropInner:hover {
+/* .uploadContainer .dragDrop:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+} */
+
+/* .uploadContainer .dragDrop:hover .dragDropInner {
   background-color: rgba(157, 91, 255, 0.2);
+} */
+
+.uploadContainer .dragDrop .dragDropInner:hover {
+  background-color: rgba(157, 91, 255, 0.3);
 }
 
 .uploadContainer .dragDrop .dragDropInner span .uploadIcon {
@@ -115,6 +132,9 @@
   max-width: 1180px;
   background-color: transparent;
   height: 375px; /* Adjust for other screen sizes */
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  position: relative;
 }
 
 .uploadContainer .mediaTableContainer .mediaTable {
@@ -127,8 +147,11 @@
 }
 
 .uploadContainer .mediaTableContainer .mediaTable thead {
-  background-color: rgba(157, 91, 255, 0.3);
+  position: sticky;
+  top: 0;
+  background-color: rgba(157, 91, 255, 0.5) !important;
   width: 100%;
+  z-index: 999;
 }
 
 .uploadContainer .mediaTableContainer .mediaTable thead tr {
@@ -155,15 +178,23 @@ th,
 td {
   text-align: left;
   padding: 8px;
+  background-color: transparent !important;
 }
 
 tr:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.03);
 }
 
+.uploadContainer .mediaTableContainer .mediaTable tbody {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  height: 300px;
+}
+
 .uploadContainer .mediaTableContainer .mediaTable tbody tr {
   font-size: 18px;
   font-weight: normal;
+  height: 80px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -175,31 +206,31 @@ tr:nth-child(even) {
 /* Shiny  effect on hover of rows styles */
 
 /* .uploadContainer .mediaTableContainer .mediaTable tbody tr td {
-    position: relative;
-  }
-  
-  .uploadContainer .mediaTableContainer .mediaTable tbody tr:hover td {
-    background: linear-gradient(#f6f6f6, #fff);
-  }
-  
-  .uploadContainer .mediaTableContainer .mediaTable tbody tr:hover td::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    z-index: -1;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
-  } */
+  position: relative;
+}
+
+.uploadContainer .mediaTableContainer .mediaTable tbody tr:hover td {
+  background: linear-gradient(#f6f6f6, #fff);
+}
+
+.uploadContainer .mediaTableContainer .mediaTable tbody tr:hover td::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: -1;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
+} */
 
 /* EO Shiny  effect on hover of rows styles */
 
 .uploadContainer .mediaTableContainer .mediaTable tbody tr .imageFileName {
   display: flex;
   flex-direction: row;
-  align-items: end;
+  align-items: flex-end;
   gap: 10px;
 }
 
@@ -252,6 +283,38 @@ tr:nth-child(even) {
 .lastText {
   /* font-weight: 600; */
   line-height: 1;
+}
+
+.uploadContainer
+  .mediaTableContainer
+  .mediaTable
+  tbody
+  tr
+  .fileLocation
+  .rightArrowIcon {
+  color: rgba(157, 91, 255, 0.9);
+}
+
+.uploadContainer
+  .mediaTableContainer
+  .mediaTable
+  tbody
+  tr
+  .fileLocation
+  .ellipseText {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 600;
+}
+
+.uploadContainer
+  .mediaTableContainer
+  .mediaTable
+  tbody
+  tr
+  .fileLocation
+  .lastText {
+  color: rgba(157, 91, 255, 0.7);
+  font-weight: 800;
 }
 
 .uploadContainer .mediaTableContainer .mediaTable tbody tr .fileCreatedSize {

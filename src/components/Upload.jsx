@@ -38,6 +38,30 @@ const Upload = () => {
       fileSize: "20MB",
       imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
     },
+    {
+      fileName: "Image name",
+      fileType: "image/jpeg",
+      location: "../assets/upload/media/mediaName.jpeg",
+      dateAdded: "Jan 18,2024",
+      fileSize: "20MB",
+      imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
+    },
+    {
+      fileName: "Image name",
+      fileType: "image/jpeg",
+      location: "../assets/upload/media/mediaName.jpeg",
+      dateAdded: "Jan 18,2024",
+      fileSize: "20MB",
+      imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
+    },
+    {
+      fileName: "Image name",
+      fileType: "image/jpeg",
+      location: "../assets/upload/media/mediaName.jpeg",
+      dateAdded: "Jan 18,2024",
+      fileSize: "20MB",
+      imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
+    },
   ];
 
   const formattedFiles = files.map((file) => {
@@ -100,7 +124,8 @@ const Upload = () => {
                 </td>
                 <td className={styles.fileType}>{file.fileType}</td>
                 <td className={styles.fileLocation}>
-                  <span className={styles.firstText}>{file.location[0]}</span>{" "}
+                  <span className={styles.firstText}>{file.location[0]}</span>
+                  {""}
                   <span>
                     <KeyboardArrowRightIcon className={styles.rightArrowIcon} />
                   </span>
@@ -109,7 +134,8 @@ const Upload = () => {
                   </span>
                   <span>
                     <KeyboardArrowRightIcon className={styles.rightArrowIcon} />
-                  </span>{" "}
+                  </span>
+                  {""}
                   <span className={styles.lastText}>{file.location[2]}</span>
                 </td>
                 <td className={styles.fileCreatedSize}>{file.dateAdded}</td>
