@@ -176,50 +176,53 @@ const Upload = () => {
             </tr>
           </thead>
           <tbody>
-            {fetchedFiles.map((file, index) => (
-              <tr key={file.media_id}>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td className={styles.imageFileName}>
-                  <img
-                    src={
-                      "https://via.assets.so/img.jpg?w=400&h=150&tc=blue&bg=#cecece"
-                    }
-                    alt={file.media_name}
-                  />
-                  <span>{file.media_name}</span>
-                </td>
-                <td className={styles.fileType}>{file.media_type}</td>
-                <td className={styles.fileLocation}>
-                  <span className={styles.firstText}>
-                    {formattedFiles[0].location[0]}
-                  </span>
-                  {""}
-                  <span>
-                    <KeyboardArrowRightIcon className={styles.rightArrowIcon} />
-                  </span>
-                  <span className={styles.ellipseText}>
-                    {formattedFiles[0].location[1].length > 3
-                      ? "..."
-                      : formattedFiles[0].location[1]}
-                  </span>
-                  <span>
-                    <KeyboardArrowRightIcon className={styles.rightArrowIcon} />
-                  </span>
-                  {""}
-                  <span className={styles.lastText}>
-                    {formattedFiles[0].location[2]}
-                  </span>
-                </td>
-                <td className={styles.fileCreatedSize}>
-                  {formattedFiles[0].dateAdded}
-                </td>
-                <td className={styles.fileCreatedSize}>
-                  {formattedFiles[0].fileSize}
-                </td>
-              </tr>
-            ))}
+            {fetchedFiles.map((file) => {
+              const location = file.media_path.split("/");
+              location.shift();
+
+              return (
+                <tr key={file.media_id}>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td className={styles.imageFileName}>
+                    <img
+                      src={`http://localhost:8080/file/${encodeURIComponent(
+                        location[3]
+                      )}`}
+                      alt={file.media_name}
+                    />
+                    <span>{file.media_name}</span>
+                  </td>
+                  <td className={styles.fileType}>{file.media_type}</td>
+                  <td className={styles.fileLocation}>
+                    <span className={styles.firstText}>{location[0]}</span>
+                    {""}
+                    <span>
+                      <KeyboardArrowRightIcon
+                        className={styles.rightArrowIcon}
+                      />
+                    </span>
+                    <span className={styles.ellipseText}>
+                      {location[1].length > 3 ? "..." : location[1]}
+                    </span>
+                    <span>
+                      <KeyboardArrowRightIcon
+                        className={styles.rightArrowIcon}
+                      />
+                    </span>
+                    {""}
+                    <span className={styles.lastText}>{location[2]}</span>
+                  </td>
+                  <td className={styles.fileCreatedSize}>
+                    {formattedFiles[0].dateAdded}
+                  </td>
+                  <td className={styles.fileCreatedSize}>
+                    {formattedFiles[0].fileSize}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

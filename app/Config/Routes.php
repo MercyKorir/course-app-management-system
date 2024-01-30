@@ -30,8 +30,8 @@ $routes->options('client', 'User::options');
 
 $routes->resource('media');
 $routes->options('media', 'Media::options');
-$routes->get('/media/(:any)', 'Media::showFile/$1');
-$routes->options('media/(:any)', 'Media::options');
+$routes->get('/file/(:any)', 'Media::showFile/$1');
+$routes->options('file/(:any)', 'Media::options');
 
 
 $routes->get('/', 'Home::index');
