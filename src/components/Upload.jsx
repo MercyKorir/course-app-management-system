@@ -100,7 +100,6 @@ const Upload = () => {
   }, []);
 
   useEffect(() => {
-
     fetchFiles();
   }, [fetchFiles]);
 
@@ -151,6 +150,15 @@ const Upload = () => {
             {fetchedFiles.map((file) => {
               const location = file.media_path.split("/");
               location.shift();
+              const formattedDate = new Date(
+                file.created_at
+              ).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              });
+
+              // Call api to get file size here using name with extension.
 
               return (
                 <tr key={file.media_id}>
@@ -187,7 +195,7 @@ const Upload = () => {
                     <span className={styles.lastText}>{location[2]}</span>
                   </td>
                   <td className={styles.fileCreatedSize}>
-                    {formattedFiles[0].dateAdded}
+                    {formattedDate}
                   </td>
                   <td className={styles.fileCreatedSize}>
                     {formattedFiles[0].fileSize}

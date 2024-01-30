@@ -251,4 +251,27 @@ class Media extends ResourceController
 
         readfile($file_path);
     }
+
+    /**
+     * Get size of media file
+     * 
+     * @return mixed
+     */
+    public function fileSize($file_name)
+    {
+        $file_path = '../assets/uploads/media/' . $file_name;
+        $file_size_bytes = filesize($file_path);
+        $file_size = round($file_size_bytes / (1024 * 1024), 2);
+
+        $response = [
+            'status' => 200,
+            'error' => null,
+            'message' => [
+                'success' => 'Media file size retrieved successfully.'
+            ],
+            'data' => $file_size
+        ];
+
+        return $this->respond($response);
+    }
 }

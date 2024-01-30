@@ -32,6 +32,8 @@ $routes->resource('media');
 $routes->options('media', 'Media::options');
 $routes->get('/file/(:any)', 'Media::showFile/$1');
 $routes->options('file/(:any)', 'Media::options');
+$routes->post('/file/(:any)', 'Media::fileSize/$1');
+
 
 
 $routes->get('/', 'Home::index');
