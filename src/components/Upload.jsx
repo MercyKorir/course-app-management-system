@@ -100,30 +100,8 @@ const Upload = () => {
   }, []);
 
   useEffect(() => {
-    // const handleFetch = async () => {
-    //   await fetchFiles();
-    //   if (fetchedFiles.length > 0) {
-    //     const updatedFiles = fetchedFiles.map((file) => {
-    //       const path = file.media_path.split("/");
-    //       path.shift();
-
-    //       return {
-    //         ...file,
-    //         media_path: path,
-    //       };
-    //     });
-
-    //     setFetchedFiles(updatedFiles);
-
-    //     console.log(updatedFiles);
-    //   }
-    // };
 
     fetchFiles();
-
-    // if (fetchedFiles.length > 0) {
-    //   console.log(fetchedFiles);
-    // }
   }, [fetchFiles]);
 
   const formattedFiles = files.map((file) => {
@@ -135,12 +113,6 @@ const Upload = () => {
       location: splitPath,
     };
   });
-
-  // useEffect(() => {
-  //   if (formattedFiles.length > 0 && formattedFiles[0].location) {
-  //     console.log(formattedFiles[0].location[0]);
-  //   }
-  // }, [formattedFiles]);
 
   return (
     <div className={styles.uploadContainer}>
