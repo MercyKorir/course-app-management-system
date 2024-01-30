@@ -6,6 +6,8 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import styles from "../styles/Upload.module.css";
 
 const Upload = () => {
+  const [fetchedFiles, setFetchedFiles] = useState([]);
+
   const files = [
     {
       fileName: "Image name",
@@ -64,44 +66,65 @@ const Upload = () => {
       imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
     },
   ];
-  // const [files, setFiles] = useState([]);
 
-  // const fetchFiles = useCallback(async () => {
-  //   const cookies = document.cookie
-  //     .split(";")
-  //     .map((cookie) => cookie.split("="));
-  //   const token = cookies.find((cookie) => cookie[0].trim() === "access_token");
-  //   const access_token = token ? token[1] : null;
+  const fetchFiles = useCallback(async () => {
+    const cookies = document.cookie
+      .split(";")
+      .map((cookie) => cookie.split("="));
+    const token = cookies.find((cookie) => cookie[0].trim() === "access_token");
+    const access_token = token ? token[1] : null;
 
-  //   try {
-  //     const response = await axios.get("http://localhost:8080/media", {
-  //       headers: {
-  //         Authorization: `Bearer ${access_token}`,
-  //       },
-  //     });
+    try {
+      const response = await axios.get("http://localhost:8080/media", {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      if (response.data.status === 200) {
+        setFetchedFiles(response.data.data);
+        // Handle to show empty message here
+      } else if (response.data.status === 404) {
+        setFetchedFiles([]);
+        // Handle to show empty message here
+      } else {
+        console.error("Error fetching files", response);
+      }
+    } catch (err) {
+      if (err.response && err.response.status === 404) {
+        setFetchedFiles([]);
+        // Handle to show empty message here
+      } else {
+        console.error("Error fetching files", err);
+      }
+    }
+  }, []);
 
-  //     if (response.data.status === 200) {
-  //       setFiles(response.data.data);
-  //       // Show empty message here (error message)
-  //     } else if (response.data.status === 404) {
-  //       setFiles([]);
-  //       // Show empty message here
-  //     } else {
-  //       console.error("Error fetching files", response.message);
-  //     }
-  //   } catch (err) {
-  //     if (err.response && err.response.status === 404) {
-  //       setFiles([]);
-  //       // Show error message here
-  //     } else {
-  //       console.error("Error fetching files", err);
-  //     }
-  //   }
-  // }, []);
+  useEffect(() => {
+    // const handleFetch = async () => {
+    //   await fetchFiles();
+    //   if (fetchedFiles.length > 0) {
+    //     const updatedFiles = fetchedFiles.map((file) => {
+    //       const path = file.media_path.split("/");
+    //       path.shift();
 
-  // useEffect(() => {
-  //   fetchFiles();
-  // }, []);
+    //       return {
+    //         ...file,
+    //         media_path: path,
+    //       };
+    //     });
+
+    //     setFetchedFiles(updatedFiles);
+
+    //     console.log(updatedFiles);
+    //   }
+    // };
+
+    fetchFiles();
+
+    // if (fetchedFiles.length > 0) {
+    //   console.log(fetchedFiles);
+    // }
+  }, [fetchFiles]);
 
   const formattedFiles = files.map((file) => {
     const splitPath = file.location.split("/");
@@ -113,11 +136,11 @@ const Upload = () => {
     };
   });
 
-  useEffect(() => {
-    if (formattedFiles.length > 0 && formattedFiles[0].location) {
-      console.log(formattedFiles[0].location[0]);
-    }
-  }, [formattedFiles]);
+  // useEffect(() => {
+  //   if (formattedFiles.length > 0 && formattedFiles[0].location) {
+  //     console.log(formattedFiles[0].location[0]);
+  //   }
+  // }, [formattedFiles]);
 
   return (
     <div className={styles.uploadContainer}>
@@ -153,8 +176,8 @@ const Upload = () => {
             </tr>
           </thead>
           <tbody>
-            {formattedFiles.map((file, index) => (
-              <tr key={index}>
+            {fetchedFiles.map((file, index) => (
+              <tr key={file.media_id}>
                 <td>
                   <input type="checkbox" />
                 </td>
@@ -163,28 +186,38 @@ const Upload = () => {
                     src={
                       "https://via.assets.so/img.jpg?w=400&h=150&tc=blue&bg=#cecece"
                     }
-                    alt={file.fileName}
+                    alt={file.media_name}
                   />
-                  <span>{file.fileName}</span>
+                  <span>{file.media_name}</span>
                 </td>
-                <td className={styles.fileType}>{file.fileType}</td>
+                <td className={styles.fileType}>{file.media_type}</td>
                 <td className={styles.fileLocation}>
-                  <span className={styles.firstText}>{file.location[0]}</span>
+                  <span className={styles.firstText}>
+                    {formattedFiles[0].location[0]}
+                  </span>
                   {""}
                   <span>
                     <KeyboardArrowRightIcon className={styles.rightArrowIcon} />
                   </span>
                   <span className={styles.ellipseText}>
-                    {file.location[1].length > 3 ? "..." : file.location[1]}
+                    {formattedFiles[0].location[1].length > 3
+                      ? "..."
+                      : formattedFiles[0].location[1]}
                   </span>
                   <span>
                     <KeyboardArrowRightIcon className={styles.rightArrowIcon} />
                   </span>
                   {""}
-                  <span className={styles.lastText}>{file.location[2]}</span>
+                  <span className={styles.lastText}>
+                    {formattedFiles[0].location[2]}
+                  </span>
                 </td>
-                <td className={styles.fileCreatedSize}>{file.dateAdded}</td>
-                <td className={styles.fileCreatedSize}>{file.fileSize}</td>
+                <td className={styles.fileCreatedSize}>
+                  {formattedFiles[0].dateAdded}
+                </td>
+                <td className={styles.fileCreatedSize}>
+                  {formattedFiles[0].fileSize}
+                </td>
               </tr>
             ))}
           </tbody>
