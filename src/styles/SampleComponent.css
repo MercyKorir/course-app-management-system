@@ -195,21 +195,21 @@
   transition: all 0.3s ease-in-out;
 }
 
-table {
+.course-content table {
   font-family: Arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
   /* table-layout: fixed; */
 }
 
-th,
-td {
+.course-content th,
+.course-content td {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
 
-th {
+.course-content th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -217,11 +217,11 @@ th {
   color: white;
 }
 
-tr:nth-child(even) {
+.course-content tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-input[type="checkbox"] {
+.course-content input[type="checkbox"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -233,15 +233,15 @@ input[type="checkbox"] {
   transition: background 0.3s ease-in-out;
 }
 
-input[type="checkbox"]:checked {
+.course-content input[type="checkbox"]:checked {
   background: #00b9f1;
 }
 
-input[type="checkbox"]:focus {
+.course-content input[type="checkbox"]:focus {
   outline: none;
 }
 
-input[type="checkbox"]:after {
+.course-content input[type="checkbox"]:after {
   content: none;
   position: absolute;
   top: 50%;
@@ -255,7 +255,7 @@ input[type="checkbox"]:after {
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-input[type="checkbox"]:checked:after {
+.course-content input[type="checkbox"]:checked:after {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }

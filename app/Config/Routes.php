@@ -36,3 +36,6 @@ $routes->options('media/(:any)', 'Media::options');
 
 $routes->get('/', 'Home::index');
 $routes->get('/course-page', 'Courses::index');
+$routes->get('/login', 'Courses::index');
+$routes->get('/register', 'Courses::index');
+$routes->get('/sample', 'Courses::index');

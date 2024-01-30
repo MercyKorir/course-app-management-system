@@ -6,122 +6,122 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import styles from "../styles/Upload.module.css";
 
 const Upload = () => {
-  // const files = [
-  //   {
-  //     fileName: "Image name",
-  //     fileType: "image/jpeg",
-  //     location: "../assets/upload/media/mediaName.jpeg",
-  //     dateAdded: "Jan 18,2024",
-  //     fileSize: "20MB",
-  //     imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
-  //   },
-  //   {
-  //     fileName: "Image name",
-  //     fileType: "image/jpeg",
-  //     location: "../assets/upload/media/mediaName.jpeg",
-  //     dateAdded: "Jan 18,2024",
-  //     fileSize: "20MB",
-  //     imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
-  //   },
-  //   {
-  //     fileName: "Image name",
-  //     fileType: "image/jpeg",
-  //     location: "../assets/upload/media/mediaName.jpeg",
-  //     dateAdded: "Jan 18,2024",
-  //     fileSize: "20MB",
-  //     imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
-  //   },
-  //   {
-  //     fileName: "Image name",
-  //     fileType: "image/jpeg",
-  //     location: "../assets/upload/media/mediaName.jpeg",
-  //     dateAdded: "Jan 18,2024",
-  //     fileSize: "20MB",
-  //     imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
-  //   },
-  //   {
-  //     fileName: "Image name",
-  //     fileType: "image/jpeg",
-  //     location: "../assets/upload/media/mediaName.jpeg",
-  //     dateAdded: "Jan 18,2024",
-  //     fileSize: "20MB",
-  //     imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
-  //   },
-  //   {
-  //     fileName: "Image name",
-  //     fileType: "image/jpeg",
-  //     location: "../assets/upload/media/mediaName.jpeg",
-  //     dateAdded: "Jan 18,2024",
-  //     fileSize: "20MB",
-  //     imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
-  //   },
-  //   {
-  //     fileName: "Image name",
-  //     fileType: "image/jpeg",
-  //     location: "../assets/upload/media/mediaName.jpeg",
-  //     dateAdded: "Jan 18,2024",
-  //     fileSize: "20MB",
-  //     imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
-  //   },
-  // ];
-  const [files, setFiles] = useState([]);
+  const files = [
+    {
+      fileName: "Image name",
+      fileType: "image/jpeg",
+      location: "../assets/upload/media/mediaName.jpeg",
+      dateAdded: "Jan 18,2024",
+      fileSize: "20MB",
+      imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
+    },
+    {
+      fileName: "Image name",
+      fileType: "image/jpeg",
+      location: "../assets/upload/media/mediaName.jpeg",
+      dateAdded: "Jan 18,2024",
+      fileSize: "20MB",
+      imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
+    },
+    {
+      fileName: "Image name",
+      fileType: "image/jpeg",
+      location: "../assets/upload/media/mediaName.jpeg",
+      dateAdded: "Jan 18,2024",
+      fileSize: "20MB",
+      imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
+    },
+    {
+      fileName: "Image name",
+      fileType: "image/jpeg",
+      location: "../assets/upload/media/mediaName.jpeg",
+      dateAdded: "Jan 18,2024",
+      fileSize: "20MB",
+      imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
+    },
+    {
+      fileName: "Image name",
+      fileType: "image/jpeg",
+      location: "../assets/upload/media/mediaName.jpeg",
+      dateAdded: "Jan 18,2024",
+      fileSize: "20MB",
+      imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
+    },
+    {
+      fileName: "Image name",
+      fileType: "image/jpeg",
+      location: "../assets/upload/media/mediaName.jpeg",
+      dateAdded: "Jan 18,2024",
+      fileSize: "20MB",
+      imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
+    },
+    {
+      fileName: "Image name",
+      fileType: "image/jpeg",
+      location: "../assets/upload/media/mediaName.jpeg",
+      dateAdded: "Jan 18,2024",
+      fileSize: "20MB",
+      imageFile: "https://via.assets.so/img.jpg?w=50&h=50&tc=blue&bg=#f2f2f2",
+    },
+  ];
+  // const [files, setFiles] = useState([]);
 
-  const fetchFiles = useCallback(async () => {
-    const cookies = document.cookie
-      .split(";")
-      .map((cookie) => cookie.split("="));
-    const token = cookies.find((cookie) => cookie[0].trim() === "access_token");
-    const access_token = token ? token[1] : null;
+  // const fetchFiles = useCallback(async () => {
+  //   const cookies = document.cookie
+  //     .split(";")
+  //     .map((cookie) => cookie.split("="));
+  //   const token = cookies.find((cookie) => cookie[0].trim() === "access_token");
+  //   const access_token = token ? token[1] : null;
 
-    try {
-      const response = await axios.get("http://localhost:8080/media", {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      });
+  //   try {
+  //     const response = await axios.get("http://localhost:8080/media", {
+  //       headers: {
+  //         Authorization: `Bearer ${access_token}`,
+  //       },
+  //     });
 
-      if (response.data.status === 200) {
-        setFiles(response.data.data);
-        // Show empty message here (error message)
-      } else if (response.data.status === 404) {
-        setFiles([]);
-        // Show empty message here
-      } else {
-        console.error("Error fetching files", response.message);
-      }
-    } catch (err) {
-      if (err.response && err.response.status === 404) {
-        setFiles([]);
-        // Show error message here
-      } else {
-        console.error("Error fetching files", err);
-      }
-    }
-  }, []);
+  //     if (response.data.status === 200) {
+  //       setFiles(response.data.data);
+  //       // Show empty message here (error message)
+  //     } else if (response.data.status === 404) {
+  //       setFiles([]);
+  //       // Show empty message here
+  //     } else {
+  //       console.error("Error fetching files", response.message);
+  //     }
+  //   } catch (err) {
+  //     if (err.response && err.response.status === 404) {
+  //       setFiles([]);
+  //       // Show error message here
+  //     } else {
+  //       console.error("Error fetching files", err);
+  //     }
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    fetchFiles();
-  }, []);
+  // useEffect(() => {
+  //   fetchFiles();
+  // }, []);
 
   const formattedFiles = files.map((file) => {
-    const splitPath = file.media_path.split("/");
+    const splitPath = file.location.split("/");
     splitPath.shift();
 
     return {
       ...file,
-      media_path: splitPath,
+      location: splitPath,
     };
   });
 
   useEffect(() => {
-    if (formattedFiles.length > 0 && formattedFiles[0].media_path) {
-      console.log(formattedFiles[0].media_path[0]);
+    if (formattedFiles.length > 0 && formattedFiles[0].location) {
+      console.log(formattedFiles[0].location[0]);
     }
   }, [formattedFiles]);
 
   return (
     <div className={styles.uploadContainer}>
-      {/* <div className={styles.searchBar}>
+      <div className={styles.searchBar}>
         <p>Search for media name</p>
         <span>
           <SearchIcon className={styles.searchIcon} />
@@ -154,29 +154,28 @@ const Upload = () => {
           </thead>
           <tbody>
             {formattedFiles.map((file, index) => (
-              <tr key={file.media_id}>
+              <tr key={index}>
                 <td>
                   <input type="checkbox" />
                 </td>
-                <td>{index + 1}</td>
                 <td className={styles.imageFileName}>
                   <img
-                    src={`http://localhost:8080/media/${encodeURIComponent(
-                      file.media_path[3]
-                    )}`}
-                    alt={file.media_name}
+                    src={
+                      "https://via.assets.so/img.jpg?w=400&h=150&tc=blue&bg=#cecece"
+                    }
+                    alt={file.fileName}
                   />
                   <span>{file.fileName}</span>
                 </td>
-                <td className={styles.fileType}>{file.media_type}</td>
+                <td className={styles.fileType}>{file.fileType}</td>
                 <td className={styles.fileLocation}>
-                  <span className={styles.firstText}>{file.media_path[0]}</span>
+                  <span className={styles.firstText}>{file.location[0]}</span>
                   {""}
                   <span>
                     <KeyboardArrowRightIcon className={styles.rightArrowIcon} />
                   </span>
                   <span className={styles.ellipseText}>
-                    {file.media_path[1].length > 3 ? "..." : file.media_path[1]}
+                    {file.location[1].length > 3 ? "..." : file.location[1]}
                   </span>
                   <span>
                     <KeyboardArrowRightIcon className={styles.rightArrowIcon} />
@@ -190,8 +189,7 @@ const Upload = () => {
             ))}
           </tbody>
         </table>
-      </div> */}
-      upload
+      </div>
     </div>
   );
 };

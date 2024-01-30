@@ -174,14 +174,14 @@
   display: table-cell;
 }
 
-th,
-td {
+.mediaTable th,
+.mediaTable td {
   text-align: left;
   padding: 8px;
   background-color: transparent !important;
 }
 
-tr:nth-child(even) {
+.mediaTable tr:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.03);
 }
 
@@ -321,7 +321,7 @@ tr:nth-child(even) {
   color: rgba(0, 0, 0, 0.3);
 }
 
-input[type="checkbox"] {
+.mediaTable input[type="checkbox"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -333,19 +333,19 @@ input[type="checkbox"] {
   transition: background 0.2s ease-in-out;
 }
 
-input[type="checkbox"].selectAll {
+.mediaTable input[type="checkbox"].selectAll {
   background: rgba(0, 0, 0, 0.15);
 }
 
-input[type="checkbox"]:checked {
+.mediaTable input[type="checkbox"]:checked {
   background: linear-gradient(to bottom right, #a772ff, #cf8dff);
 }
 
-input[type="checkbox"]:focus {
+.mediaTable input[type="checkbox"]:focus {
   outline: none;
 }
 
-input[type="checkbox"]:checked::after {
+.mediaTable input[type="checkbox"]:checked::after {
   content: none;
   position: absolute;
   width: 1.2em;
