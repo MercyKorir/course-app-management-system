@@ -56,7 +56,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s ease-in-out;
   /* position: relative; */
+}
+
+.uploadContainer .dragDropActive {
+  background-color: #ddd;
 }
 
 .uploadContainer .dragDrop .dragDropInner {
@@ -70,8 +75,13 @@
   background-color: rgba(157, 91, 255, 0.2);
   border: 1px dashed rgba(0, 0, 0, 0.5);
   gap: 10px;
-  transition: background-color 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
+}
+
+.uploadContainer .dragDropActive .dragDropInner {
+  background-color: #ccc;
+  border-color: #aaa;
 }
 
 /* .uploadContainer .dragDrop:hover::before {
@@ -91,7 +101,7 @@
 } */
 
 .uploadContainer .dragDrop .dragDropInner:hover {
-  background-color: rgba(157, 91, 255, 0.3);
+  background-color: rgba(157, 91, 255, 0.25);
 }
 
 .uploadContainer .dragDrop .dragDropInner span .uploadIcon {
@@ -127,6 +137,157 @@
   color: rgba(0, 0, 0, 0.25);
 }
 
+.uploadContainer .dragDrop .dragDropInner .imageDroppedContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.uploadContainer
+  .dragDrop
+  .dragDropInner
+  .imageDroppedContainer
+  .previewImgContainer {
+  width: 600px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.uploadContainer
+  .dragDrop
+  .dragDropInner
+  .imageDroppedContainer
+  .previewImgContainerLg {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.uploadContainer
+  .dragDrop
+  .dragDropInner
+  .imageDroppedContainer
+  .previewImgContainerLg::-webkit-scrollbar {
+  width: 10px;
+}
+
+.uploadContainer
+  .dragDrop
+  .dragDropInner
+  .imageDroppedContainer
+  .previewImgContainerLg::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.uploadContainer
+  .dragDrop
+  .dragDropInner
+  .imageDroppedContainer
+  .previewImgContainerLg::-webkit-scrollbar-thumb {
+  background: #cf8dff;
+  border-radius: 10px;
+}
+
+.previewItem {
+  position: relative;
+  display: flex;
+  margin: 5px auto;
+}
+
+.uploadContainer
+  .dragDrop
+  .dragDropInner
+  .imageDroppedContainer
+  .previewImgContainer
+  img.previewImg {
+  height: 80px;
+  width: auto;
+  margin: 5px auto;
+}
+
+.uploadContainer
+  .dragDrop
+  .dragDropInner
+  .imageDroppedContainer
+  .previewImgContainer
+  span {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  z-index: 2000;
+  top: -1px;
+  right: -1px;
+  background: rgba(157, 91, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  transition: background 0.2s ease-in-out;
+}
+
+.uploadContainer
+  .dragDrop
+  .dragDropInner
+  .imageDroppedContainer
+  .previewImgContainer
+  span:hover {
+  background: rgba(157, 91, 255, 1);
+}
+
+.uploadContainer
+  .dragDrop
+  .dragDropInner
+  .imageDroppedContainer
+  .previewImgContainer
+  span
+  .removeIcon {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+}
+
+.uploadContainer .dragDrop .dragDropInner .imageDroppedContainer .uploadBtn {
+  width: 100px;
+  height: 35px;
+  border-radius: 20px;
+  background: linear-gradient(to right, #cf8dff, #8c4fff);
+  background-size: 200% auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.uploadContainer
+  .dragDrop
+  .dragDropInner
+  .imageDroppedContainer
+  .uploadBtn:hover {
+  background-position: right center;
+  color: #e2cfff;
+}
+
 .uploadContainer .mediaTableContainer {
   width: 1180px;
   max-width: 1180px;
@@ -135,6 +296,20 @@
   overflow-y: auto;
   scroll-behavior: smooth;
   position: relative;
+}
+
+.uploadContainer .mediaTableContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.uploadContainer .mediaTableContainer::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 5px;
+}
+
+.uploadContainer .mediaTableContainer::-webkit-scrollbar-thumb {
+  background: #cf8dff;
+  border-radius: 5px;
 }
 
 .uploadContainer .mediaTableContainer .mediaTable {

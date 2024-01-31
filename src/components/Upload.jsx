@@ -3,10 +3,13 @@ import axios from "axios";
 import SearchIcon from "@mui/icons-material/Search";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import ClearIcon from "@mui/icons-material/Clear";
 import styles from "../styles/Upload.module.css";
 
 const Upload = () => {
   const [fetchedFiles, setFetchedFiles] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [dragging, setDragging] = useState(false);
 
   const files = [
     {
@@ -113,6 +116,43 @@ const Upload = () => {
     };
   });
 
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setDragging(false);
+
+    const chosenFiles = Array.from(e.dataTransfer.files);
+    const newUploadedFiles = chosenFiles.map((file) => ({
+      name: file.name,
+      type: file.type,
+      size: file.size,
+      preview: URL.createObjectURL(file),
+    }));
+
+    setUploadedFiles((prevFiles) => [...prevFiles, ...newUploadedFiles]);
+  };
+
+  const handleRemove = (index) => {
+    setUploadedFiles((prevFiles) => {
+      const updatedFiles = [...prevFiles];
+      updatedFiles.splice(index, 1);
+      return updatedFiles;
+    });
+  };
+
+  const handleUpload = () => {
+    console.log(uploadedFiles);
+    setUploadedFiles([]);
+  };
+
   return (
     <div className={styles.uploadContainer}>
       <div className={styles.searchBar}>
@@ -121,15 +161,50 @@ const Upload = () => {
           <SearchIcon className={styles.searchIcon} />
         </span>
       </div>
-      <div className={styles.dragDrop}>
+      <div
+        className={`${styles.dragDrop} ${
+          dragging ? styles.dragDropActive : ""
+        }`}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+      >
         <div className={styles.dragDropInner}>
-          <span>
-            <UploadFileIcon className={styles.uploadIcon} />
-          </span>
-          <p className={styles.dragDropText}>
-            Drag and drop media here or <span>choose files</span>
-          </p>
-          <p className={styles.fileSize}>20MB max file size</p>
+          {uploadedFiles.length === 0 ? (
+            <>
+              <span>
+                <UploadFileIcon className={styles.uploadIcon} />
+              </span>
+              <p className={styles.dragDropText}>
+                Drag and drop media here or <span>choose files</span>
+              </p>
+              <p className={styles.fileSize}>20MB max file size</p>
+            </>
+          ) : (
+            <div className={styles.imageDroppedContainer}>
+              <div
+                className={`${styles.previewImgContainer} ${
+                  uploadedFiles.length > 3 ? styles.previewImgContainerLg : ""
+                }`}
+              >
+                {uploadedFiles.map((file, index) => (
+                  <div key={index} className={styles.previewItem}>
+                    <img
+                      src={file.preview}
+                      alt={`Preview ${file.name}`}
+                      className={styles.previewImg}
+                    />
+                    <span onClick={() => handleRemove(index)}>
+                      <ClearIcon className={styles.removeIcon} />
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <button className={styles.uploadBtn} onClick={handleUpload}>
+                Upload
+              </button>
+            </div>
+          )}
         </div>
       </div>
       <div className={styles.mediaTableContainer}>
@@ -194,9 +269,7 @@ const Upload = () => {
                     {""}
                     <span className={styles.lastText}>{location[2]}</span>
                   </td>
-                  <td className={styles.fileCreatedSize}>
-                    {formattedDate}
-                  </td>
+                  <td className={styles.fileCreatedSize}>{formattedDate}</td>
                   <td className={styles.fileCreatedSize}>
                     {formattedFiles[0].fileSize}
                   </td>
