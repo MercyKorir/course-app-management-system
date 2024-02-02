@@ -131,6 +131,7 @@ const Upload = () => {
 
     const chosenFiles = Array.from(e.dataTransfer.files);
     const newUploadedFiles = chosenFiles.map((file) => ({
+      mediaFile: file,
       name: file.name,
       type: file.type,
       size: file.size,
@@ -148,9 +149,46 @@ const Upload = () => {
     });
   };
 
-  const handleUpload = () => {
-    console.log(uploadedFiles);
-    setUploadedFiles([]);
+  const getAccessToken = () => {
+    const cookies = document.cookie
+      .split(";")
+      .map((cookie) => cookie.split("="));
+    const token = cookies.find((cookie) => cookie[0].trim() === "access_token");
+    return token ? token[1] : null;
+  };
+
+  const handleUpload = async () => {
+    const accessTokenCookie = getAccessToken();
+
+    try {
+      const formData = new FormData();
+      uploadedFiles.forEach((file) => {
+        const mediaName = file.name.split(".")[0];
+        formData.append("media_name", mediaName);
+        formData.append("media_file", file.mediaFile);
+      });
+
+      const response = await axios.post(
+        "http://localhost:8080/media",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${accessTokenCookie}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.data.status === 201) {
+        alert("Files uploaded successfully");
+        setUploadedFiles([]);
+        fetchFiles();
+      } else {
+        console.error("Error uploading files", response);
+      }
+    } catch (err) {
+      console.error("Error uploading files", err);
+    }
   };
 
   return (
