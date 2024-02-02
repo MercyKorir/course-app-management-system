@@ -130,7 +130,24 @@ const Upload = () => {
     setDragging(false);
 
     const chosenFiles = Array.from(e.dataTransfer.files);
-    const newUploadedFiles = chosenFiles.map((file) => ({
+
+    // Check for duplicate files (Not working fix later)
+    const filteredFiles = chosenFiles.filter((file) => {
+      const existingFile = uploadedFiles.some(
+        (uploadedFile) => uploadedFile.name === file.name
+      );
+      return !existingFile;
+    });
+
+    //Check for total file limit (6 files)
+    const filesLimit = 6;
+    const remainingFiles = filesLimit - uploadedFiles.length;
+    const filesToUpload =
+      remainingFiles > filteredFiles.length
+        ? filteredFiles
+        : filteredFiles.slice(0, remainingFiles);
+
+    const newUploadedFiles = filesToUpload.map((file) => ({
       mediaFile: file,
       name: file.name,
       type: file.type,
@@ -157,34 +174,59 @@ const Upload = () => {
     return token ? token[1] : null;
   };
 
-  const handleUpload = async () => {
-    const accessTokenCookie = getAccessToken();
-
+  const uploadFileFunc = async (singleFile, access_token) => {
     try {
-      const formData = new FormData();
-      uploadedFiles.forEach((file) => {
-        const mediaName = file.name.split(".")[0];
-        formData.append("media_name", mediaName);
-        formData.append("media_file", file.mediaFile);
-      });
-
       const response = await axios.post(
         "http://localhost:8080/media",
-        formData,
+        singleFile,
         {
           headers: {
-            Authorization: `Bearer ${accessTokenCookie}`,
+            Authorization: `Bearer ${access_token}`,
             "Content-Type": "multipart/form-data",
           },
         }
       );
 
       if (response.data.status === 201) {
+        console.log("File uploaded successfully");
+      } else {
+        console.error("Error uploading files", response);
+      }
+    } catch (err) {
+      console.error("Error uploading files", err);
+    }
+  };
+
+  const handleUpload = async () => {
+    const accessTokenCookie = getAccessToken();
+
+    try {
+      if (uploadedFiles.length > 1) {
+        const uploadPromises = uploadedFiles.map((file) => {
+          const modifiedFile = {
+            media_name: file.name.split(".")[0],
+            media_file: file.mediaFile,
+          };
+
+          return uploadFileFunc(modifiedFile, accessTokenCookie);
+        });
+
+        await Promise.all(uploadPromises);
+
         alert("Files uploaded successfully");
         setUploadedFiles([]);
         fetchFiles();
-      } else {
-        console.error("Error uploading files", response);
+      } else if (uploadedFiles.length === 1) {
+        const file = uploadedFiles[0];
+        const formData = new FormData();
+        formData.append("media_name", file.name.split(".")[0]);
+        formData.append("media_file", file.mediaFile);
+
+        await uploadFileFunc(formData, accessTokenCookie);
+
+        alert("Files uploaded successfully");
+        setUploadedFiles([]);
+        fetchFiles();
       }
     } catch (err) {
       console.error("Error uploading files", err);
