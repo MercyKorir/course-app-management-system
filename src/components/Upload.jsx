@@ -5,11 +5,15 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import ClearIcon from "@mui/icons-material/Clear";
 import styles from "../styles/Upload.module.css";
+import ToastNotification from "./ToastNotification.jsx";
 
 const Upload = () => {
   const [fetchedFiles, setFetchedFiles] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [dragging, setDragging] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastOperation, setToastOperation] = useState("");
 
   const files = [
     {
@@ -139,8 +143,8 @@ const Upload = () => {
       return !existingFile;
     });
 
-    //Check for total file limit (6 files)
-    const filesLimit = 6;
+    //Check for total file limit (6 files) (Change limit to 9)
+    const filesLimit = 12;
     const remainingFiles = filesLimit - uploadedFiles.length;
     const filesToUpload =
       remainingFiles > filteredFiles.length
@@ -190,9 +194,24 @@ const Upload = () => {
       if (response.data.status === 201) {
         console.log("File uploaded successfully");
       } else {
-        console.error("Error uploading files", response);
+        setToastOperation("error");
+        setToastMessage("Files upload failed!");
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+          setToastMessage("");
+          setToastOperation("");
+        }, 5000);
       }
     } catch (err) {
+      setToastOperation("error");
+      setToastMessage("Files upload failed!");
+      setShowToast(true);
+      setTimeout(() => {
+        setShowToast(false);
+        setToastMessage("");
+        setToastOperation("");
+      }, 5000);
       console.error("Error uploading files", err);
     }
   };
@@ -213,9 +232,16 @@ const Upload = () => {
 
         await Promise.all(uploadPromises);
 
-        alert("Files uploaded successfully");
+        setToastOperation("success");
+        setToastMessage("Files uploaded successfully");
+        setShowToast(true);
         setUploadedFiles([]);
         fetchFiles();
+        setTimeout(() => {
+          setShowToast(false);
+          setToastMessage("");
+          setToastOperation("");
+        }, 5000);
       } else if (uploadedFiles.length === 1) {
         const file = uploadedFiles[0];
         const formData = new FormData();
@@ -224,11 +250,26 @@ const Upload = () => {
 
         await uploadFileFunc(formData, accessTokenCookie);
 
-        alert("Files uploaded successfully");
+        setToastOperation("success");
+        setToastMessage("Files uploaded successfully");
+        setShowToast(true);
         setUploadedFiles([]);
         fetchFiles();
+        setTimeout(() => {
+          setShowToast(false);
+          setToastMessage("");
+          setToastOperation("");
+        }, 5000);
       }
     } catch (err) {
+      setToastOperation("error");
+      setToastMessage("Files upload failed!");
+      setShowToast(true);
+      setTimeout(() => {
+        setShowToast(false);
+        setToastMessage("");
+        setToastOperation("");
+      }, 5000);
       console.error("Error uploading files", err);
     }
   };
@@ -359,6 +400,9 @@ const Upload = () => {
           </tbody>
         </table>
       </div>
+      {showToast && (
+        <ToastNotification message={toastMessage} operation={toastOperation} />
+      )}
     </div>
   );
 };
