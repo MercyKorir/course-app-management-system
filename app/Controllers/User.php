@@ -11,6 +11,55 @@ class User extends BaseController
 {
     use ResponseTrait;
 
+    /**
+     * Return all users
+     * 
+     * @return mixed
+     */
+    public function index()
+    {
+        try {
+            $model = new UserModel();
+            $users = $model->findAll();
+
+            if (!$users) {
+                $response = [
+                    'status' => 404,
+                    'error' => 404,
+                    'message' => [
+                        'No users found.',
+                    ],
+                    'data' => $users,
+                ];
+                return $this->respond($response);
+            }
+
+            // Remove password from response for each user
+            foreach ($users as $key => $user) {
+                unset($users[$key]['password']);
+            }
+
+            $response = [
+                'status' => 200,
+                'error' => null,
+                'message' => [
+                    'success' => 'Users retrieved successfully.',
+                ],
+                'data' => $users,
+            ];
+
+            return $this->respond($response);
+        } catch (\Exception $e) {
+            log_message('error', 'An error occurred while retrieving users: ' . $e->getMessage());
+            return $this->fail('An error occurred while retrieving users.' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Login user
+     * 
+     * @return mixed
+     */
     public function login()
     {
         $oauth = new Oauth();
@@ -79,6 +128,11 @@ class User extends BaseController
         return $this->response->setStatusCode(200); // Respond with 200 OK for OPTIONS request
     }
 
+    /**
+     * Return user details
+     * 
+     * @return mixed
+     */
     public function show($id = null)
     {
         $model = new UserModel();
@@ -87,6 +141,11 @@ class User extends BaseController
         return $this->respond($data);
     }
 
+    /**
+     * Register a new user
+     * 
+     * @return mixed
+     */
     public function register()
     {
         helper(['form']);
