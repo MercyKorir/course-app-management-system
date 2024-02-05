@@ -130,6 +130,10 @@
   text-decoration: none;
 }
 
+.uploadContainer .dragDrop .dragDropInner .dragDropText input {
+  display: none;
+}
+
 .uploadContainer .dragDrop .dragDropInner .fileSize {
   margin: 0;
   font-size: 17px;

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import SearchIcon from "@mui/icons-material/Search";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
@@ -14,6 +14,7 @@ const Upload = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastOperation, setToastOperation] = useState("");
+  const hiddenFileInput = useRef(null);
 
   const files = [
     {
@@ -170,6 +171,24 @@ const Upload = () => {
     });
   };
 
+  const handleClickRef = () => {
+    hiddenFileInput.current.click();
+  };
+
+  const handleFileChange = (e) => {
+    const chosenFiles = Array.from(e.target.files);
+
+    const newUploadedFiles = chosenFiles.map((file) => ({
+      mediaFile: file,
+      name: file.name,
+      type: file.type,
+      size: file.size,
+      preview: URL.createObjectURL(file),
+    }));
+
+    setUploadedFiles((prevFiles) => [...prevFiles, ...newUploadedFiles]);
+  };
+
   const getAccessToken = () => {
     const cookies = document.cookie
       .split(";")
@@ -297,7 +316,15 @@ const Upload = () => {
                 <UploadFileIcon className={styles.uploadIcon} />
               </span>
               <p className={styles.dragDropText}>
-                Drag and drop media here or <span>choose files</span>
+                Drag and drop media here or{" "}
+                <span onClick={handleClickRef}>Choose files</span>
+                <input
+                  type="file"
+                  ref={hiddenFileInput}
+                  id="fileInput"
+                  multiple
+                  onChange={handleFileChange}
+                />
               </p>
               <p className={styles.fileSize}>20MB max file size</p>
             </>
