@@ -210,9 +210,6 @@ class Media extends ResourceController
 
         $mediaPath = $existingMedia['media_path'];
 
-        print_r($mediaPath);
-        print_r(gettype($mediaPath));
-
         if (file_exists($mediaPath)) {
             unlink($mediaPath);
         }

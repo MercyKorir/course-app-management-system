@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import ClearIcon from "@mui/icons-material/Clear";
+import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "../styles/Upload.module.css";
 import ToastNotification from "./ToastNotification.jsx";
 
@@ -293,6 +294,52 @@ const Upload = () => {
     }
   };
 
+  const handleDeleteFile = async (mediaId) => {
+    const cookies_access = getAccessToken();
+
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/media/${mediaId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${cookies_access}`,
+          },
+        }
+      );
+
+      if (response.data.status === 200) {
+        setToastOperation("success");
+        setToastMessage("File deleted successfully!");
+        setShowToast(true);
+        fetchFiles();
+        setTimeout(() => {
+          setShowToast(false);
+          setToastMessage("");
+          setToastOperation("");
+        }, 5000);
+      } else {
+        setToastOperation("error");
+        setToastMessage("Error deleting file!");
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+          setToastMessage("");
+          setToastOperation("");
+        }, 5000);
+      }
+    } catch (err) {
+      setToastOperation("error");
+      setToastMessage("Error deleting file!");
+      setShowToast(true);
+      setTimeout(() => {
+        setShowToast(false);
+        setToastMessage("");
+        setToastOperation("");
+      }, 5000);
+      console.error("Error deleting file", err);
+    }
+  };
+
   return (
     <div className={styles.uploadContainer}>
       <div className={styles.searchBar}>
@@ -367,6 +414,7 @@ const Upload = () => {
               <th className={styles.headerNames}>Location</th>
               <th className={styles.headerNames}>Date added</th>
               <th className={styles.headerNames}>File size</th>
+              <th className={styles.headerNames}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -420,6 +468,14 @@ const Upload = () => {
                   <td className={styles.fileCreatedSize}>{formattedDate}</td>
                   <td className={styles.fileCreatedSize}>
                     {formattedFiles[0].fileSize}
+                  </td>
+                  <td className={styles.fileActions}>
+                    <button
+                      className={styles.fileDelBtn}
+                      onClick={() => handleDeleteFile(file.media_id)}
+                    >
+                      <DeleteIcon className={styles.fileDelIcon} />
+                    </button>
                   </td>
                 </tr>
               );
