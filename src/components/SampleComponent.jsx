@@ -16,6 +16,7 @@ import styles from "../styles/Common.module.css";
 import ToastNotification from "./ToastNotification.jsx";
 import sidebarStyles from "../styles/SideBar.module.css";
 import Upload from "./Upload.jsx";
+import UserManagement from "./UserManagement.jsx";
 
 const SampleComponent = () => {
   const [courses, setCourse] = useState([]);
@@ -616,7 +617,7 @@ const SampleComponent = () => {
         )}
         {activeTab === "upload" && <Upload />}
         {activeTab === "settings" && <h1>Settings</h1>}
-        {activeTab === "users" && <h1>Users</h1>}
+        {activeTab === "users" && <UserManagement />}
       </div>
 
       {showToast && (
