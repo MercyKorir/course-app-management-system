@@ -36,8 +36,7 @@ $routes->post('/file/(:any)', 'Media::fileSize/$1');
 
 
 
-$routes->get('/', 'Home::index');
-$routes->get('/course-page', 'Courses::index');
+$routes->get('/', 'Courses::index');
 $routes->get('/login', 'Courses::index');
 $routes->get('/register', 'Courses::index');
-$routes->get('/sample', 'Courses::index');
+$routes->get('/admin', 'Courses::index');

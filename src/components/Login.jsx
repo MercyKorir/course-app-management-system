@@ -78,7 +78,7 @@ const Login = () => {
           password: "",
         });
         setTimeout(() => {
-          navigate("/sample");
+          navigate("/admin");
         }, 2000);
       } else {
         setMessage("Login failed. Check your email and password.");

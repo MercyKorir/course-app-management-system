@@ -48,7 +48,7 @@ const CourseList = () => {
     <div className={styles.courseListContainer}>
       <div className={styles.courseListHeader}>
         <h1>Courses We Offer</h1>
-        <Link to={"/sample"}>Admin</Link>
+        <Link to={"/admin"}>Admin</Link>
       </div>
       <div className={styles.courseListCarousel}>
         <div className={styles.courseListItems}>

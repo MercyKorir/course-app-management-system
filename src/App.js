@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./styles/App.css";
 import CourseList from "./components/CourseList.jsx";
-import AdminPanel from "./components/AdminPanel.jsx";
 import Login from "./components/Login.jsx";
 import AuthWrapper from "./components/AuthWrapper.jsx";
 import SignUp from "./components/Signup.jsx";
@@ -13,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/course-page" element={<CourseList />} />
+        <Route path="/" element={<CourseList />} />
         <Route
           path="/login"
           element={
@@ -30,8 +29,7 @@ function App() {
             </AuthWrapper>
           }
         />
-        <Route path="/admin" element={<AdminPanel />} />
-        <Route path="/sample" element={<SampleComponent />} />
+        <Route path="/admin" element={<SampleComponent />} />
         <Route path="/edit" element={<EditCourse />} />
       </Routes>
     </div>
