@@ -44,7 +44,7 @@
   border: none;
   outline: none;
   font-size: 1em;
-  color: #162938;
+  color: rgba(22, 41, 56, 0.7);
   font-weight: 600;
   padding: 0 35px 0 5px;
 }
@@ -115,4 +115,31 @@
 .message {
   text-align: center;
   color: rgba(0, 0, 0, 0.65);
+}
+
+.validationErrorNoDisplay {
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.validationError {
+  color: rgba(255, 0, 0, 0.7);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.validationError p {
+  font-size: 0.8em;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.warnIcon {
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
 }

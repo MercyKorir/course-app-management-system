@@ -4,6 +4,7 @@ import axios from "axios";
 import EmailIcon from "@mui/icons-material/Email";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import "../styles/Login.css";
 
 const Login = () => {
@@ -13,7 +14,15 @@ const Login = () => {
   });
   const [message, setMessage] = useState("");
   const [showPwd, setShowPwd] = useState(false);
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  const validate = () => {
+    validateEmail();
+    validatePassword();
+
+    return Object.keys(errors).length === 0;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +30,50 @@ const Login = () => {
       ...loginData,
       [name]: value,
     });
+  };
+
+  const validateEmail = () => {
+    let emailErrors = {};
+    if (!loginData.email.trim()) {
+      emailErrors.email = "Email is required!";
+    } else if (!/\S+@\S+\.\S+/.test(loginData.email)) {
+      emailErrors.email = "Email is invalid!";
+    }
+
+    if (Object.keys(emailErrors).length === 0) {
+      emailErrors.email = "";
+    }
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      ...emailErrors,
+    }));
+  };
+
+  const validatePassword = () => {
+    let pwdErrors = {};
+    if (!loginData.password.trim()) {
+      pwdErrors.password = "Password is required!";
+    } else if (loginData.password.length < 6) {
+      pwdErrors.password = "Password must to be 6 characters or more!";
+    }
+
+    if (Object.keys(pwdErrors).length === 0) {
+      pwdErrors.password = "";
+    }
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      ...pwdErrors,
+    }));
+  };
+
+  const handleBlurEmail = () => {
+    validateEmail();
+  };
+
+  const handleBlurPwd = () => {
+    validatePassword();
   };
 
   const getClient = async (e) => {
@@ -40,8 +93,21 @@ const Login = () => {
     }
   };
 
+  const handleReset = () => {
+    setLoginData({
+      email: "",
+      password: "",
+    });
+    setMessage("");
+    setErrors({});
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validate()) {
+      return;
+    }
 
     const authData = {
       grant_type: "password",
@@ -73,6 +139,7 @@ const Login = () => {
         document.cookie = `access_token=${access_token}; expires=${accessExpiry} path=/;`;
         document.cookie = `refresh_token=${refresh_token}; expires=${refreshExpiry} path=/;`;
         setMessage(`Signed in successfully.`);
+        setErrors({});
         setLoginData({
           email: "",
           password: "",
@@ -94,7 +161,7 @@ const Login = () => {
         <p className="formGreet">Welcome Back!👋</p>
         <h2 className="formTitle">Login</h2>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onReset={handleReset}>
         <div className="inputBox">
           <span className="icon">
             <div>
@@ -108,8 +175,19 @@ const Login = () => {
             autoComplete="email"
             value={loginData.email}
             onChange={handleChange}
+            onBlur={handleBlurEmail}
             required
           />
+          <div
+            className={`${
+              errors.email ? "validation-error" : "validation-error-no-display"
+            }`}
+          >
+            <span className="warnIcon">
+              <WarningAmberIcon fontSize="inherit" />
+            </span>{" "}
+            <p>{errors.email}</p>
+          </div>
           <label htmlFor="loginEmail">Email</label>
         </div>
         <div className="inputBox">
@@ -128,8 +206,21 @@ const Login = () => {
             name="password"
             value={loginData.password}
             onChange={handleChange}
+            onBlur={handleBlurPwd}
             required
           />
+          <div
+            className={`${
+              errors.password
+                ? "validation-error"
+                : "validation-error-no-display"
+            }`}
+          >
+            <span className="warnIcon">
+              <WarningAmberIcon fontSize="inherit" />
+            </span>{" "}
+            <p>{errors.password}</p>
+          </div>
           <label htmlFor="loginPwd">Password</label>
         </div>
         <div className="forgotPwd">
@@ -139,6 +230,9 @@ const Login = () => {
         </div>
         <button type="submit" className="formBtn">
           Login
+        </button>
+        <button type="reset" className="formBtn">
+          Reset
         </button>
         <div className="loginRegister">
           <p>
