@@ -4,8 +4,6 @@ import axios from "axios";
 import CourseItem from "./CourseItem.jsx";
 import commonStyles from "../styles/Common.module.css";
 import styles from "../styles/CourseList.module.css";
-// import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-// import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const CourseList = () => {
   const [courses, setCourses] = useState([]);
@@ -50,20 +48,18 @@ const CourseList = () => {
         <h1>Courses We Offer</h1>
         <Link to={"/admin"}>Admin</Link>
       </div>
-      <div className={styles.courseListCarousel}>
-        <div className={styles.courseListItems}>
-          {courses.map((course) => (
-            <CourseItem
-              key={course.course_id}
-              title={course.title}
-              subtitle={course.short_description}
-              duration="3 Months"
-              hours="100 Hours"
-              price="$100.00"
-              platform="Virtual"
-            />
-          ))}
-        </div>
+      <div className={styles.courseListItems}>
+        {courses.map((course) => (
+          <CourseItem
+            key={course.course_id}
+            title={course.title}
+            subtitle={course.short_description}
+            duration="3 Months"
+            hours="100 Hours"
+            price="$100.00"
+            platform="Virtual"
+          />
+        ))}
       </div>
     </div>
   );
