@@ -105,6 +105,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // check why it is not returning true
     if (!validate()) {
       return;
     }
