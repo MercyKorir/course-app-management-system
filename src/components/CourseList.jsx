@@ -58,6 +58,7 @@ const CourseList = () => {
             hours="100 Hours"
             price="$100.00"
             platform="Virtual"
+            image_name={course.course_image}
           />
         ))}
       </div>

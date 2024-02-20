@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import styles from "../styles/CourseItem.module.css";
 import StarRating from "./StarRating.jsx";
 
-const CourseItem = ({ title, subtitle, duration, hours, price, platform }) => {
+const CourseItem = ({
+  title,
+  subtitle,
+  duration,
+  hours,
+  price,
+  platform,
+  image_name,
+}) => {
   const [readMore, setReadMore] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [rating, setRating] = useState(0);
@@ -26,7 +34,12 @@ const CourseItem = ({ title, subtitle, duration, hours, price, platform }) => {
         {/* Add image here */}
         <div className={styles.courseImg}>
           <div className={styles.dimImage}></div>
-          <img src="/photography.jpg" alt="CourseImage" />
+          <img
+            src={`http://localhost:8080/image/${encodeURIComponent(
+              image_name
+            )}`}
+            alt={title}
+          />
         </div>
         <div className={styles.courseTitle}>{title}</div>
         <div className={styles.courseButton}>Enroll Now</div>
