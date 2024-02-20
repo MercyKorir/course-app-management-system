@@ -41,13 +41,16 @@ const Login = () => {
     }
 
     if (Object.keys(emailErrors).length === 0) {
-      emailErrors.email = "";
+      setErrors((prevErrors) => {
+        delete prevErrors.email;
+        return { ...prevErrors };
+      });
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        ...emailErrors,
+      }));
     }
-
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      ...emailErrors,
-    }));
   };
 
   const validatePassword = () => {
@@ -59,13 +62,16 @@ const Login = () => {
     }
 
     if (Object.keys(pwdErrors).length === 0) {
-      pwdErrors.password = "";
+      setErrors((prevErrors) => {
+        delete prevErrors.password;
+        return { ...prevErrors };
+      });
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        ...pwdErrors,
+      }));
     }
-
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      ...pwdErrors,
-    }));
   };
 
   const handleBlurEmail = () => {
