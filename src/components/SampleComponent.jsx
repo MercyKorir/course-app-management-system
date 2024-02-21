@@ -10,13 +10,13 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
-import "../styles/SampleComponent.css";
-import CreateCourse from "./CreateCourse.jsx";
-import styles from "../styles/Common.module.css";
-import ToastNotification from "./ToastNotification.jsx";
-import sidebarStyles from "../styles/SideBar.module.css";
 import Upload from "./Upload.jsx";
 import UserManagement from "./UserManagement.jsx";
+import CreateCourse from "./CreateCourse.jsx";
+import ToastNotification from "./ToastNotification.jsx";
+import "../styles/SampleComponent.css";
+import styles from "../styles/Common.module.css";
+import sidebarStyles from "../styles/SideBar.module.css";
 
 const SampleComponent = () => {
   const [courses, setCourse] = useState([]);
