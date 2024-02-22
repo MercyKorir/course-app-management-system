@@ -38,7 +38,7 @@ const SampleComponent = () => {
   const [toastOperation, setToastOperation] = useState("");
   const [activeTab, setActiveTab] = useState("home");
   const [isSideBarCollapsed, setIsSideBarCollapsed] = useState(false);
-  const [imgExpanded, setImgExpanded] = useState(false);
+  const [imgExpanded, setImgExpanded] = useState({});
 
   useEffect(() => {
     // Check if user is logged in using access_token cookie, if not redirect to login page
@@ -337,6 +337,13 @@ const SampleComponent = () => {
     }, 2000);
   };
 
+  const toggleImageExpand = (imageId) => {
+    setImgExpanded({
+      ...imgExpanded,
+      [imageId]: !imgExpanded[imageId],
+    });
+  };
+
   return loading ? (
     <div className={styles.ldsRipple}>
       <div></div>
@@ -587,13 +594,15 @@ const SampleComponent = () => {
                               course.course_image
                             )}`}
                             alt={course.title}
-                            onClick={() => setImgExpanded(true)}
+                            onClick={() => toggleImageExpand(course.course_id)}
                             className="courseImg"
                           ></img>
-                          {imgExpanded && (
+                          {imgExpanded[course.course_id] && (
                             <div
                               className="preview"
-                              onClick={() => setImgExpanded(false)}
+                              onClick={() =>
+                                toggleImageExpand(course.course_id)
+                              }
                             >
                               <img
                                 src={`http://localhost:8080/image/${encodeURIComponent(
