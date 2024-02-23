@@ -7,26 +7,41 @@ import AuthWrapper from "./components/AuthWrapper.jsx";
 import SignUp from "./components/Signup.jsx";
 import SampleComponent from "./components/SampleComponent.jsx";
 import EditCourse from "./components/EditCourse.jsx";
+import UserNavigation from "./components/UserNavigation.jsx";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<CourseList />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <UserNavigation />
+              <CourseList />
+            </>
+          }
+        />
         <Route
           path="/login"
           element={
-            <AuthWrapper formType={"login"}>
-              <Login />
-            </AuthWrapper>
+            <>
+              <UserNavigation />
+              <AuthWrapper formType={"login"}>
+                <Login />
+              </AuthWrapper>
+            </>
           }
         />
         <Route
           path="/register"
           element={
-            <AuthWrapper formType={"signup"}>
-              <SignUp />
-            </AuthWrapper>
+            <>
+              <UserNavigation />
+              <AuthWrapper formType={"signup"}>
+                <SignUp />
+              </AuthWrapper>
+            </>
           }
         />
         <Route path="/admin" element={<SampleComponent />} />
