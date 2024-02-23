@@ -1,0 +1,48 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+.userNavContainer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 450px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  gap: 40px;
+  border-radius: 25px;
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.userMenuItem {
+  color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.userMenuItem:hover {
+  color: rgba(0, 0, 0, 1);
+  /* border: 0.5px solid rgba(0, 0, 0, 1);
+    border-radius: 10px 10px 0px 0px; */
+}
+
+.userMenuItem p {
+  font-size: 14px;
+  font-weight: 600;
+}
