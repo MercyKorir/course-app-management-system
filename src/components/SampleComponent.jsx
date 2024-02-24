@@ -53,8 +53,6 @@ const SampleComponent = () => {
       setTimeout(() => {
         setLoading(false);
       }, 2000);
-
-      // navigate("/login");
     }
 
     const verifyUser = async () => {
@@ -76,8 +74,6 @@ const SampleComponent = () => {
           setAuthorized(true);
         } else if (response.data.status === 401) {
           setAuthorized(false);
-          // If user is not verified, redirect to login page
-          // navigate("/login");
         } else {
           console.error("Error Verifying user: ", response);
           setErrorMessage("Error verifying user. Please try again.");
@@ -85,8 +81,6 @@ const SampleComponent = () => {
       } catch (err) {
         if (err.response && err.response.status === 401) {
           setAuthorized(false);
-          // If user is not verified, redirect to login page
-          // navigate("/login");
         } else {
           console.error("Error Verifying user: ", err);
           setErrorMessage("Error verifying user. Please try again.");
@@ -99,7 +93,7 @@ const SampleComponent = () => {
     };
 
     verifyUser();
-  }, [navigate]);
+  }, []);
 
   const toggleSideBar = () => {
     setIsSideBarCollapsed(!isSideBarCollapsed);
