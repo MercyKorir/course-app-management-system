@@ -17,7 +17,7 @@ function App() {
           path="/"
           element={
             <>
-              <UserNavigation />
+              <UserNavigation extraLoadTime={2200} />
               <CourseList />
             </>
           }
