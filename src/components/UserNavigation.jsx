@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
@@ -7,6 +7,24 @@ import styles from "../styles/UserNavigation.module.css";
 
 const UserNavigation = () => {
   const [activeMenuItem, setActiveMenuItem] = useState("home");
+  const [firstRender, setFirstRender] = useState(true);
+
+  useEffect(() => {
+    if (!firstRender) {
+      const el = document.querySelector(".userMenuItem.active");
+
+      if (el) {
+        el.classList.add("animate");
+
+        setTimeout(() => {
+          el.classList.remove("animate");
+        }, 300);
+      }
+    } else {
+      setFirstRender(false);
+    }
+  }, [activeMenuItem]);
+
   return (
     <div className={styles.userNavContainer}>
       <div

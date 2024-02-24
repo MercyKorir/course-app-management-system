@@ -65,9 +65,26 @@ p {
     rgba(0, 0, 0, 0.6) 50%,
     rgba(0, 0, 0, 0.5) 100%
   );
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.userMenuItem.active.animate::before {
+  opacity: 1;
+  animation: fadeIn 0.5s ease-out forwards;
 }
 
 .userMenuItem p {
   font-size: 14px;
   font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
