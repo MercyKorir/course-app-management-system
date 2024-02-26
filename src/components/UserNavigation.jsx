@@ -1,17 +1,48 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
+import UserMenuItem from "./UserMenuItem.jsx";
 import styles from "../styles/UserNavigation.module.css";
 
+const CommonItems = [
+  {
+    id: "home",
+    icon: <HomeIcon />,
+    text: "Home",
+  },
+  {
+    id: "notifications",
+    icon: <NotificationsIcon />,
+    text: "Notifications",
+  },
+  {
+    id: "support",
+    icon: <SupportAgentIcon />,
+    text: "Support",
+  },
+];
+
+const ItemNames = {
+  Home: "home",
+  Notifications: "notifications",
+  Support: "support",
+  Login: "login",
+  Logout: "logout",
+};
+
+let MenuItems = [];
+
 const UserNavigation = ({ extraLoadTime = 0 }) => {
-  const [activeMenuItem, setActiveMenuItem] = useState("home");
+  const [activeMenuItem, setActiveMenuItem] = useState(ItemNames.Home);
   const [firstRender, setFirstRender] = useState(true);
   const [showNav, setShowNav] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -65,7 +96,46 @@ const UserNavigation = ({ extraLoadTime = 0 }) => {
     };
 
     verifyUser();
+    MenuItems = showLogout
+      ? [...CommonItems, { id: "logout", icon: <LogoutIcon />, text: "Logout" }]
+      : [...CommonItems, { id: "login", icon: <LoginIcon />, text: "Login" }];
+  }, [showLogout]);
+
+  useEffect(() => {
+    const storedActiveMenu = localStorage.getItem("activeMenuItem");
+
+    if (storedActiveMenu) {
+      setActiveMenuItem(storedActiveMenu);
+    }
   }, []);
+
+  const handleClick = (menuItem) => {
+    setActiveMenuItem(menuItem);
+
+    localStorage.setItem("activeMenuItem", menuItem);
+
+    switch (menuItem) {
+      case ItemNames.Home:
+        navigate("/");
+        break;
+      case ItemNames.Notifications:
+        navigate("/notifications");
+        break;
+      case ItemNames.Support:
+        navigate("/support");
+        break;
+      case ItemNames.Login:
+        navigate("/login");
+        break;
+      case ItemNames.Logout:
+        document.cookie =
+          "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        navigate("/");
+        break;
+      default:
+        throw new Error("Invalid menu item");
+    }
+  };
 
   useEffect(() => {
     if (!firstRender) {
@@ -87,54 +157,15 @@ const UserNavigation = ({ extraLoadTime = 0 }) => {
     <>
       {showNav && (
         <div className={styles.userNavContainer}>
-          <div
-            className={`${styles.userMenuItem} ${
-              activeMenuItem === "home" && styles.active
-            }`}
-            onClick={() => setActiveMenuItem("home")}
-          >
-            <HomeIcon />
-            <p>Home</p>
-          </div>
-          <div
-            className={`${styles.userMenuItem} ${
-              activeMenuItem === "notifications" && styles.active
-            }`}
-            onClick={() => setActiveMenuItem("notifications")}
-          >
-            <NotificationsIcon />
-            <p>Notifications</p>
-          </div>
-          <div
-            className={`${styles.userMenuItem} ${
-              activeMenuItem === "support" && styles.active
-            }`}
-            onClick={() => setActiveMenuItem("support")}
-          >
-            <SupportAgentIcon />
-            <p>Support</p>
-          </div>
-          {showLogout ? (
-            <div
-              className={`${styles.userMenuItem} ${
-                activeMenuItem === "logout" && styles.active
-              }`}
-              onClick={() => setActiveMenuItem("logout")}
-            >
-              <LogoutIcon />
-              <p>Logout</p>
-            </div>
-          ) : (
-            <div
-              className={`${styles.userMenuItem} ${
-                activeMenuItem === "login" && styles.active
-              }`}
-              onClick={() => setActiveMenuItem("login")}
-            >
-              <LoginIcon />
-              <p>Login</p>
-            </div>
-          )}
+          {MenuItems.map((item) => (
+            <UserMenuItem
+              key={item.id}
+              icon={item.icon}
+              text={item.text}
+              active={item.id === activeMenuItem}
+              onClickFunc={() => handleClick(item.id)}
+            />
+          ))}
         </div>
       )}
     </>
