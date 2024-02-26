@@ -42,6 +42,7 @@ const UserNavigation = ({ extraLoadTime = 0 }) => {
   const [firstRender, setFirstRender] = useState(true);
   const [showNav, setShowNav] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
+  const [logoutSuccess, setLogoutSuccess] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -109,28 +110,82 @@ const UserNavigation = ({ extraLoadTime = 0 }) => {
     }
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      const cookies = document.cookie
+        .split(";")
+        .map((cookie) => cookie.split("="));
+      const token = cookies.find(
+        (cookie) => cookie[0].trim() === "access_token"
+      );
+      const access_token = token ? token[1] : null;
+
+      const data = {
+        token: access_token,
+        token_type_hint: "access_token",
+      };
+
+      const response = await axios.post(
+        "http://localhost:8080/user/logout",
+        new URLSearchParams(data),
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+      if (response.status === 200) {
+        document.cookie =
+          "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        setLogoutSuccess(true);
+      } else {
+        setLogoutSuccess(false);
+        console.error("Error logging out: ", response);
+      }
+    } catch (err) {
+      setLogoutSuccess(false);
+      console.error("Error logging out: ", err);
+    }
+  };
+
   const handleClick = (menuItem) => {
     setActiveMenuItem(menuItem);
-
     localStorage.setItem("activeMenuItem", menuItem);
+    setShowNav(false);
 
     switch (menuItem) {
       case ItemNames.Home:
         navigate("/");
+        setTimeout(() => {
+          setShowNav(true);
+        }, 2500);
         break;
       case ItemNames.Notifications:
         navigate("/notifications");
+        setTimeout(() => {
+          setShowNav(true);
+        }, 300);
         break;
       case ItemNames.Support:
         navigate("/support");
+        setTimeout(() => {
+          setShowNav(true);
+        }, 300);
         break;
       case ItemNames.Login:
         navigate("/login");
+        setTimeout(() => {
+          setShowNav(true);
+        }, 300);
         break;
       case ItemNames.Logout:
-        document.cookie =
-          "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        navigate("/");
+        handleLogout();
+        if (logoutSuccess) {
+          navigate("/");
+          setTimeout(() => {
+            setShowNav(true);
+          }, 2500);
+        }
         break;
       default:
         throw new Error("Invalid menu item");
