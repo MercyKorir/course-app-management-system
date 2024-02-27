@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
@@ -35,8 +35,6 @@ const ItemNames = {
   Logout: "logout",
 };
 
-let MenuItems = [];
-
 const UserNavigation = ({ extraLoadTime = 0 }) => {
   const [activeMenuItem, setActiveMenuItem] = useState(ItemNames.Home);
   const [firstRender, setFirstRender] = useState(true);
@@ -44,6 +42,7 @@ const UserNavigation = ({ extraLoadTime = 0 }) => {
   const [showLogout, setShowLogout] = useState(false);
   const [logoutSuccess, setLogoutSuccess] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -63,6 +62,7 @@ const UserNavigation = ({ extraLoadTime = 0 }) => {
 
     if (!access_token) {
       setShowLogout(false);
+      return;
     }
 
     const verifyUser = async () => {
@@ -97,10 +97,7 @@ const UserNavigation = ({ extraLoadTime = 0 }) => {
     };
 
     verifyUser();
-    MenuItems = showLogout
-      ? [...CommonItems, { id: "logout", icon: <LogoutIcon />, text: "Logout" }]
-      : [...CommonItems, { id: "login", icon: <LoginIcon />, text: "Login" }];
-  }, [showLogout]);
+  }, []);
 
   useEffect(() => {
     const storedActiveMenu = localStorage.getItem("activeMenuItem");
@@ -109,6 +106,42 @@ const UserNavigation = ({ extraLoadTime = 0 }) => {
       setActiveMenuItem(storedActiveMenu);
     }
   }, []);
+
+  useEffect(() => {
+    const path = location.pathname;
+
+    setShowNav(false);
+
+    switch (path) {
+      case "/":
+        setActiveMenuItem(ItemNames.Home);
+        setTimeout(() => {
+          setShowNav(true);
+        }, 2500);
+        break;
+      case "/notifications":
+        setActiveMenuItem(ItemNames.Notifications);
+        setTimeout(() => {
+          setShowNav(true);
+        }, 300);
+        break;
+      case "/support":
+        setActiveMenuItem(ItemNames.Support);
+        setTimeout(() => {
+          setShowNav(true);
+        }, 300);
+        break;
+      case "/login":
+        setActiveMenuItem(ItemNames.Login);
+        setTimeout(() => {
+          setShowNav(true);
+        }, 300);
+        break;
+      default:
+        setActiveMenuItem(ItemNames.Home);
+        break;
+    }
+  }, [location.pathname]);
 
   const handleLogout = async () => {
     try {
@@ -212,7 +245,12 @@ const UserNavigation = ({ extraLoadTime = 0 }) => {
     <>
       {showNav && (
         <div className={styles.userNavContainer}>
-          {MenuItems.map((item) => (
+          {[
+            ...CommonItems,
+            showLogout
+              ? { id: "logout", icon: <LogoutIcon />, text: "Logout" }
+              : { id: "login", icon: <LoginIcon />, text: "Login" },
+          ].map((item) => (
             <UserMenuItem
               key={item.id}
               icon={item.icon}
