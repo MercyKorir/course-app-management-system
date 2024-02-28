@@ -18,7 +18,6 @@
   flex-grow: 1;
   background-color: #f2f2f2;
   height: 100vh;
-  /* Add your content styles here */
 }
 
 .header-row {
@@ -36,7 +35,6 @@
 }
 
 .header-course-no .course-no {
-  /* border: 1px solid #8f8a8a; */
   font-size: 18px;
   margin-top: 5px;
   border-radius: 8px;
@@ -199,7 +197,6 @@
   font-family: Arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  /* table-layout: fixed; */
 }
 
 .course-content th,

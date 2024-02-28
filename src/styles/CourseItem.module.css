@@ -96,7 +96,6 @@ p {
   align-items: center;
   height: 150px;
   width: 100%;
-  /* border: 1px solid #000000; */
   margin-top: 10px;
   transition: all 0.3s ease-in-out;
   position: relative;
@@ -187,7 +186,6 @@ p {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  /* border: 1px solid #000000; */
   padding: 0;
 }
 
@@ -200,7 +198,6 @@ p {
 
 .courseRatingPrice .courseRating {
   margin-right: 20px;
-  /* color: rgb(255, 221, 0); */
 }
 
 .courseDetails {
