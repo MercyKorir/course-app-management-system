@@ -1,6 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Consider removing display flex after you have implemented the loading component container */
