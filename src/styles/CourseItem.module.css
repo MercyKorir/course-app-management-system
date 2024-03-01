@@ -10,12 +10,12 @@ p {
   align-items: center;
   background-color: #ffffff;
   border-radius: 35px;
-  gap: 10px;
+  gap: 3px;
   padding: 0 0;
   min-height: fit-content;
-  max-height: 330px;
-  height: 330px;
-  width: 300px;
+  max-height: 300px;
+  height: 300px;
+  width: 270px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
 }
 
@@ -69,7 +69,8 @@ p {
 
 .courseContHeader .courseButton {
   position: absolute;
-  left: 31%;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: -20px;
   display: flex;
   justify-content: center;
@@ -127,8 +128,8 @@ p {
   text-align: left;
   top: 0;
   width: 100%;
-  max-width: 250px;
-  height: 80px;
+  max-width: 230px;
+  height: 60px;
   left: 0;
   padding: 10px 20px;
   opacity: 0;
@@ -266,4 +267,32 @@ p {
 .courseDetails .coursePlatformDetails .coursePlatform {
   margin-right: 20px;
   margin-left: 20px;
+}
+
+/* Media queries */
+@media (min-width: 375px) {
+  .courseContainer {
+    height: 320px;
+    width: 290px;
+    max-height: 320px;
+    gap: 5px;
+  }
+
+  .expandedDescription {
+    max-width: 250px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 410px) {
+  .courseContainer {
+    height: 330px;
+    width: 300px;
+    max-height: 330px;
+    gap: 10px;
+  }
+
+  .expandedDescription {
+    max-width: 260px;
+  }
 }
