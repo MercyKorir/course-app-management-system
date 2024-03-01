@@ -2,27 +2,44 @@ p {
   margin: 0;
   padding: 0;
 }
+
 .userNavContainer {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 450px;
-  height: 80px;
+  bottom: 10px;
+  left: 10px;
+  width: 300px;
+  height: 60px;
+  max-width: 60px;
   background: rgba(255, 255, 255, 0.3);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   z-index: 999;
-  gap: 40px;
-  border-radius: 25px;
+  gap: 15px;
+  border-radius: 100%;
   -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
     inset 0 4px 4px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
     inset 0 4px 4px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
     inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.userNavContainer.expanded {
+  height: 70px;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 300px;
+  border-radius: 25px;
+}
+
+.menuIcon {
+  cursor: pointer;
+  font-size: 30px; /* Not working */
 }
 
 .userMenuItem {
@@ -32,7 +49,7 @@ p {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 5px;
+  padding: 5px 0px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -49,12 +66,10 @@ p {
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 40px;
   height: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  right: 0;
   margin-top: -15px;
   border-radius: 0 0 20px 20px;
   background: linear-gradient(
@@ -73,8 +88,78 @@ p {
 }
 
 .userMenuItem p {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
+}
+
+/* Media Queries */
+@media (min-width: 375px) {
+  .userNavContainer {
+    width: 350px;
+    gap: 25px;
+  }
+  .userNavContainer.expanded {
+    max-width: 350px;
+  }
+}
+
+@media (min-width: 410px) {
+  .userNavContainer {
+    max-width: 80px;
+    height: 80px;
+    width: 380px;
+    gap: 30px;
+  }
+  .userNavContainer.expanded {
+    height: 80px;
+    max-width: 380px;
+  }
+}
+
+@media (min-width: 768px) {
+  .userNavContainer {
+    width: 480px;
+    gap: 50px;
+  }
+
+  .userNavContainer.expanded {
+    max-width: 480px;
+  }
+}
+
+@media (min-width: 992px) {
+  .userNavContainer {
+    width: 500px;
+    gap: 50px;
+  }
+
+  .userNavContainer.expanded {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .userNavContainer {
+    width: 600px;
+    height: 100px;
+    gap: 50px;
+    max-width: 100px;
+  }
+
+  .userNavContainer.expanded {
+    height: 100px;
+    max-width: 600px;
+  }
+
+  .userMenuItem.active::before {
+    width: 43px;
+    height: 25px;
+    margin-top: -22px;
+  }
+
+  .userMenuItem p {
+    font-size: 16px;
+  }
 }
 
 /* Animations */

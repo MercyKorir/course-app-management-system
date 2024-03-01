@@ -6,6 +6,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
+import MenuIcon from "@mui/icons-material/Menu";
 import UserMenuItem from "./UserMenuItem.jsx";
 import styles from "../styles/UserNavigation.module.css";
 
@@ -41,6 +42,7 @@ const UserNavigation = ({ extraLoadTime = 0 }) => {
   const [showNav, setShowNav] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
   const [logoutSuccess, setLogoutSuccess] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -244,21 +246,35 @@ const UserNavigation = ({ extraLoadTime = 0 }) => {
   return (
     <>
       {showNav && (
-        <div className={styles.userNavContainer}>
-          {[
-            ...CommonItems,
-            showLogout
-              ? { id: "logout", icon: <LogoutIcon />, text: "Logout" }
-              : { id: "login", icon: <LoginIcon />, text: "Login" },
-          ].map((item) => (
-            <UserMenuItem
-              key={item.id}
-              icon={item.icon}
-              text={item.text}
-              active={item.id === activeMenuItem}
-              onClickFunc={() => handleClick(item.id)}
+        <div
+          className={`${styles.userNavContainer} ${
+            isExpanded ? styles.expanded : ""
+          }`}
+        >
+          <div>
+            <MenuIcon
+              className={styles.menuIcon}
+              onClick={() => setIsExpanded(!isExpanded)}
             />
-          ))}
+          </div>
+          {isExpanded && (
+            <>
+              {[
+                ...CommonItems,
+                showLogout
+                  ? { id: "logout", icon: <LogoutIcon />, text: "Logout" }
+                  : { id: "login", icon: <LoginIcon />, text: "Login" },
+              ].map((item) => (
+                <UserMenuItem
+                  key={item.id}
+                  icon={item.icon}
+                  text={item.text}
+                  active={item.id === activeMenuItem}
+                  onClickFunc={() => handleClick(item.id)}
+                />
+              ))}
+            </>
+          )}
         </div>
       )}
     </>
