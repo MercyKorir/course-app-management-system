@@ -162,9 +162,10 @@ const Login = () => {
       console.error("Login error: ", err);
     }
   };
+
   return (
     <div className="loginForm">
-      <div>
+      <div className="form-greet-title">
         <p className="formGreet">Welcome Back!👋</p>
         <h2 className="formTitle">Login</h2>
       </div>
@@ -235,12 +236,14 @@ const Login = () => {
             Forgot Password?
           </Link>
         </div>
-        <button type="submit" className="formBtn">
-          Login
-        </button>
-        <button type="reset" className="formBtn">
-          Reset
-        </button>
+        <div className="btn-container">
+          <button type="submit" className="formBtn">
+            Login
+          </button>
+          <button type="reset" className="formBtn">
+            Reset
+          </button>
+        </div>
         <div className="loginRegister">
           <p>
             Don't have an account?{" "}

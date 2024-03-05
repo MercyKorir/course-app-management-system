@@ -5,19 +5,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
+
 .formContainer {
-  width: 1000px;
+  width: 300px;
+  padding-bottom: 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
 }
 
 .imageContainer {
-  height: 90%;
+  height: 100px;
   width: 50%;
   border-radius: 20px 0 0 20px;
   display: flex;
@@ -26,41 +30,123 @@
   align-items: center;
   padding-top: 60px;
   position: relative;
+  transition: all 0.3s ease-in-out;
 }
 
 .imgLogo {
   position: absolute;
-  left: -20px;
-  top: -40px;
+  left: -10px;
+  top: 10px;
   background-color: aliceblue;
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 50px;
   border-radius: 100%;
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 }
 
 .bgImage {
   width: 100%;
   height: 80%;
   object-fit: cover;
+  transition: all 0.3s ease-in-out;
 }
+
 .formWrapperContainer {
-  height: 93.5%;
-  width: 50%;
+  height: 500px;
+  width: 400px;
   border-radius: 0 20px 20px 0;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  padding: 10px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
 }
+
 .formWrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   height: 100%;
-  width: 100%;
+  width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Media queries */
+@media (min-width: 375px) {
+  .formContainer {
+    width: 350px;
+  }
+}
+
+@media (min-width: 410px) {
+  .formContainer {
+    width: 380px;
+  }
+
+  .formWrapper {
+    width: 320px;
+  }
+}
+
+@media (min-width: 768px) {
+  .formContainer {
+    flex-direction: row;
+    width: 720px;
+  }
+
+  .imageContainer {
+    height: 50%;
+    width: 40%;
+  }
+
+  .imgLogo {
+    left: -20px;
+    top: -150px;
+    height: 80px;
+    width: 80px;
+  }
+
+  .formWrapperContainer {
+    height: 100%;
+    width: 60%;
+    padding: 20px;
+  }
+
+  .formWrapper {
+    width: 350px;
+  }
+}
+
+@media (min-width: 992px) {
+  .formContainer {
+    width: 900px;
+  }
+
+  .imgLogo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .formWrapper {
+    width: 400px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .formContainer {
+    width: 1000px;
+  }
+
+  .formWrapper {
+    width: 450px;
+  }
 }

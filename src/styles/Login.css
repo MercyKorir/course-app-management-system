@@ -1,25 +1,52 @@
+p {
+  padding: 0;
+  margin: 0;
+}
+
 .loginForm {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-greet-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
 .formGreet {
   color: rgba(0, 0, 0, 0.65);
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease-in-out;
 }
+
 .formTitle {
   font-size: 30px;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease-in-out;
 }
 
 .inputBox {
   position: relative;
-  width: 350px;
+  width: 280px;
   height: 50px;
+  left: 50%;
+  transform: translateX(-50%);
   border: transparent;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 40px;
+  transition: all 0.3s ease-in-out;
 }
+
 .inputBox label {
   position: absolute;
   top: 50%;
@@ -30,6 +57,7 @@
   opacity: 0.7;
   font-weight: 500;
   transition: 0.5s;
+  transition: all 0.3s ease-in-out;
 }
 
 .inputBox input:focus ~ label,
@@ -46,7 +74,8 @@
   font-size: 1em;
   color: rgba(22, 41, 56, 0.7);
   font-weight: 500;
-  padding: 0 35px 0 5px;
+  padding: 0px 35px 0 5px;
+  transition: all 0.3s ease-in-out;
 }
 
 .inputBox .icon {
@@ -55,15 +84,15 @@
   font-size: 1.2em;
   color: #162938;
   line-height: 57px;
+  transition: all 0.3s ease-in-out;
 }
 
 .forgotPwd {
   font-size: 0.9em;
   color: #162938;
   font-weight: 500;
-  margin: -15px 0 15px;
-  display: flex;
-  justify-content: space-between;
+  margin: 0 0 10px 15px;
+  transition: all 0.3s ease-in-out;
 }
 
 .forgotPwd label input {
@@ -80,8 +109,16 @@
   text-decoration: underline;
 }
 
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
 .formBtn {
-  width: 100%;
+  width: 280px;
   height: 45px;
   background: #000000;
   border: none;
@@ -91,7 +128,7 @@
   font-size: 1em;
   color: #ffffff;
   font-weight: 500;
-  margin-top: 5px;
+  transition: all 0.3s ease-in-out;
 }
 
 .loginRegister {
@@ -99,7 +136,8 @@
   color: #162938;
   text-align: center;
   font-weight: 500;
-  margin: 25px 0 10px;
+  margin-top: 15px;
+  transition: all 0.3s ease-in-out;
 }
 
 .loginRegister p .registerLink {
@@ -142,4 +180,75 @@
   font-size: 1em;
   margin: 0;
   padding: 0;
+}
+
+/* Media Queries */
+@media (min-width: 375px) {
+  .form-greet-title {
+    margin-left: 10px;
+  }
+
+  .formBtn {
+    width: 300px;
+  }
+}
+
+@media (min-width: 410px) {
+  .inputBox {
+    width: 300px;
+  }
+
+  .formBtn {
+    width: 310px;
+  }
+}
+
+@media (min-width: 768px) {
+  .loginForm {
+    gap: 30px;
+  }
+
+  .form-greet-title {
+    margin-left: 0;
+  }
+
+  .inputBox {
+    width: 350px;
+  }
+
+  .forgotPwd {
+    margin: -15px 0 15px;
+  }
+
+  .formBtn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .loginForm {
+    gap: 40px;
+  }
+
+  .inputBox {
+    width: 400px;
+  }
+
+  .formBtn {
+    width: 400px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .loginForm {
+    gap: 50px;
+  }
+
+  .inputBox {
+    width: 450px;
+  }
+
+  .formBtn {
+    width: 450px;
+  }
 }
