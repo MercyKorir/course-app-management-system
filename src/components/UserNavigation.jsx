@@ -139,6 +139,11 @@ const UserNavigation = ({ extraLoadTime = 0 }) => {
           setShowNav(true);
         }, 300);
         break;
+      case "/register":
+        setTimeout(() => {
+          setShowNav(true);
+        }, 300);
+        break;
       default:
         setActiveMenuItem(ItemNames.Home);
         break;

@@ -207,178 +207,182 @@ const SignUp = () => {
 
   return (
     <div className={styles.loginForm}>
-      <div>
+      <div className={styles.welcomeSignUp}>
         <p className={styles.formGreet}>New here? Welcome!👋</p>
         <h2 className={styles.formTitle}>SignUp</h2>
       </div>
       <form onSubmit={handleSubmit} onReset={handleReset}>
-        <div className={styles.inputBox}>
-          <span className={styles.icon}>
-            <div>
-              <PersonIcon />
+        <div className={styles.formItems}>
+          <div className={styles.inputBox}>
+            <span className={styles.icon}>
+              <div>
+                <PersonIcon />
+              </div>
+            </span>
+            <input
+              type="text"
+              id="firstName"
+              name="firstname"
+              autoComplete="username"
+              value={signUpData.firstname}
+              onChange={handleChange}
+              onBlur={() => handleBlur("firstname")}
+              required
+            />
+            <div
+              className={`${
+                errors.firstname
+                  ? styles.validationError
+                  : styles.validationErrorNoDisplay
+              }`}
+            >
+              <span className={styles.warnIcon}>
+                <WarningAmberIcon fontSize="inherit" />
+              </span>{" "}
+              <p>{errors.firstname}</p>
             </div>
-          </span>
-          <input
-            type="text"
-            id="firstName"
-            name="firstname"
-            autoComplete="username"
-            value={signUpData.firstname}
-            onChange={handleChange}
-            onBlur={() => handleBlur("firstname")}
-            required
-          />
-          <div
-            className={`${
-              errors.firstname
-                ? styles.validationError
-                : styles.validationErrorNoDisplay
-            }`}
-          >
-            <span className={styles.warnIcon}>
-              <WarningAmberIcon fontSize="inherit" />
-            </span>{" "}
-            <p>{errors.firstname}</p>
+            <label htmlFor="firstName">FirstName</label>
           </div>
-          <label htmlFor="firstName">FirstName</label>
-        </div>
-        <div className={styles.inputBox}>
-          <span className={styles.icon}>
-            <div>
-              <PersonIcon />
+          <div className={styles.inputBox}>
+            <span className={styles.icon}>
+              <div>
+                <PersonIcon />
+              </div>
+            </span>
+            <input
+              type="text"
+              id="lastName"
+              name="lastname"
+              autoComplete="username"
+              value={signUpData.lastname}
+              onChange={handleChange}
+              onBlur={() => handleBlur("lastname")}
+              required
+            />
+            <div
+              className={`${
+                errors.lastname
+                  ? styles.validationError
+                  : styles.validationErrorNoDisplay
+              }`}
+            >
+              <span className={styles.warnIcon}>
+                <WarningAmberIcon fontSize="inherit" />
+              </span>{" "}
+              <p>{errors.lastname}</p>
             </div>
-          </span>
-          <input
-            type="text"
-            id="lastName"
-            name="lastname"
-            autoComplete="username"
-            value={signUpData.lastname}
-            onChange={handleChange}
-            onBlur={() => handleBlur("lastname")}
-            required
-          />
-          <div
-            className={`${
-              errors.lastname
-                ? styles.validationError
-                : styles.validationErrorNoDisplay
-            }`}
-          >
-            <span className={styles.warnIcon}>
-              <WarningAmberIcon fontSize="inherit" />
-            </span>{" "}
-            <p>{errors.lastname}</p>
+            <label htmlFor="lastName">LastName</label>
           </div>
-          <label htmlFor="lastName">LastName</label>
-        </div>
-        <div className={styles.inputBox}>
-          <span className={styles.icon}>
-            <div>
-              <EmailIcon />
+          <div className={styles.inputBox}>
+            <span className={styles.icon}>
+              <div>
+                <EmailIcon />
+              </div>
+            </span>
+            <input
+              type="email"
+              id="signUpEmail"
+              name="email"
+              autoComplete="email"
+              value={signUpData.email}
+              onChange={handleChange}
+              onBlur={() => handleBlur("email")}
+              required
+            />
+            <div
+              className={`${
+                errors.email
+                  ? styles.validationError
+                  : styles.validationErrorNoDisplay
+              }`}
+            >
+              <span className={styles.warnIcon}>
+                <WarningAmberIcon fontSize="inherit" />
+              </span>{" "}
+              <p>{errors.email}</p>
             </div>
-          </span>
-          <input
-            type="email"
-            id="signUpEmail"
-            name="email"
-            autoComplete="email"
-            value={signUpData.email}
-            onChange={handleChange}
-            onBlur={() => handleBlur("email")}
-            required
-          />
-          <div
-            className={`${
-              errors.email
-                ? styles.validationError
-                : styles.validationErrorNoDisplay
-            }`}
-          >
-            <span className={styles.warnIcon}>
-              <WarningAmberIcon fontSize="inherit" />
-            </span>{" "}
-            <p>{errors.email}</p>
+            <label htmlFor="signUpEmail">Email</label>
           </div>
-          <label htmlFor="signUpEmail">Email</label>
-        </div>
-        <div className={styles.inputBox}>
-          <span className={styles.icon}>
-            <div onClick={() => setShowPwd(!showPwd)}>
-              {showPwd ? (
-                <VisibilityIcon style={{ cursor: "pointer" }} />
-              ) : (
-                <VisibilityOffIcon style={{ cursor: "pointer" }} />
-              )}
+          <div className={styles.inputBox}>
+            <span className={styles.icon}>
+              <div onClick={() => setShowPwd(!showPwd)}>
+                {showPwd ? (
+                  <VisibilityIcon style={{ cursor: "pointer" }} />
+                ) : (
+                  <VisibilityOffIcon style={{ cursor: "pointer" }} />
+                )}
+              </div>
+            </span>
+            <input
+              type={showPwd ? "text" : "password"}
+              id="signUpPwd"
+              name="password"
+              value={signUpData.password}
+              onChange={handleChange}
+              onBlur={() => handleBlur("password")}
+              required
+            />
+            <div
+              className={`${
+                errors.password
+                  ? styles.validationError
+                  : styles.validationErrorNoDisplay
+              }`}
+            >
+              <span className={styles.warnIcon}>
+                <WarningAmberIcon fontSize="inherit" />
+              </span>{" "}
+              <p>{errors.password}</p>
             </div>
-          </span>
-          <input
-            type={showPwd ? "text" : "password"}
-            id="signUpPwd"
-            name="password"
-            value={signUpData.password}
-            onChange={handleChange}
-            onBlur={() => handleBlur("password")}
-            required
-          />
-          <div
-            className={`${
-              errors.password
-                ? styles.validationError
-                : styles.validationErrorNoDisplay
-            }`}
-          >
-            <span className={styles.warnIcon}>
-              <WarningAmberIcon fontSize="inherit" />
-            </span>{" "}
-            <p>{errors.password}</p>
+            <label htmlFor="signUpPwd">Password</label>
           </div>
-          <label htmlFor="signUpPwd">Password</label>
-        </div>
-        <div className={styles.inputBox}>
-          <span className={styles.icon}>
-            <div onClick={() => setShowConfPwd(!showConfPwd)}>
-              {showConfPwd ? (
-                <VisibilityIcon style={{ cursor: "pointer" }} />
-              ) : (
-                <VisibilityOffIcon style={{ cursor: "pointer" }} />
-              )}
+          <div className={styles.inputBox}>
+            <span className={styles.icon}>
+              <div onClick={() => setShowConfPwd(!showConfPwd)}>
+                {showConfPwd ? (
+                  <VisibilityIcon style={{ cursor: "pointer" }} />
+                ) : (
+                  <VisibilityOffIcon style={{ cursor: "pointer" }} />
+                )}
+              </div>
+            </span>
+            <input
+              type={showConfPwd ? "text" : "password"}
+              id="confSignUpPwd"
+              name="password_confirm"
+              value={signUpData.password_confirm}
+              onChange={handleChange}
+              onBlur={() => handleBlur("password_confirm")}
+              required
+            />
+            <div
+              className={`${
+                errors.password_confirm
+                  ? styles.validationError
+                  : styles.validationErrorNoDisplay
+              }`}
+            >
+              <span className={styles.warnIcon}>
+                <WarningAmberIcon fontSize="inherit" />
+              </span>{" "}
+              <p>{errors.password_confirm}</p>
             </div>
-          </span>
-          <input
-            type={showConfPwd ? "text" : "password"}
-            id="confSignUpPwd"
-            name="password_confirm"
-            value={signUpData.password_confirm}
-            onChange={handleChange}
-            onBlur={() => handleBlur("password_confirm")}
-            required
-          />
-          <div
-            className={`${
-              errors.password_confirm
-                ? styles.validationError
-                : styles.validationErrorNoDisplay
-            }`}
-          >
-            <span className={styles.warnIcon}>
-              <WarningAmberIcon fontSize="inherit" />
-            </span>{" "}
-            <p>{errors.password_confirm}</p>
+            <label htmlFor="confSignUpPwd">Confirm Password</label>
           </div>
-          <label htmlFor="confSignUpPwd">Confirm Password</label>
         </div>
         <div className={styles.forgotPwd}>
           <Link to={"/forgot-password"} className={styles.forgotLink}>
             Forgot Password?
           </Link>
         </div>
-        <button type="submit" className={styles.formBtn}>
-          Register
-        </button>
-        <button type="reset" className={styles.formBtn}>
-          Reset
-        </button>
+        <div className={styles.btnContainer}>
+          <button type="submit" className={styles.formBtn}>
+            Register
+          </button>
+          <button type="reset" className={styles.formBtn}>
+            Reset
+          </button>
+        </div>
         <div className={styles.loginRegister}>
           <p>
             Already have an account?{" "}
