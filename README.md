@@ -1,5 +1,7 @@
 # Course Management System
 
+This is a Course Management System built with CodeIgniter for the server and ReactJS for the client-side. The project aims to provide a comprehensive solution for managing courses, enrollments, and related activities.
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
@@ -68,6 +70,11 @@ While the current version of the Course Management System is functional and meet
 - **Performance Optimization:** Identify and address performance bottlenecks, especially for resource-intensive operations or high-traffic scenarios.
 - **Accessibility:** Implement accessibility best practices to ensure the application is usable by individuals with disabilities or impairments.
 - **Integration with Third-Party Services:** Explore integration with popular Learning Management Systems (LMS), video conferencing tools, or other relevant services to enhance the overall functionality.
+- **Implement Support using AI Chatbot:** Integrate an AI-powered chatbot to provide automated support and assistance to users, enhancing the overall user experience.
+- **Implement Notifications:** Develop a comprehensive notification system to keep users informed about important events, deadlines, and updates related to their courses and activities.
+- **Use Redux for State Management:** Leverage Redux for efficient state management in the React application, ensuring better organization and maintainability of application state.
+- **Implement Rich Text Editor:** Integrate a rich text editor to allow instructors and students to create and format content, such as course materials or assignments, with ease.
+- **Use Load Balancing and Caching Mechanism:** Implement load balancing and caching mechanisms to improve application performance and handle high traffic scenarios more effectively.
 
 ## Running the project
 
