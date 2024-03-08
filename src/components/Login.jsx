@@ -7,6 +7,9 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import "../styles/Login.css";
 
+/**
+ * Login component renders a login form for user authentication.
+ */
 const Login = () => {
   const [loginData, setLoginData] = useState({
     email: "",
@@ -17,6 +20,10 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
+  /**
+   * Validate function checks if there are any errors in the form fields.
+   * @returns {boolean} True if there are no errors, false otherwise.
+   */
   const validate = () => {
     validateEmail();
     validatePassword();
@@ -24,6 +31,10 @@ const Login = () => {
     return Object.keys(errors).length === 0;
   };
 
+  /**
+   * handleChange function updates the login form data state.
+   * @param {Object} e - The event object.
+   */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginData({
@@ -32,6 +43,9 @@ const Login = () => {
     });
   };
 
+  /**
+   * validateEmail function validates the email field and updates the errors state.
+   */
   const validateEmail = () => {
     let emailErrors = {};
     if (!loginData.email.trim()) {
@@ -53,6 +67,9 @@ const Login = () => {
     }
   };
 
+  /**
+   * validatePassword function validates the password field and updates the errors state.
+   */
   const validatePassword = () => {
     let pwdErrors = {};
     if (!loginData.password.trim()) {
@@ -74,14 +91,26 @@ const Login = () => {
     }
   };
 
+  /**
+   * handleBlurEmail function is called when the email field loses focus.
+   * It validates the email field.
+   */
   const handleBlurEmail = () => {
     validateEmail();
   };
 
+  /**
+   * handleBlurPwd function is called when the password field loses focus.
+   * It validates the password field.
+   */
   const handleBlurPwd = () => {
     validatePassword();
   };
 
+  /**
+   * getClient function fetches the client ID and client secret from the server.
+   * @returns {Promise<{client: string, secret: string}>} A promise that resolves with the client ID and secret.
+   */
   const getClient = async (e) => {
     try {
       const response = await axios.get("http://localhost:8080/client");
@@ -99,6 +128,9 @@ const Login = () => {
     }
   };
 
+  /**
+   * handleReset function resets the login form and clears the message and errors.
+   */
   const handleReset = () => {
     setLoginData({
       email: "",
@@ -108,6 +140,11 @@ const Login = () => {
     setErrors({});
   };
 
+  /**
+   * handleSubmit function is called when the login form is submitted.
+   * It validates the form, fetches the client ID and secret, and sends a login request to the server.
+   * @param {Object} e - The event object.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
 

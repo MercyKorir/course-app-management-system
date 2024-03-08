@@ -9,10 +9,15 @@ import SampleComponent from "./components/SampleComponent.jsx";
 import EditCourse from "./components/EditCourse.jsx";
 import UserNavigation from "./components/UserNavigation.jsx";
 
+/**
+ * App Component which is the main entry point for the application
+ * It sets up the routes for the application and renders the components
+ */
 function App() {
   return (
     <div className="App">
       <Routes>
+        {/* Route for the home page */}
         <Route
           path="/"
           element={
@@ -22,6 +27,7 @@ function App() {
             </>
           }
         />
+        {/*Route for the login page*/}
         <Route
           path="/login"
           element={
@@ -33,6 +39,7 @@ function App() {
             </>
           }
         />
+        {/*Route for the register page*/}
         <Route
           path="/register"
           element={
@@ -44,7 +51,9 @@ function App() {
             </>
           }
         />
+        {/*Route for the admin page*/}
         <Route path="/admin" element={<SampleComponent />} />
+        {/*Route for the edit course page*/}
         <Route path="/edit" element={<EditCourse />} />
       </Routes>
     </div>

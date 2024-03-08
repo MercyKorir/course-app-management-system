@@ -5,10 +5,14 @@ import CourseItem from "./CourseItem.jsx";
 import commonStyles from "../styles/Common.module.css";
 import styles from "../styles/CourseList.module.css";
 
+/**
+ * CourseList component fetches and displays a list of courses.
+ */
 const CourseList = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch courses from the server on component mount
   useEffect(() => {
     const fetchCourses = async () => {
       try {
@@ -37,6 +41,7 @@ const CourseList = () => {
     fetchCourses();
   }, []);
 
+  // Render a loading spinner or the list of courses
   return loading ? (
     <div className={commonStyles.ldsRipple}>
       <div></div>

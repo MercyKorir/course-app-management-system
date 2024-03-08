@@ -3,6 +3,12 @@ import axios from "axios";
 import "../styles/CreateCourse.css";
 import ToastNotification from "./ToastNotification.jsx";
 
+/**
+ * CreateCourse component is a form for adding a new course.
+ *
+ * @param {Object} props - The component props.
+ * @param {Function} props.onClose - A function to handle closing the form.
+ */
 const CreateCourse = ({ onClose }) => {
   const fileInputRef = useRef(null);
   const [courseData, setCourseData] = useState({
@@ -16,10 +22,12 @@ const CreateCourse = ({ onClose }) => {
   const [toastMessage, setToastMessage] = useState("");
   const [toastOperation, setToastOperation] = useState("");
 
+  // Function to trigger the file input click event
   const handleFileButtonClick = () => {
     fileInputRef.current.click();
   };
 
+  // Function to handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCourseData({
@@ -28,6 +36,7 @@ const CreateCourse = ({ onClose }) => {
     });
   };
 
+  // Function to handle file input changes
   const handleFileChange = (e) => {
     const { files } = e.target;
 
@@ -45,6 +54,7 @@ const CreateCourse = ({ onClose }) => {
     }
   };
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -73,6 +83,7 @@ const CreateCourse = ({ onClose }) => {
       );
 
       if (response.status === 201) {
+        // Course created successfully
         setToastOperation("success");
         setToastMessage("Course created successfully!");
         setShowToast(true);
@@ -89,6 +100,7 @@ const CreateCourse = ({ onClose }) => {
           setToastOperation("");
         }, 5000);
       } else {
+        // Course creation failed
         setToastOperation("error");
         setToastMessage("Course addition failed!");
         setShowToast(true);
@@ -99,6 +111,7 @@ const CreateCourse = ({ onClose }) => {
         }, 5000);
       }
     } catch (err) {
+      // Error occurred during course creation
       setToastOperation("error");
       setToastMessage("Error Creating Course!");
       setShowToast(true);
@@ -204,6 +217,7 @@ const CreateCourse = ({ onClose }) => {
           </div>
         </form>
       </div>
+      {/* Toast notification */}
       {showToast && (
         <ToastNotification message={toastMessage} operation={toastOperation} />
       )}

@@ -15,7 +15,7 @@ class Course extends ResourceController
     }
 
     /**
-     * Return an array of resource objects, themselves in array format
+     * Return a list of all courses
      *
      * @return mixed
      */
@@ -50,7 +50,7 @@ class Course extends ResourceController
     }
 
     /**
-     * Handle OPTIONS request
+     * Handle OPTIONS request for CORS
      * 
      * @return mixed
      */
@@ -65,7 +65,7 @@ class Course extends ResourceController
     }
 
     /**
-     * Return the properties of a resource object
+     * Show details of a specific course
      *
      * @return mixed
      */
@@ -103,7 +103,7 @@ class Course extends ResourceController
     }
 
     /**
-     * Create a new resource object, from "posted" parameters
+     * Create a new Course
      *
      * @return mixed
      */
@@ -169,8 +169,9 @@ class Course extends ResourceController
     }
 
     /**
-     * Add or update a model resource, from "posted" properties
+     * Update an existing course
      *
+     * @param int $id Course ID
      * @return mixed
      */
     public function update($id = null)
@@ -242,8 +243,9 @@ class Course extends ResourceController
     }
 
     /**
-     * Delete the designated resource object from the model
+     * Delete a course
      *
+     * @param int $id Course ID
      * @return mixed
      */
     public function delete($id = null)
@@ -277,7 +279,7 @@ class Course extends ResourceController
     }
 
     /**
-     * Return an array of course objects, themselves in array format
+     * Get a list of all courses
      * 
      * @return mixed
      */
@@ -314,6 +316,7 @@ class Course extends ResourceController
     /**
      * Serve the image of a course
      * 
+     * @param string $image_name Image file name
      * @return mixed
      */
     public function showImage($image_name)

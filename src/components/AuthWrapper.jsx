@@ -2,10 +2,18 @@ import React, { useState, useEffect } from "react";
 import "../styles/AuthWrapper.css";
 import bgImage from "../assets/loginBG.png";
 
+/**
+ * AuthWrapper component is a container for authentication forms (login and signup).
+ * It handles the layout and responsiveness of the form container.
+ *
+ * @param {JSX.Element} children - The form component to be rendered inside the wrapper.
+ * @param {string} formType - The type of form to be rendered ("login" or "signup").
+ */
 const AuthWrapper = ({ children, formType }) => {
   const [heightVal, setHeightVal] = useState("");
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
+  // Set up an event listener for window resize
   useEffect(() => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
@@ -16,6 +24,7 @@ const AuthWrapper = ({ children, formType }) => {
     };
   }, []);
 
+  // Determine the height of the form container based on form type and screen width
   useEffect(() => {
     const determineHeight = () => {
       if (formType === "login") {

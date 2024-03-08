@@ -15,7 +15,7 @@ class Media extends ResourceController
     }
 
     /**
-     * Return an array of resource objects, themselves in array format
+     * Return a list of all media items
      *
      * @return mixed
      */
@@ -52,7 +52,7 @@ class Media extends ResourceController
     }
 
     /**
-     * Handle OPTIONS requests
+     * Handle OPTIONS requests for CORS
      * 
      * @return mixed
      */
@@ -87,7 +87,7 @@ class Media extends ResourceController
     }
 
     /**
-     * Create a new resource object, from "posted" parameters
+     * Create a new media item
      *
      * @return mixed
      */
@@ -188,8 +188,9 @@ class Media extends ResourceController
     }
 
     /**
-     * Delete the designated resource object from the model
+     * Delete a media item
      *
+     * @param int $id Media item ID
      * @return mixed
      */
     public function delete($id = null)
@@ -233,8 +234,9 @@ class Media extends ResourceController
     }
 
     /**
-     * Serve media file
+     * Serve the media file
      * 
+     * @param string $file_name Media file name
      * @return mixed
      */
     public function showFile($file_name)
@@ -252,6 +254,7 @@ class Media extends ResourceController
     /**
      * Get size of media file
      * 
+     * @param string $file_name Media file name
      * @return mixed
      */
     public function fileSize($file_name)

@@ -19,6 +19,9 @@ class Oauth
         }
     }
 
+    /**
+     * Initialize the OAuth2 server
+     */
     public function init()
     {
         $dsn = getenv('database.default.DSN');

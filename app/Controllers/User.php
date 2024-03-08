@@ -114,7 +114,7 @@ class User extends BaseController
     }
 
     /**
-     * Handle OPTIONS request
+     * Handle OPTIONS request for CORS
      * 
      * @return mixed
      */
@@ -131,6 +131,7 @@ class User extends BaseController
     /**
      * Return user details
      * 
+     * @param int $id User ID
      * @return mixed
      */
     public function show($id = null)
@@ -179,6 +180,11 @@ class User extends BaseController
         }
     }
 
+    /**
+     * Logout user
+     * 
+     * @return mixed
+     */
     public function logout()
     {
         helper(['form']);
@@ -219,6 +225,11 @@ class User extends BaseController
         }
     }
 
+    /**
+     * Verify user token
+     * 
+     * @return mixed
+     */
     public function verify()
     {
         helper(['form']);

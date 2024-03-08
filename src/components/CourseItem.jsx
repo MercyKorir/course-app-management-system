@@ -2,6 +2,18 @@ import React, { useState } from "react";
 import styles from "../styles/CourseItem.module.css";
 import StarRating from "./StarRating.jsx";
 
+/**
+ * CourseItem component renders a single course item with its details.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title of the course.
+ * @param {string} props.subtitle - The subtitle or description of the course.
+ * @param {string} props.duration - The duration of the course.
+ * @param {string} props.hours - The number of hours for the course.
+ * @param {string} props.price - The price of the course.
+ * @param {string} props.platform - The platform where the course is available.
+ * @param {string} props.image_name - The name of the course image file.
+ */
 const CourseItem = ({
   title,
   subtitle,
@@ -16,6 +28,7 @@ const CourseItem = ({
   const [rating, setRating] = useState(0);
   const [iconVal, setIconVal] = useState("empty");
 
+  // Toggle the "Read More" and "Read Less" functionality
   const handleReadMore = () => {
     setReadMore(!readMore);
     setTimeout(() => {
@@ -23,6 +36,7 @@ const CourseItem = ({
     }, 100);
   };
 
+  // Update the rating and the corresponding icon value
   const handleRatingChange = (starValue) => {
     setRating(starValue);
     setIconVal(starValue === 0 ? "empty" : starValue === 0.5 ? "half" : "full");
@@ -31,7 +45,7 @@ const CourseItem = ({
   return (
     <div className={styles.courseContainer}>
       <div className={styles.courseContHeader}>
-        {/* Add image here */}
+        {/* Course image container */}
         <div className={styles.courseImg}>
           <div className={styles.dimImage}></div>
           <img
@@ -46,6 +60,7 @@ const CourseItem = ({
       </div>
       <div className={styles.courseDescription}>
         <div className={styles.courseContent}>
+          {/* Render the course description with "Read More" functionality */}
           {subtitle.length < 100 ? (
             <p>{subtitle}</p>
           ) : (
@@ -78,6 +93,7 @@ const CourseItem = ({
       <div className={styles.courseRatingPrice}>
         <div className={styles.coursePrice}>{price}</div>
         <div className={styles.courseRating}>
+          {/* Render the StarRating component for rating */}
           <StarRating
             starValue={rating}
             onChange={handleRatingChange}
