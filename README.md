@@ -1,67 +1,105 @@
-# CodeIgniter 4 Application Starter
+# Course Management System
 
-## What is CodeIgniter?
+## Table of Contents
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+1. [Introduction](#introduction)
+2. [Tech Stack](#tech-stack)
+3. [Features](#features)
+4. [Process](#process)
+5. [Learning](#learning)
+6. [Improvement](#improvement)
+7. [Running the Project](#running-the-project)
+8. [Demo](#demo)
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Introduction
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+The Course Management System is a web application designed to streamline the management of courses. It provides administrators with tools to add, edit, and delete courses, as well as manage user access. The system aims to simplify course administration tasks, enhance organization, and improve user experience.
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+## Tech Stack
 
-## Installation & updates
+The project utilizes the following technologies:
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+**client-side:**
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+- React.js (JavaScript Library)
+- React Router (Client-side Routing)
+- CSS (Styling)
+- Axios (HTTP Client)
+- Webpack (Module Builder)
+- Babel (JavaScript Compiler)
 
-## Setup
+**server-side:**
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+- CodeIgniter (PHP Framework)
+- MySQL (Database)
 
-## Important Change with index.php
+## Features
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+- **Course Management:** Administrators can create, update, and delete courses, and manage course details.
+- **User Authentication:** Users can register and login with different roles into the application.
+- **Media Upload:** Administrators can upload media by choosing files or drag and drop.
+- **Bulk Course Deletion:** Administrators can delete courses in bulk.
+- **Sort and Filter:** Administrators can sort and filter courses.
+- **Responsive UI:** Responsive design for optimal viewing on various devices.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+## Process
 
-**Please** read the user guide for a better explanation of how CI4 works!
+The development process followed an iterative and incremental approach. The project was divided into several milestones, each focusing on specific features or components.
 
-## Repository Management
+1. **Planning and Requirements Gathering:** The initial phase involved understanding the project requirements, defining user stories, and creating a project roadmap.
+2. **Design and Wireframing:** I created wireframes and mockups to visualize the user interface and ensure a seamless user experience.
+3. **Development:** I worked in sprints, implementing features, writing tests, and integrating the server-side and client-side components.
+4. **Testing and Quality Assurance:** Rigorous testing was conducted throughout the development process, including unit testing, and integration testing.
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+## Learning
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+Throughout the development of this project, I gained valuable experience in the following areas:
 
-## Server Requirements
+- **Full-Stack Web Development:** Working with both server-side and client-side technologies, integrating them seamlessly, and ensuring smooth communication between the two components.
+- **CodeIgniter and ReactJS:** Deepening my understanding of the CodeIgniter framework and ReactJS library, leveraging their respective strengths and best practices.
+- **Database Design and Management:** Designing an efficient and scalable database schema to support the application's requirements.
+- **User Experience (UX):** Prioritizing user-centered design principles to create an intuitive and engaging user interface.
+- **Module Bundling and Transpiling:** Utilizing Webpack for module bundling and Babel for transpiling modern JavaScript code to ensure cross-browser compatibility.
 
-PHP version 7.4 or higher is required, with the following extensions installed:
+## Improvement
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+While the current version of the Course Management System is functional and meets the core requirements, there are several areas for potential improvement:
 
-> **Warning**
-> The end of life date for PHP 7.4 was November 28, 2022. If you are
-> still using PHP 7.4, you should upgrade immediately. The end of life date
-> for PHP 8.0 will be November 26, 2023.
+- **Performance Optimization:** Identify and address performance bottlenecks, especially for resource-intensive operations or high-traffic scenarios.
+- **Accessibility:** Implement accessibility best practices to ensure the application is usable by individuals with disabilities or impairments.
+- **Integration with Third-Party Services:** Explore integration with popular Learning Management Systems (LMS), video conferencing tools, or other relevant services to enhance the overall functionality.
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+## Running the project
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+To run this project locally, follow these steps:
+
+1. Clone the repository:
+   `git clone https://github.com/MercyKorir/course-app-management-system.git`
+
+2. Set up the server-side environment:
+
+- Install PHP, XAMPP and MySQL.
+- Configure MySQL database and update the connection details in the configuration.
+
+3. Set up client-side environment:
+
+- Navigate to the root directory:
+  `cd <root-folder>`
+- Install Node.js and npm (Node Package Manager)
+- Run `npm install` to install the required dependencies.
+
+4. Build the client-side:
+
+- In the `root directory`, run `webpack --config webpack.config.js` to build the React app using webpack and Babel.
+
+5. Start the application:
+
+- Begin your Apache Server and MySQL Server.
+- In the `root directory`, run `php spark serve` to start the application.
+
+6. Access the application:
+   - Open your web browser and navigate to `http://localhost:8080` (Or appropriate URL based on your configuration)
+
+## Demo
+
+This is the demo of the application.
