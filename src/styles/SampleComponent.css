@@ -257,6 +257,11 @@
   transform: translate(-50%, -50%) scale(1);
 }
 
+.btn-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .deleteIconContainer {
   color: #ff00009b;
   cursor: pointer;
