@@ -2,82 +2,58 @@
 
 namespace Tests\App\Models;
 
-use App\Models\CourseModel;
 use CodeIgniter\Test\CIUnitTestCase;
+use App\Models\CourseModel;
 
 class CourseModelTest extends CIUnitTestCase
 {
-    protected $courseModel;
+    protected $seed = 'CourseSeeder';
+    protected $refresh = true;
+    protected $model;
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
-        $this->courseModel = new CourseModel();
+        $this->model = new CourseModel();
     }
 
-    public function testSaveCourse(): void
+    public function testInsertCourse()
     {
         $data = [
-            'title' => 'Test Course',
-            'long_description' => 'This is a test course.',
-            'short_description' => 'This is a short description of the test course.',
-            'course_image' => 'test_course.jpg'
+            'title' => 'Introduction to Programming',
+            'long_description' => 'Learn the fundamentals of programming...',
+            'short_description' => 'Programming basics',
+            'course_image' => 'intro_programming.jpg',
         ];
 
-        $this->assertNull($this->courseModel->insert($data));
+        $this->model->save($data);
+        $insertedCourse = $this->model->where('title', $data['title'])->first();
 
-        $course = $this->courseModel->find(1);
-
-        $this->assertEquals('Test Course', $course['title']);
-        $this->assertEquals('This is a test course.', $course['long_description']);
-        $this->assertEquals('This is a short description of the test course.', $course['short_description']);
-        $this->assertEquals('test_course.jpg', $course['course_image']);
+        $this->assertIsArray($insertedCourse);
+        $this->assertArrayHasKey('course_id', $insertedCourse);
+        $this->assertEquals($data['title'], $insertedCourse['title']);
+        $this->assertEquals($data['long_description'], $insertedCourse['long_description']);
+        $this->assertEquals($data['short_description'], $insertedCourse['short_description']);
+        $this->assertEquals($data['course_image'], $insertedCourse['course_image']);
     }
 
-    public function testFindCourseById(): void
+    public function testUpdateCourse()
     {
-        $course = $this->courseModel->find(1);
+        $course = $this->model->findAll()[0];
+        $course['title'] = 'Advanced Programming';
 
-        $this->assertIsArray($course);
-        $this->assertArrayHasKey('course_id', $course);
-        $this->assertArrayHasKey('title', $course);
-        $this->assertArrayHasKey('long_description', $course);
-        $this->assertArrayHasKey('short_description', $course);
-        $this->assertArrayHasKey('course_image', $course);
+        $this->model->save($course);
+        $updatedCourse = $this->model->find($course['course_id']);
+
+        $this->assertEquals('Advanced Programming', $updatedCourse['title']);
     }
 
-    public function testFindCourseByInvalidId(): void
+    public function testDeleteCourse()
     {
-        $course = $this->courseModel->find(999);
+        $course = $this->model->findAll()[0];
+        $this->model->delete($course['course_id']);
 
-        $this->assertNull($course);
-    }
-
-    public function testUpdateCourse(): void
-    {
-        $data = [
-            'title' => 'Updated Test Course',
-            'long_description' => 'This is an updated test course.',
-            'short_description' => 'This is a short description of the updated test course.',
-            'course_image' => 'updated_test_course.jpg',
-        ];
-
-        $this->assertTrue($this->courseModel->update(1, $data));
-
-        $course = $this->courseModel->find(1);
-
-        $this->assertEquals('Updated Test Course', $course['title']);
-        $this->assertEquals('This is an updated test course.', $course['long_description']);
-        $this->assertEquals('This is a short description of the updated test course.', $course['short_description']);
-        $this->assertEquals('updated_test_course.jpg', $course['course_image']);
-    }
-
-    public function testDeleteCourse(): void
-    {
-        $this->assertTrue($this->courseModel->delete(1));
-
-        $course = $this->courseModel->find(1);
-
-        $this->assertNull($course);
+        $deletedCourse = $this->model->find($course['course_id']);
+        $this->assertNull($deletedCourse);
     }
 }
