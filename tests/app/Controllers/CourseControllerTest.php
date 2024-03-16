@@ -86,42 +86,53 @@ class CourseControllerTest extends CIUnitTestCase
         ));
     }
 
-    // public function testCreateCourse()
-    // {
-    //     $_FILES['course_image'] = [
-    //         'name' => 'test.jpg',
-    //         'type' => 'image/jpeg',
-    //         'tmp_name' => '/tmp/php7hj3jg',
-    //         'error' => 0,
-    //         'size' => 1000
-    //     ];
+    public function testCreateCourse()
+    {
+        $tempFile = tempnam(sys_get_temp_dir(), 'test');
+        file_put_contents($tempFile, 'This is a test image');
+    
+        $_FILES['course_image'] = [
+            'name' => 'test.jpeg',
+            'type' => 'image/jpeg',
+            'tmp_name' => $tempFile,
+            'error' => 0,
+            'size' => filesize($tempFile)
+        ];
 
-    //     $_POST['title'] = 'Test Course';
-    //     $_POST['long_description'] = 'This is a test course';
-    //     $_POST['short_description'] = 'Test course';
+        $requestBody = [
+            'title' => 'Test Course Title',
+            'long_description' => 'This is a test course with a long description',
+            'short_description' => 'Test course with a short description'
+        ];
 
-    //     $result = $this->withURI('http://localhost:8080/course')->withRequest($this->request)->controller(Course::class)->execute('create');
-    //     $result->assertStatus(201);
+        $this->request->setBody($requestBody);
+        $this->request->withMethod('post');
 
-    //     $expectedId = $this->courseModel->getInsertID();
+        $result = $this->withURI('http://localhost:8080/course')->withRequest($this->request)->controller(Course::class)->execute('create');
+        var_dump($result->response()->getBody());
+        $result->assertStatus(201);
 
-    //     $result->assertJSON(json_encode(
-    //         [
-    //             'status' => 201,
-    //             'error' => null,
-    //             'message' => [
-    //                 'success' => 'Course created successfully'
-    //             ],
-    //             'data' => [
-    //                 'course_id' => $expectedId,
-    //                 'title' => 'Test Course',
-    //                 'long_description' => 'This is a test course',
-    //                 'short_description' => 'Test course',
-    //                 'course_image' => 'test.jpg'
-    //             ]
-    //         ]
-    //     ));
+        $expectedId = $this->courseModel->getInsertID();
 
-    //     $this->assertFileExists(('../assets/uploads/test.jpg'));
-    // }
+        $result->assertJSON(json_encode(
+            [
+                'status' => 201,
+                'error' => null,
+                'message' => [
+                    'success' => 'Course created successfully'
+                ],
+                'data' => [
+                    'course_id' => $expectedId,
+                    'title' => 'Test Course Title',
+                    'long_description' => 'This is a test course with a long description',
+                    'short_description' => 'Test course with a short description',
+                    'course_image' => 'test.jpeg'
+                ]
+            ]
+        ));
+
+        $this->assertFileExists(WRITEPATH . 'assets/uploads/test.jpeg');
+
+        unlink($tempFile);
+    }
 }
