@@ -1,0 +1,141 @@
+h1 {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.heroContainer {
+  width: 100vw;
+  height: 60vh;
+  background-color: rgba(245, 232, 221, 0.25);
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.searchBar {
+  position: absolute;
+  width: 850px;
+  height: 60px;
+  border-radius: 35px;
+  background-color: #ffffff;
+  display: flex;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.25);
+}
+
+.searchBar p {
+  font-size: 20px;
+  line-height: 23px;
+  color: rgba(0, 0, 0, 0.2);
+  margin-left: 30px;
+}
+
+.searchBar span {
+  margin-right: 30px;
+}
+
+.searchBar span .searchIcon {
+  width: 30px;
+  height: 30px;
+  color: rgba(0, 0, 0, 0.5);
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.searchBar span .searchIcon:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.heroContentMain {
+  padding-top: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.textCtaContent {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.ctaTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ctaTexts h1 {
+  font-size: 35px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.greenTxt {
+  color: rgba(1, 220, 75, 0.4);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.purpleTxt {
+  color: rgba(157, 91, 255, 0.7);
+}
+
+.ctaTexts p {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.ctaBtn {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.btnPurple {
+  width: 160px;
+  height: 50px;
+  border: none;
+  border-radius: 35px;
+  background-color: rgba(157, 91, 255, 0.7);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.btnWhite {
+  width: 160px;
+  height: 50px;
+  border: none;
+  border-radius: 35px;
+  background-color: #fff;
+  color: rgba(1, 220, 75, 0.62);
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.heroAnimation {
+  margin-right: 50px;
+}

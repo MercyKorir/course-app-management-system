@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import CourseItem from "./CourseItem.jsx";
+import Header from "./homeSections/Header.jsx";
+import Hero from "./homeSections/Hero.jsx";
+import Features from "./homeSections/Features.jsx";
 import commonStyles from "../styles/Common.module.css";
 import styles from "../styles/CourseList.module.css";
 
@@ -49,6 +52,9 @@ const CourseList = () => {
     </div>
   ) : (
     <div className={styles.courseListContainer}>
+      <Header />
+      <Hero />
+      <Features />
       <div className={styles.courseListHeader}>
         <h1>Courses We Offer</h1>
         <Link to={"/admin"}>Admin</Link>
