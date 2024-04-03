@@ -1,0 +1,122 @@
+h1 {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.contactUsContainer {
+  width: 100vw;
+  height: 70vh;
+  background-color: rgba(245, 232, 221, 0.25);
+}
+
+.contactContent {
+  padding: 20px 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.contactText {
+  text-align: center;
+}
+
+.contactText h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.contactText p {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.contactForm {
+  /* background-color: aquamarine; */
+  width: 650px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 90%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.contactForm form input {
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.contactForm form input::placeholder,
+.contactForm form textarea::placeholder {
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 300;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.contactForm form textarea {
+  resize: none;
+  width: 100%;
+  height: 120px;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.contactForm form button {
+  position: absolute;
+  left: -20px;
+  bottom: -70px;
+  width: 250px;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  background-color: rgba(157, 91, 255, 0.7);
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  color: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(255, 255, 255, 0.25);
+}

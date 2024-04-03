@@ -5,6 +5,9 @@ import CourseItem from "./CourseItem.jsx";
 import Header from "./homeSections/Header.jsx";
 import Hero from "./homeSections/Hero.jsx";
 import Features from "./homeSections/Features.jsx";
+import Testimonials from "./homeSections/Testimonials.jsx";
+import ContactUs from "./homeSections/ContactUs.jsx";
+import Footer from "./homeSections/Footer.jsx";
 import commonStyles from "../styles/Common.module.css";
 import styles from "../styles/CourseList.module.css";
 
@@ -55,24 +58,44 @@ const CourseList = () => {
       <Header />
       <Hero />
       <Features />
-      <div className={styles.courseListHeader}>
-        <h1>Courses We Offer</h1>
-        <Link to={"/admin"}>Admin</Link>
+      <div id="courses" className={styles.coursesSectionContainer}>
+        <div className={styles.courseListHeader}>
+          <div className={styles.courseTextHeader}>
+            <h1>Courses We Offer</h1>
+            <p>
+              Discover a wide array of courses designed to cater to your
+              learning needs. From beginner to advanced <br />
+              levels, our courses cover various topics to help you achieve your
+              goals.
+            </p>
+          </div>
+          <div className={styles.courseCategories}>
+            <button className={styles.active}>Popular</button>
+            <button>Design</button>
+            <button>Development</button>
+            <button>AI</button>
+          </div>
+          {/* <h1>Courses We Offer</h1>
+        <Link to={"/admin"}>Admin</Link> */}
+        </div>
+        <div className={styles.courseListItems}>
+          {courses.map((course) => (
+            <CourseItem
+              key={course.course_id}
+              title={course.title}
+              subtitle={course.short_description}
+              duration="3 Months"
+              hours="100 Hours"
+              price="$100.00"
+              platform="Virtual"
+              image_name={course.course_image}
+            />
+          ))}
+        </div>
       </div>
-      <div className={styles.courseListItems}>
-        {courses.map((course) => (
-          <CourseItem
-            key={course.course_id}
-            title={course.title}
-            subtitle={course.short_description}
-            duration="3 Months"
-            hours="100 Hours"
-            price="$100.00"
-            platform="Virtual"
-            image_name={course.course_image}
-          />
-        ))}
-      </div>
+      <Testimonials />
+      <ContactUs />
+      <Footer />
     </div>
   );
 };

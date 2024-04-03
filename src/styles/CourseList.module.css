@@ -1,3 +1,19 @@
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
 .courseListContainer {
   display: flex;
   flex-direction: column;
@@ -7,6 +23,58 @@
   height: 100%;
   padding: 0px 0px;
   /* gap: 30px; */
+}
+
+.coursesSectionContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px;
+}
+
+.courseTextHeader {
+  text-align: center;
+}
+
+.courseTextHeader h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.courseTextHeader p {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.courseCategories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.courseCategories button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 35px;
+  background-color: rgba(157, 91, 255, 0.2);
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.courseCategories button.active {
+  background-color: rgba(157, 91, 255, 0.56);
+  font-weight: bold;
+  color: white;
 }
 
 .courseListItems {

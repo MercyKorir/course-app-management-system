@@ -1,0 +1,385 @@
+h1 {
+  padding: 0;
+  margin: 0;
+}
+
+h3 {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.testimonialsContainer {
+  width: 100vw;
+  min-height: 75vh;
+  height: 75vh;
+  background-color: #fffafa;
+}
+
+.testimonialsContent {
+  padding: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.testimonialsText {
+  text-align: center;
+}
+
+.testimonialsText h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.testimonialsText p {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.testimonialItems {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* justify-content: center; */
+  /* background-color: aquamarine; */
+}
+
+.userBubbleAnimationBg {
+  margin-top: 10px;
+  /* background-color: bisque; */
+  position: relative;
+  width: 500px;
+  height: 200px;
+  /* overflow: hidden; */
+}
+
+.userBubbleAnimation {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(157, 91, 255, 0.2);
+  background-size: cover;
+  background-position: center;
+  border-radius: 100%;
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.bubble1 {
+  left: 5%;
+  top: 5%;
+  width: 100px;
+  height: 100px;
+  animation: bubbleAnimation1 10s infinite linear;
+}
+
+.bubble2 {
+  left: 30%;
+  top: 30%;
+  width: 80px;
+  height: 80px;
+  animation: bubbleAnimation2 10s infinite linear;
+}
+
+.bubble3 {
+  left: 50%;
+  top: 5%;
+  width: 50px;
+  height: 50px;
+  animation: bubbleAnimation3 10s infinite linear;
+}
+
+.bubble4 {
+  left: 65%;
+  top: 25%;
+  width: 70px;
+  height: 70px;
+  animation: bubbleAnimation4 10s infinite linear;
+}
+
+.bubble5 {
+  left: 85%;
+  top: 5%;
+  width: 90px;
+  height: 90px;
+  animation: bubbleAnimation5 10s infinite linear;
+}
+
+.testimonialCardHolder {
+  width: 620px;
+  height: 300px;
+  background-color: #fff;
+  border-radius: 40px;
+  border: 1px solid rgba(245, 232, 221, 0.25);
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 130px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonialCard {
+  width: 590px;
+  height: 270px;
+  border-radius: 30px;
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  /* backdrop-filter: blur(4px); */
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.testimonialCardContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: aquamarine; */
+  position: relative;
+}
+
+.prevNextBtns {
+  width: 100%;
+  height: 100%;
+}
+
+.prevNextBtns button {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: rgba(245, 232, 221, 0.25);
+  border: none;
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.prevBtn {
+  position: absolute;
+  left: 20px;
+  top: 40%;
+}
+
+.nextBtn {
+  position: absolute;
+  right: 20px;
+  top: 40%;
+}
+
+.userTestimonial {
+  position: absolute;
+  width: 450px;
+  height: 100%;
+  /* background-color: bisque; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.userInfo {
+  margin-top: 10px;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.userImg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(157, 91, 255, 0.2);
+  background-size: cover;
+  background-position: center;
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.userNameDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.userNameDetails h3 {
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.userNameDetails p {
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(157, 91, 255, 0.56);
+}
+
+.userTestimony {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.userTestimony p {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-style: italic;
+}
+
+@keyframes bubbleAnimation1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-10px, -5px);
+  }
+  50% {
+    transform: translate(5px, 10px);
+  }
+  75% {
+    transform: translate(-15px, 5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes bubbleAnimation2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(5px, 15px);
+  }
+  50% {
+    transform: translate(-10px, -5px);
+  }
+  75% {
+    transform: translate(15px, 10px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes bubbleAnimation3 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(10px, -15px);
+  }
+  50% {
+    transform: translate(-5px, 5px);
+  }
+  75% {
+    transform: translate(15px, -10px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes bubbleAnimation4 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-15px, 10px);
+  }
+  50% {
+    transform: translate(5px, -15px);
+  }
+  75% {
+    transform: translate(-10px, 5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes bubbleAnimation5 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(15px, -10px);
+  }
+  50% {
+    transform: translate(-5px, -5px);
+  }
+  75% {
+    transform: translate(10px, 15px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* @keyframes bubbleAnimation {
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(10px, 20px);
+    }
+    50% {
+      transform: translate(-5px, 10px);
+    }
+    75% {
+      transform: translate(20px, -5px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  } */
