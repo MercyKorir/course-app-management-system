@@ -93,7 +93,7 @@ button {
 }
 
 .greenTxt {
-  color: rgba(1, 220, 75, 0.4);
+  color: rgba(1, 220, 75, 0.5);
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
@@ -121,7 +121,8 @@ button {
   color: #fff;
   font-size: 20px;
   font-weight: bold;
-  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(255, 255, 255, 0.25);
 }
 
 .btnWhite {
