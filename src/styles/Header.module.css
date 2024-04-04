@@ -11,7 +11,7 @@ button {
 
 .headerContainer {
   width: 100vw;
-  height: 15vh;
+  height: 10vh;
   background-color: rgba(245, 232, 221, 0.25);
 }
 
@@ -21,27 +21,115 @@ button {
   align-items: center;
   width: 100%;
   height: 100%;
+  transition: all 0.5s ease-in-out;
 }
 
 .logoHeaderText {
-  font-size: 48px;
+  font-size: 26px;
   font-weight: bold;
   color: rgba(157, 91, 255, 0.7);
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-left: 50px;
-  line-height: 58px;
+  margin-left: 15px;
+  transition: all 0.5s ease-in-out;
 }
 
 .loginBtn {
-  width: 160px;
-  height: 50px;
+  width: 100px;
+  height: 40px;
   border: none;
   border-radius: 35px;
   background-color: rgba(157, 91, 255, 0.7);
   color: #fff;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: bold;
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25),
     inset 0 4px 4px rgba(255, 255, 255, 0.25);
-  margin-right: 50px;
+  margin-right: 15px;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Media Queries */
+@media (min-width: 375px) {
+  .headerContainer {
+    height: 12vh;
+  }
+
+  .logoHeaderText {
+    font-size: 30px;
+    margin-left: 20px;
+  }
+
+  .loginBtn {
+    width: 110px;
+    height: 45px;
+    font-size: 16px;
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 410px) {
+  .logoHeaderText {
+    font-size: 32px;
+    margin-left: 20px;
+  }
+
+  .loginBtn {
+    width: 120px;
+    height: 50px;
+    font-size: 22px;
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 570px) {
+  .headerContainer {
+    height: 13vh;
+  }
+  .logoHeaderText {
+    font-size: 36px;
+    margin-left: 30px;
+  }
+
+  .loginBtn {
+    width: 140px;
+    height: 55px;
+    margin-right: 30px;
+  }
+}
+
+@media (min-width: 700px) {
+  .logoHeaderText {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+  .headerContainer {
+    height: 15vh;
+  }
+  .logoHeaderText {
+    font-size: 48px;
+    font-weight: bold;
+    margin-left: 50px;
+    line-height: 58px;
+  }
+
+  .loginBtn {
+    width: 160px;
+    font-size: 24px;
+    margin-right: 50px;
+    text-transform: capitalize;
+  }
+}
+
+@media (min-width: 1200px) {
+  .logoHeaderText {
+  }
+
+  .loginBtn {
+  }
 }
