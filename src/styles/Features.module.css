@@ -144,7 +144,7 @@ h3 {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .featuresContent {
     justify-content: space-around;
     width: 90%;
