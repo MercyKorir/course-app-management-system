@@ -10,27 +10,36 @@ h3 {
 
 .featuresContainer {
   width: 100vw;
-  height: 30vh;
+  height: auto;
   background-color: #fffafa;
-  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }
 
 .featuresContent {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: static;
+  top: auto;
+  left: auto;
+  transform: none;
   display: flex;
-  justify-content: space-around;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   align-items: center;
-  width: 90%;
-  height: 100%;
+  width: max-content;
+  height: auto;
+  padding: 2rem 2rem;
+  transition: all 0.5s ease-in-out;
 }
 
 .featureItem {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
+  flex: 0 0 auto;
+  margin-right: 2rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.featureItem:last-child {
+  margin-right: 0;
 }
 
 .featureIcon {
@@ -47,18 +56,21 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.5s ease-in-out;
 }
 
 .featureText {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition: all 0.5s ease-in-out;
 }
 
 .featureText h3 {
   font-size: 16px;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.5);
+  transition: all 0.5s ease-in-out;
 }
 
 .featureText p {
@@ -66,4 +78,79 @@ h3 {
   color: rgba(157, 91, 255, 0.7);
   font-style: italic;
   font-weight: 500;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Media Queries */
+@media (min-width: 375px) {
+}
+
+@media (min-width: 410px) {
+}
+
+@media (min-width: 768px) {
+  .featuresContainer {
+    height: 30vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .featuresContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .featureItem {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+    gap: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .featureItem {
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .featuresContent {
+    justify-content: space-around;
+    width: 90%;
+  }
+
+  .featureItem {
+    margin-right: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .featuresContent {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .featureItem {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1200px) {
+  .featuresContent {
+    justify-content: space-around;
+    width: 90%;
+  }
+
+  .featureItem {
+    margin-right: 0;
+  }
 }
