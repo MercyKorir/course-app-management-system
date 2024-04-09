@@ -26,36 +26,47 @@ button {
 }
 
 .coursesSectionContainer {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0px;
+  padding: 20px;
 }
 
-.courseTextHeader {
+.courseListHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  transition: all 0.3s ease-in-out;
 }
+
+/* .courseTextHeader {
+  text-align: center;
+} */
 
 .courseTextHeader h1 {
-  font-size: 40px;
+  font-size: 26px;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease-in-out;
 }
 
 .courseTextHeader p {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 15px;
+  transition: all 0.3s ease-in-out;
 }
 
 .courseCategories {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 30px;
-  margin-top: 20px;
-  margin-bottom: 30px;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0px 10px;
+  transition: all 0.3s ease-in-out;
 }
 
 .courseCategories button {
@@ -64,7 +75,7 @@ button {
   border-radius: 35px;
   background-color: rgba(157, 91, 255, 0.2);
   color: rgba(0, 0, 0, 0.5);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 1px;
   cursor: pointer;
@@ -91,7 +102,49 @@ button {
 }
 
 /* Media queries */
+@media (min-width: 375px) {
+  .courseTextHeader h1 {
+    font-size: 28px;
+  }
+
+  .courseTextHeader p {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 410px) {
+  .courseTextHeader h1 {
+    font-size: 30px;
+  }
+
+  .courseTextHeader p {
+    font-size: 14px;
+  }
+}
+
 @media (min-width: 768px) {
+  .courseTextHeader h1 {
+    font-size: 40px;
+  }
+
+  .courseTextHeader p {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .courseCategories {
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .courseCategories button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+
   .courseListItems {
     grid-template-columns: repeat(2, 1fr);
   }

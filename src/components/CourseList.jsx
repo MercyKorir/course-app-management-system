@@ -64,9 +64,8 @@ const CourseList = () => {
             <h1>Courses We Offer</h1>
             <p>
               Discover a wide array of courses designed to cater to your
-              learning needs. From beginner to advanced <br />
-              levels, our courses cover various topics to help you achieve your
-              goals.
+              learning needs. From beginner to advanced levels, our courses
+              cover various topics to help you achieve your goals.
             </p>
           </div>
           <div className={styles.courseCategories}>
