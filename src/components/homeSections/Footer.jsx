@@ -33,8 +33,11 @@ const Footer = () => {
             <div className={styles.rightUpper}>
               <h4>Socials</h4>
               <div className={styles.socialIcons}>
-                <GitHubIcon color="action" style={{ fontSize: 35 }} />
-                <LinkedInIcon color="primary" style={{ fontSize: 35 }} />
+                <GitHubIcon color="action" className={styles.iconSocialItem} />
+                <LinkedInIcon
+                  color="primary"
+                  className={styles.iconSocialItem}
+                />
               </div>
             </div>
           </div>

@@ -32,7 +32,7 @@ button {
 
 .footerContainer {
   width: 100vw;
-  height: 50vh;
+  height: 70vh;
   background: linear-gradient(
     90deg,
     rgba(168, 127, 228, 0.5) 0%,
@@ -52,6 +52,7 @@ button {
   /* justify-content: center; */
   /* gap: 100px; */
   position: relative;
+  transition: all 0.3s ease-in-out;
 }
 
 .upperContent {
@@ -65,27 +66,33 @@ button {
 }
 
 .upperContentInfo {
-  width: 1200px;
+  width: 100vw;
   height: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  transition: all 0.3s ease-in-out;
 }
 
 .leftUpper {
   display: flex;
   flex-direction: column;
+  /* background-color: antiquewhite; */
   /* justify-content: space-between; */
-  gap: 60px;
+  gap: 10px;
+  margin-left: 20px;
+  transition: all 0.3s ease-in-out;
 }
 
 .leftUpper h1 {
   font-style: normal;
   font-weight: 700;
-  font-size: 48px;
+  font-size: 34px;
   line-height: 58px;
   color: #f9f5f6;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in-out;
 }
 
 .leftUpper button {
@@ -93,13 +100,14 @@ button {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
     inset 0 4px 4px rgba(255, 255, 255, 0.25);
   border-radius: 8px;
-  width: 170px;
+  width: 150px;
   height: 50px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 20px;
   text-align: center;
   color: #f9f5f6;
+  transition: all 0.3s ease-in-out;
 }
 
 .centerUpper {
@@ -107,27 +115,31 @@ button {
   flex-direction: row;
   justify-content: space-between;
   gap: 50px;
+  margin-left: 20px;
+  transition: all 0.3s ease-in-out;
 }
 
 .centerUpper h4 {
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 29px;
   color: #f9f5f6;
   text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
 }
 
 .centerUpper ul {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0px;
+  transition: all 0.3s ease-in-out;
 }
 
 .centerUpper ul li {
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
   color: rgba(245, 232, 221, 0.8);
 }
@@ -136,37 +148,48 @@ button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 5px;
+  transition: all 0.3s ease-in-out;
 }
 
 .rightCenter {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 5px;
+  transition: all 0.3s ease-in-out;
 }
 
 .rightUpper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: -70px; /* This is a temporary fix */
-  gap: 10px;
+  margin-left: 20px;
+  margin-top: -15px; /* This is a temporary fix */
+  gap: 5px;
+  transition: all 0.3s ease-in-out;
 }
 
 .rightUpper h4 {
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 29px;
   color: #f9f5f6;
   text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
 }
 
 .socialIcons {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.iconSocialItem {
+  font-size: 30px;
+  transition: all 0.3s ease-in-out;
 }
 
 .lowerContent {
@@ -181,30 +204,139 @@ button {
 
 .lowerContentText {
   margin-top: 0px;
-  width: 1200px;
+  width: 100vw;
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0px 20px;
+  transition: all 0.3s ease-in-out;
 }
 
 .lowerContentText p {
   font-style: normal;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 19px;
   color: rgba(245, 232, 221, 0.8);
+  transition: all 0.3s ease-in-out;
 }
 
 .lowerContentText button {
-  width: 165px;
+  width: 130px;
   height: 45px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 19px;
   color: rgba(157, 91, 255, 0.7);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Media queries */
+
+@media (min-width: 375px) {
+}
+
+@media (min-width: 410px) {
+}
+
+@media (min-width: 610px) {
+}
+
+@media (min-width: 768px) {
+  .footerContainer {
+    height: 50vh;
+  }
+
+  .upperContentInfo {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0px;
+    margin: 0px 20px;
+  }
+
+  .leftUpper {
+    flex-direction: column;
+    gap: 60px;
+    margin-left: 0px;
+  }
+
+  .leftUpper h1 {
+    font-size: 48px;
+  }
+
+  .leftUpper button {
+    width: 170px;
+    font-size: 18px;
+  }
+
+  .centerUpper {
+    gap: 50px;
+    margin-left: 0px;
+  }
+
+  .centerUpper h4 {
+    font-size: 24px;
+  }
+
+  .centerUpper ul {
+    gap: 8px;
+  }
+
+  .centerUpper ul li {
+    font-size: 16px;
+  }
+
+  .leftCenter {
+    gap: 10px;
+  }
+
+  .rightCenter {
+    gap: 10px;
+  }
+
+  .rightUpper {
+    margin-left: 0px;
+    margin-top: -70px; /* This is a temporary fix */
+  }
+
+  .rightUpper h4 {
+    font-size: 24px;
+  }
+
+  .iconSocialItem {
+    font-size: 35px;
+  }
+
+  .lowerContentText p {
+    font-size: 16px;
+  }
+
+  .lowerContentText button {
+    width: 165px;
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1240px) {
+  .upperContentInfo {
+    width: 1200px;
+    margin: 0px 0px;
+  }
+
+  .lowerContentText {
+    width: 1200px;
+    margin: 0px 0px;
+  }
+}
+
+@media (min-width: 1400px) {
 }
