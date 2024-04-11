@@ -1,8 +1,8 @@
 import React from "react";
-import UIFriendlyIcon from "../../assets/ui-friendly.svg";
-import FlexibleLearningIcon from "../../assets/flexible-learningsvg.svg";
-import FreeCoursesIcon from "../../assets/free-courses.svg";
-import MobileCompatibleIcon from "../../assets/mobile-compatibility.svg";
+import uiFriendlyIconUrl from "../../assets/ui-friendly.svg";
+import flexibleLearningIconUrl from "../../assets/flexible-learningsvg.svg";
+import freeCoursesIconUrl from "../../assets/free-courses.svg";
+import mobileCompatibleIconUrl from "../../assets/mobile-compatibility.svg";
 import styles from "../../styles/Features.module.css";
 
 const Features = () => {
@@ -11,7 +11,11 @@ const Features = () => {
       <div className={styles.featuresContent}>
         <div className={styles.featureItem}>
           <div className={styles.featureIcon}>
-            <UIFriendlyIcon style={{ width: "60px", height: "60px" }} />
+            <img
+              src={uiFriendlyIconUrl}
+              alt="UIFriendly"
+              style={{ width: "60px", height: "60px" }}
+            />
           </div>
           <div className={styles.featureText}>
             <h3>User-Friendly Interface</h3>
@@ -23,7 +27,11 @@ const Features = () => {
         </div>
         <div className={styles.featureItem}>
           <div className={styles.featureIcon}>
-            <FlexibleLearningIcon style={{ width: "60px", height: "60px" }} />
+            <img
+              src={flexibleLearningIconUrl}
+              alt="Flexible Learning Icon"
+              style={{ width: "60px", height: "60px" }}
+            />
           </div>
           <div className={styles.featureText}>
             <h3>Flexible Learning</h3>
@@ -35,7 +43,11 @@ const Features = () => {
         </div>
         <div className={styles.featureItem}>
           <div className={styles.featureIcon}>
-            <FreeCoursesIcon style={{ width: "60px", height: "60px" }} />
+            <img
+              src={freeCoursesIconUrl}
+              alt="Free Courses Icon"
+              style={{ width: "60px", height: "60px" }}
+            />
           </div>
           <div className={styles.featureText}>
             <h3>Free Courses</h3>
@@ -47,7 +59,11 @@ const Features = () => {
         </div>
         <div className={styles.featureItem}>
           <div className={styles.featureIcon}>
-            <MobileCompatibleIcon style={{ width: "60px", height: "60px" }} />
+            <img
+              src={mobileCompatibleIconUrl}
+              alt="Mobile Compatible Icon"
+              style={{ width: "60px", height: "60px" }}
+            />
           </div>
           <div className={styles.featureText}>
             <h3>Mobile Compatibility</h3>
