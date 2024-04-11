@@ -67,7 +67,9 @@ const Footer = () => {
         <div className={styles.lowerContent}>
           <div className={styles.lowerContentText}>
             <p>&copy; 2024 All Rights Reserved</p>
-            <button>Get Started</button>
+            <button type="button" onClick={handleGetStarted}>
+              Get Started
+            </button>
           </div>
         </div>
       </div>
