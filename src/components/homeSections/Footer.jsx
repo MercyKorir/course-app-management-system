@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate, Link } from "react-router-dom";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import styles from "../../styles/Footer.module.css";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate("/register");
+  };
+
   return (
     <div id="footer" className={styles.footerContainer}>
       <div className={styles.footerContent}>
@@ -11,7 +18,9 @@ const Footer = () => {
           <div className={styles.upperContentInfo}>
             <div className={styles.leftUpper}>
               <h1>LOGO</h1>
-              <button>Get Started</button>
+              <button type="button" onClick={handleGetStarted}>
+                Get Started
+              </button>
             </div>
             <div className={styles.centerUpper}>
               <div className={styles.leftCenter}>
@@ -33,11 +42,24 @@ const Footer = () => {
             <div className={styles.rightUpper}>
               <h4>Socials</h4>
               <div className={styles.socialIcons}>
-                <GitHubIcon color="action" className={styles.iconSocialItem} />
-                <LinkedInIcon
-                  color="primary"
-                  className={styles.iconSocialItem}
-                />
+                <Link
+                  to={"https://github.com/MercyKorir"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <GitHubIcon
+                    color="action"
+                    className={styles.iconSocialItem}
+                  />
+                </Link>
+                <Link
+                  to={"https://www.linkedin.com/in/mercychelangatkorir/"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <LinkedInIcon
+                    color="primary"
+                    className={styles.iconSocialItem}
+                  />
+                </Link>
               </div>
             </div>
           </div>

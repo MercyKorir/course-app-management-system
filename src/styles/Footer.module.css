@@ -189,6 +189,7 @@ button {
 
 .iconSocialItem {
   font-size: 30px;
+  cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 
