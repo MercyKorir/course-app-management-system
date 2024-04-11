@@ -1,8 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import styles from "../../styles/Hero.module.css";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate("/register");
+  };
+
   return (
     <div id="hero" className={styles.heroContainer}>
       <div className={styles.heroContent}>
@@ -27,7 +34,11 @@ const Hero = () => {
               </p>
             </div>
             <div className={styles.ctaBtn}>
-              <button type="button" className={styles.btnPurple}>
+              <button
+                type="button"
+                className={styles.btnPurple}
+                onClick={handleGetStarted}
+              >
                 Get Started
               </button>
               <button type="button" className={styles.btnWhite}>
