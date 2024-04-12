@@ -16,7 +16,7 @@ button {
 
 .heroContainer {
   width: 100vw;
-  height: 60vh;
+  height: auto;
   background-color: rgba(245, 232, 221, 0.25);
 }
 
@@ -25,6 +25,7 @@ button {
   flex-direction: column;
   position: relative;
   transition: all 0.5s ease-in-out;
+  overflow-y: hidden;
 }
 
 .searchBar {
@@ -75,6 +76,7 @@ button {
 
 .heroContentMain {
   padding-top: 80px;
+  padding-bottom: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -154,9 +156,127 @@ button {
 }
 
 .heroAnimation {
-  margin-right: 15px;
+  height: 50vh;
+  /* margin-right: 15px; */
   display: none;
+  /* background-color: #222; */
+  border-radius: 50%;
+  overflow-x: hidden;
   transition: all 0.5s ease-in-out;
+}
+
+.lightBulbContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.5s ease;
+}
+
+.lightBulbContainer.on {
+  background: radial-gradient(#555, #111);
+}
+
+.lightBulb {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: #444;
+  border-radius: 50%;
+  transform: translateX(100%);
+  transition: transform 1.5s ease, background 0.5s ease, box-shadow 0.5s ease;
+}
+
+.lightBulb.show {
+  transform: translateX(0);
+}
+
+.lightBulb.on {
+  background: #ffff00;
+  box-shadow: 0 0 50px #ffff00, 0 0 100px #ffff00, 0 0 150px #ffff00,
+    0 0 200px #ffff00, 0 0 250px #ffff00, 0 0 300px #ffff00, 0 0 350px #ffff00;
+}
+
+.lightBulb::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: 22.5px;
+  width: 35px;
+  height: 80px;
+  background-color: #444;
+  border-top: 30px solid #000;
+  border-radius: 10px;
+  transition: background 0.5s ease;
+}
+
+.lightBulb.on::before {
+  background: #ffff00;
+}
+
+.lightBulb.on::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: #ffff00;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.lightBulb span:nth-child(1) {
+  position: absolute;
+  top: -16px;
+  left: -3.8px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  transform: rotate(343deg);
+  border-bottom-right-radius: 40px;
+  box-shadow: 20px 20px 0 10px #444;
+  transition: box-shadow 0.5s ease;
+}
+
+.lightBulb.on span:nth-child(1) {
+  box-shadow: 20px 20px 0 10px #ffff00;
+}
+
+.lightBulb span:nth-child(2) {
+  position: absolute;
+  top: -16px;
+  right: -3.8px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  transform: rotate(17deg);
+  border-bottom-left-radius: 40px;
+  box-shadow: -20px 20px 0 10px #444;
+  transition: box-shadow 0.5s ease;
+}
+
+.lightBulb.on span:nth-child(2) {
+  box-shadow: -20px 20px 0 10px #ffff00;
+}
+
+.lightBulbWire {
+  position: absolute;
+  right: calc(20% - 10px);
+  top: -150px;
+  width: 4px;
+  height: calc(50% + 100px);
+  background: #000;
+  transform: translateY(-100%);
+  transition: transform 1.5s ease, height 0.5s ease;
+}
+
+.lightBulbWire.show {
+  transform: translateY(0);
 }
 
 /* Media Queries */
@@ -225,9 +345,9 @@ button {
     font-weight: bold;
   }
 
-  .heroAnimation {
+  /* .heroAnimation {
     margin-right: 20px;
-  }
+  } */
 }
 
 @media (min-width: 570px) {
@@ -300,18 +420,17 @@ button {
   }
 
   .heroContentMain {
-    padding-top: 150px;
+    /* padding-top: 150px; */
   }
 
   .textCtaContent {
     margin-left: 50px;
-    width: 70%;
+    width: 60%;
   }
 
   .heroAnimation {
-    margin-right: 50px;
     display: block;
-    width: 30%;
+    width: 40%;
   }
 }
 
