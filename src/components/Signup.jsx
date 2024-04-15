@@ -29,7 +29,15 @@ const SignUp = () => {
     validatePassword();
     validatePasswordConfirm();
 
-    return Object.keys(errors).length === 0;
+    console.log("Errors: ", errors);
+
+    return (
+      errors.firstname === "" &&
+      errors.lastname === "" &&
+      errors.email === "" &&
+      errors.password === "" &&
+      errors.password_confirm === ""
+    );
   };
 
   const validateFirstName = () => {
@@ -40,6 +48,7 @@ const SignUp = () => {
 
     if (Object.keys(firstNameErrors).length === 0) {
       firstNameErrors.firstname = "";
+      console.log("First Name is valid");
     }
 
     setErrors((prevErrors) => ({
@@ -56,6 +65,7 @@ const SignUp = () => {
 
     if (Object.keys(lastNameErrors).length === 0) {
       lastNameErrors.lastname = "";
+      console.log("Last Name is valid");
     }
 
     setErrors((prevErrors) => ({
@@ -74,6 +84,7 @@ const SignUp = () => {
 
     if (Object.keys(emailErrors).length === 0) {
       emailErrors.email = "";
+      console.log("Email is valid");
     }
 
     setErrors((prevErrors) => ({
@@ -95,6 +106,7 @@ const SignUp = () => {
 
     if (Object.keys(pwdErrors).length === 0) {
       pwdErrors.password = "";
+      console.log("Password is valid");
     }
 
     setErrors((prevErrors) => ({
@@ -113,6 +125,7 @@ const SignUp = () => {
 
     if (Object.keys(pwdConfirmErrors).length === 0) {
       pwdConfirmErrors.password_confirm = "";
+      console.log("Password Confirm is valid");
     }
 
     setErrors((prevErrors) => ({
@@ -166,7 +179,10 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("SignUp Data: ", signUpData);
+
     if (!validate()) {
+      console.log("Validation failed");
       return;
     }
 
