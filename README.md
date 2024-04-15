@@ -111,7 +111,7 @@ To run this project locally, follow these steps:
 
 <div align="center">
   <a href="https://drive.google.com/file/d/1f_yStd71QNjuuoeFX9HUhCSbBfFJ5glE/view?usp=drive_link">
-    <img src="https://drive.google.com/thumbnail?id=1f_yStd71QNjuuoeFX9HUhCSbBfFJ5glE" alt="Course App Demo Video" style="max-width: 100%; object-fit: contain;" />
+    <img src="./Screenshot (390)(1).png" alt="Course App Demo Video" style="max-width: 100%; object-fit: contain;" />
   </a>
 </div>
 
