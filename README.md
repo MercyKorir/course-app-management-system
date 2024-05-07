@@ -34,6 +34,7 @@ The project utilizes the following technologies:
 
 - CodeIgniter (PHP Framework)
 - MySQL (Database)
+- OAuth2 PHP Server (Authentication)
 
 ## Features
 
